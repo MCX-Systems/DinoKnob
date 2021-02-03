@@ -3,7 +3,7 @@
 Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (← ↑ → ↓ ) support.
 
 ## Supported Browser
-DinoKnob as generated in examples/[index.html](examples/index.html) \
+DinoKnob as generated in examples/index.html \
 Tested in latest Edge, Chrome, Firefox, Opera, Safari and Mobile Safari \
 
 - Canvas-based, no image files required.
