@@ -6,7 +6,7 @@ Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (‚Üê ‚Ü
 Live example page: [https://mcx-systems.net/DinoKnob](https://mcx-systems.net/DinoKnob/)
 
 ## Supported Browser
-DinoKnob as generated in examples/[index.html](examples/index.html) \
+DinoKnob as generated in examples/index.html \
 Tested in latest Edge, Chrome, Firefox, Opera, Safari and Mobile Safari \
 
 - Canvas-based, no image files required.
