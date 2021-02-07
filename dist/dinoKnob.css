@@ -369,6 +369,71 @@
 }
 
 /*----------------------------
+	CountDown Timer
+-----------------------------*/
+
+.dinoTimer
+{
+	border: 0;
+	height: 105%;
+	overflow: hidden;
+	position: absolute;
+	transition: all .5s ease-in-out;
+	width: 105%;
+}
+
+.dinoTimer .dinoTimerRotate
+{
+	border: 0;
+	border-radius: 50%;
+	display: block;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	transition: all .5s ease-in-out;
+	width: 100%;
+	z-index: 10;
+}
+
+.dinoTimer .dinoTimerDots
+{
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 5;
+}
+
+.dinoTimer .dinoTimerDots .dinoTimerTime
+{
+	background-image: linear-gradient(rgb(255, 197, 0), rgb(255, 197, 0) 16%, rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgb(255, 197, 0) 84%, rgb(255, 197, 0));
+	display: inline-block;
+	height: 100%;
+	left: 50%;
+	margin-left: -2%;
+	overflow: hidden;
+	position: absolute;
+	width: 4%;
+}
+
+.dinoTimer .dinoTimerDots .dinoTimerTime.deg45
+{
+	transform: rotate(45deg);
+}
+
+.dinoTimer .dinoTimerDots .dinoTimerTime.deg90
+{
+	transform: rotate(90deg);
+}
+
+.dinoTimer .dinoTimerDots .dinoTimerTime.deg135
+{
+	transform: rotate(135deg);
+}
+
+/*----------------------------
 	Info overlay
 -----------------------------*/
 
