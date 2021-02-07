@@ -2,20 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="JQuery Project" name="description"/>
-    <meta content="" name="keywords"/>
+    <meta content="Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard support, jQuery plugin." name="description"/>
+    <meta content="knob, jquery, plugin, lights, dimmer, switch" name="keywords"/>
     <meta content="Davorin Casar" name="author"/>
     <title>DinoKnob Project</title>
     <!-- CSS stylesheets -->
-    <link rel="stylesheet" href="../vendor/css/bootstrap.css" />
-
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <!-- DinoKnob stylesheets -->
     <link rel="stylesheet" href="../dist/dinoKnob.min.css" />
-
     <!-- JavaScript includes -->
-    <script src="../vendor/js/jquery.js"></script>
-    <script src="../vendor/js/bootstrap.bundle.js"></script>
-
-    <!-- JQuery Plugin -->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <!-- DinoKnob Plugin -->
     <script src="../dist/dinoKnob.min.js"></script>
     <style>
 	    .vh-1
@@ -168,6 +166,7 @@
 					        // Return Button State true or false
 					        console.log(dinoId + ' ==> BUTTON ==> ' + state);
 					        console.log(dinoId + ' ==> TIMER ==> ' + timerState);
+
 					        $("#sta1").val(state);
 					        $("#stu1").val(timerState);
 				        }
@@ -271,6 +270,7 @@
 						    // Return Button State true or false
 						    console.log(dinoId + ' ==> BUTTON ==> ' + state);
 						    console.log(dinoId + ' ==> TIMER ==> ' + timerState);
+
 						    $("#sta3").val(state);
 						    $("#stu3").val(timerState);
 					    }
@@ -322,6 +322,7 @@
 						    // Return Button State true or false
 						    console.log(dinoId + ' ==> BUTTON ==> ' + state);
 						    console.log(dinoId + ' ==> TIMER ==> ' + timerState);
+
 						    $("#sta4").val(state);
 						    $("#stu4").val(timerState);
 					    }
