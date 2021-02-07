@@ -1,5 +1,4 @@
 # DinoKnob
-
 Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (← ↑ → ↓ ) support.
 
 ## Example Page
@@ -9,24 +8,38 @@ Live example page: [https://mcx-systems.net/DinoKnob](https://mcx-systems.net/Di
 ![Screenshot](screenshot.jpeg)
 
 ## Supported Browser
-DinoKnob as generated in examples/index.html \
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png)
+--- | --- | --- | --- | --- |
+Latest ✔ | Latest ✔ | 9+ ✔ | Latest ✔ | 8.0+ ✔ |
+
 Tested in latest Edge, Chrome, Firefox, Opera, Safari and Mobile Safari \
 
 - Canvas-based, no image files required.
 - Mouse, wheel, touch and keyboard controls.
 
-Based on [https://github.com/tutorialzine/KnobKnob](https://github.com/tutorialzine/KnobKnob) \
-Thank You ...
+## Install
+You can install through [npm](https://npmjs.com) and use [browserify](https://browserify.org) to make it run on the browser.
+```bash
+npm install --save dino-knob
+```
+
+Or just download the minified version
+[here](https://raw.githubusercontent.com/MCX-Systems/DinoKnob/master/build/dist/dinoKnob.min.js).
+
+Events / Actions
+----------------
+- Normal left click / drag / touch changes value, releasing button commits value.
+- Pulling mouse / touch outside the element before release restores back to old value.
 
 ## Functions
-5 x Timer Output Switch - 15 seconds, 1 minute, 5 minutes, 10 minutes, 15 minutes / all preset \
-1 x Button Output Switch ON / OFF \
-1 x Range Knob / Can be used as Lights DIMMER - Output values from 0 - 100% and 0 to 255 PWM
+- 5 x Timer Output Switch - 15 seconds, 1 minute, 5 minutes, 10 minutes, 15 minutes / all preset \
+- 1 x Button Output Switch ON / OFF \
+- 1 x Range Knob / Can be used as Lights DIMMER - Output values from 0 - 100% and 0 to 255 PWM
 
 Example for dinoKnob control
 ------------------------
 
-```script
+```js
 $(document).ready(function()
 {
 	$('#KnobTest1').dinoKnob({
@@ -100,3 +113,7 @@ Return values from example
 - `percent`: 
 - `degree`:
 - `ratio`: 
+
+## Credits
+- Based on [https://github.com/tutorialzine/KnobKnob](https://github.com/tutorialzine/KnobKnob)
+- Icon Fonts created with [Fontello Icons](https://fontello.com)
