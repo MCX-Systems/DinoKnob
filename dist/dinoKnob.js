@@ -531,9 +531,9 @@
 
 				if (widget.options.debug)
 				{
-					console.info(widget._angle.toFixed(0));
-					console.info(widget._angle.toFixed(0) / 360);
-					console.info(percentValue.toFixed(0));
+					console.log(widget._uId + ' ==> PERCENT ==> ' + widget._angle.toFixed(0));
+					console.log(widget._uId + ' ==> DEGREE ==> ' + widget._angle.toFixed(0) / 360);
+					console.log(widget._uId + ' ==> RATIO ==> ' + percentValue.toFixed(0));
 				}
 			},
 
@@ -602,6 +602,12 @@
 
 					plugin._timerState = jQuery(this).data('timer');
 					plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState);
+
+					if (plugin.options.debug)
+					{
+						console.log(plugin._uId + ' ==> BUTTON ==> ' + plugin._buttonState);
+						console.log(plugin._uId + ' ==> TIMER ==> ' + plugin._timerState);
+					}
 
 					plugin.$element.find('#dinoKnobTimers-' + plugin._uId).css({
 						'opacity': '0',
@@ -718,6 +724,12 @@
 						plugin._buttonState = true;
 						plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState);
 
+						if (plugin.options.debug)
+						{
+							console.log(plugin._uId + ' ==> BUTTON ==> ' + plugin._buttonState);
+							console.log(plugin._uId + ' ==> TIMER ==> ' + plugin._timerState);
+						}
+
 						plugin._knobTop.css({
 							'border': '3px solid rgba(255, 197, 0, 1)'
 						});
@@ -735,6 +747,12 @@
 						plugin._buttonState = false;
 						plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState);
 
+						if (plugin.options.debug)
+						{
+							console.log(plugin._uId + ' ==> BUTTON ==> ' + plugin._buttonState);
+							console.log(plugin._uId + ' ==> TIMER ==> ' + plugin._timerState);
+						}
+
 						plugin._knobTop.css({
 							'border': '12px solid rgba(255, 197, 0, .5)'
 						});
@@ -749,14 +767,6 @@
 				});
 
 				/*------------------------------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
 
 				plugin.$element.on('input change' + '.' + plugin._name, '#dinoKnobValueRaw-' + plugin._uId, function(e)
 				{
@@ -843,9 +853,9 @@
 
 					if (plugin.options.debug)
 					{
-						console.info(plugin._angle.toFixed(0));
-						console.info((plugin._angle.toFixed(0) / 360));
-						console.info(percentValue.toFixed(0));
+						console.log(plugin._uId + ' ==> PERCENT ==> ' + plugin._angle.toFixed(0));
+						console.log(plugin._uId + ' ==> DEGREE ==> ' + plugin._angle.toFixed(0 / 360));
+						console.log(plugin._uId + ' ==> RATIO ==> ' + percentValue.toFixed(0));
 					}
 				});
 
@@ -1017,9 +1027,9 @@
 
 						if (plugin.options.debug)
 						{
-							console.info(plugin._angle.toFixed(0));
-							console.info((plugin._angle.toFixed(0) / 360));
-							console.info(percentValue.toFixed(0));
+							console.log(plugin._uId + ' ==> PERCENT ==> ' + plugin._angle.toFixed(0));
+							console.log(plugin._uId + ' ==> DEGREE ==> ' + plugin._angle.toFixed(0) / 360);
+							console.log(plugin._uId + ' ==> RATIO ==> ' + percentValue.toFixed(0));
 						}
 					});
 				});
