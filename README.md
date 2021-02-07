@@ -24,7 +24,7 @@ npm install --save dino-knob
 ```
 
 Or just download the minified version
-[here](https://raw.githubusercontent.com/MCX-Systems/DinoKnob/master/build/dist/dinoKnob.min.js).
+[here](https://raw.githubusercontent.com/MCX-Systems/DinoKnob/master/dist/dinoKnob.min.js).
 
 Events / Actions
 ----------------
