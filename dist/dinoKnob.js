@@ -6,8 +6,6 @@
  *
  * Created by 2007 - 2021 MCX-Systems
  */
-'use strict';
-
 ;(function(jQuery, window, document, undefined)
 {
 	/*
@@ -303,6 +301,8 @@
 
 				'<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">' +
 
+				'<defs>' +
+
 				'<filter id="dinoBlurFilter-' + this._uId + '">' +
 
 				'<feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />' +
@@ -312,6 +312,8 @@
 				'<feBlend in2="flt" in="SourceGraphic" result="mix" />' +
 
 				'</filter>' +
+
+				'</defs>' +
 
 				'</svg>' +
 
@@ -372,9 +374,18 @@
 					'background-color': widget.options.knobBgColor ? widget.options.knobBgColor : 'rgba(6, 101, 191, 1)'
 				});
 
-				widget.$element.find('#dinoKnob-' + widget._uId).css({
-					'filter': 'url("#dinoBlurFilter-' + widget._uId + '")'
-				});
+				if(navigator.userAgent.indexOf("Firefox") === -1)
+				{
+					widget.$element.find('#dinoKnob-' + widget._uId).css({
+						'filter': 'url("#dinoBlurFilter-' + widget._uId + '")'
+					});
+				}
+				else
+				{
+					widget.$element.find('#dinoKnob-' + widget._uId).css({
+						'filter': 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'dinoBlurFilter-'+widget._uId+'\'><feGaussianBlur in=\'SourceGraphic\' result=\'blur\' stdDeviation=\'10\' /><feColorMatrix in=\'blur\' values=\'1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -8\' result=\'flt\' /><feBlend in2=\'flt\' in=\'SourceGraphic\' result=\'mix\' /></filter></svg>#dinoBlurFilter-'+widget._uId+'")'
+					});
+				}
 
 				if(!widget.options.showTimer)
 				{
@@ -522,9 +533,11 @@
 					console.log(widget._uId + ' ==> DEGREE ==> ' + widget._angle.toFixed(0) / 360);
 					console.log(widget._uId + ' ==> RATIO ==> ' + percentValue.toFixed(0));
 				}
+
+				return false;
 			},
 
-	        /***************************************************************************/
+			/***************************************************************************/
 
 			// Remove plugin instance completely
 			destroy: function ()
@@ -736,7 +749,7 @@
 					}
 				});
 
-                /*------------------------------------------------------------------------------------------------*/
+				/*------------------------------------------------------------------------------------------------*/
 
 				plugin.$element.on('change' + '.' + plugin._name, '#dinoKnobSwitchInput-' + plugin._uId, function(e)
 				{
@@ -780,7 +793,7 @@
 							'border': '12px solid rgba(255, 197, 0, .5)'
 						});
 
-                        //--------------------------------------------------------------
+						//--------------------------------------------------------------
 						plugin._bars.find(".dinoKnobColorBar").removeClass('active');
 						//--------------------------------------------------------------
 
@@ -880,7 +893,13 @@
 						console.log(plugin._uId + ' ==> DEGREE ==> ' + plugin._angle.toFixed(0 / 360));
 						console.log(plugin._uId + ' ==> RATIO ==> ' + percentValue.toFixed(0));
 					}
+
+					return false;
 				});
+
+				/*------------------------------------------------------------------------------------------------*/
+				/*  Manipulating Events  (mouse, keyboard, touch)                                                 */
+				/*------------------------------------------------------------------------------------------------*/
 
 				plugin.$element.on('mousewheel DOMMouseScroll MozMousePixelScroll' + '.' + plugin._name, '#dinoKnobMain-' + plugin._uId, function(e)
 				{
@@ -895,6 +914,8 @@
 						plugin.rotateKnob('up');
 					}
 				});
+
+				/*------------------------------------------------------------------------------------------------*/
 
 				plugin.$element.on('mousedown touchstart' + '.' + plugin._name, function (e)
 				{
@@ -1039,7 +1060,7 @@
 							'transform': 'rotate(' + plugin._angle + 'deg)'
 						});
 
-                        //--------------------------------------------------------------
+						//--------------------------------------------------------------
 
 						jQuery(plugin.element).find("#dinoKnobValueRaw-" + plugin._uId).val(plugin._angle.toFixed(0));
 						if(plugin.options.showLabel)
@@ -1054,6 +1075,8 @@
 							console.log(plugin._uId + ' ==> DEGREE ==> ' + plugin._angle.toFixed(0) / 360);
 							console.log(plugin._uId + ' ==> RATIO ==> ' + percentValue.toFixed(0));
 						}
+
+						return false;
 					});
 				});
 
@@ -1247,7 +1270,7 @@
 					'<b>' + this.capitalizeFirstLetter(this._name) + '</b>' +
 					'<p>' + this._version + '</p><hr />' +
 					'<span>' + atob('Q3JlYXRlZCBCeTog') + '<br /><b>' +
-					           atob('PGEgaHJlZj0iaHR0cHM6Ly9tY3gtc3lzdGVtcy5uZXQiIHRhcmdldD0iYmxhbmsiPk1DWC1TeXN0ZW1zJnJlZzwvYT4=') + '</b></span>' +
+							   atob('PGEgaHJlZj0iaHR0cHM6Ly9tY3gtc3lzdGVtcy5uZXQiIHRhcmdldD0iYmxhbmsiPk1DWC1TeXN0ZW1zJnJlZzwvYT4=') + '</b></span>' +
 					'</address>';
 			}
 
