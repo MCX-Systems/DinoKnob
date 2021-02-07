@@ -8,10 +8,13 @@
     <title>DinoKnob Project</title>
     <!-- CSS stylesheets -->
     <link rel="stylesheet" href="../vendor/css/bootstrap.css" />
+
     <link rel="stylesheet" href="../dist/dinoKnob.min.css" />
+
     <!-- JavaScript includes -->
     <script src="../vendor/js/jquery.js"></script>
     <script src="../vendor/js/bootstrap.bundle.js"></script>
+
     <!-- JQuery Plugin -->
     <script src="../dist/dinoKnob.min.js"></script>
     <style>
@@ -19,10 +22,6 @@
         {
             height: calc(100vh - 70px);
         }
-	    .knob .knobValue
-	    {
-            display:none;
-	    }
 	    .app-download
         {
 		    display: flex;
@@ -84,11 +83,6 @@
 		    animation-direction: alternate;
 		    animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
 		    animation-iteration-count: infinite;
-		    -webkit-animation-name: bounce;
-		    -webkit-animation-duration: 0.5s;
-		    -webkit-animation-direction: alternate;
-		    -webkit-animation-timing-function: cubic-bezier(0.5, 0.05, 1, 0.5);
-		    -webkit-animation-iteration-count: infinite;
 	    }
 	    @keyframes bounce
         {
@@ -124,12 +118,12 @@
     <a href="https://mcx-systems.github.io/DinoKnob/" target="_blank" class="btn-link">
         <i class="bounce">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.978 29.978" xml:space="preserve">
-            <path d="M25.462,19.105v6.848H4.515v-6.848H0.489v8.861c0,1.111,0.9,2.012,2.016,2.012h24.967c1.115,0,2.016-0.9,2.016-2.012v-8.861H25.462z"/>
+                <path d="M25.462,19.105v6.848H4.515v-6.848H0.489v8.861c0,1.111,0.9,2.012,2.016,2.012h24.967c1.115,0,2.016-0.9,2.016-2.012v-8.861H25.462z"/>
                 <path d="M14.62,18.426l-5.764-6.965c0,0-0.877-0.828,0.074-0.828s3.248,0,3.248,0s0-0.557,0-1.416c0-2.449,0-6.906,0-8.723
 		c0,0-0.129-0.494,0.615-0.494c0.75,0,4.035,0,4.572,0c0.536,0,0.524,0.416,0.524,0.416c0,1.762,0,6.373,0,8.742
 		c0,0.768,0,1.266,0,1.266s1.842,0,2.998,0c1.154,0,0.285,0.867,0.285,0.867s-4.904,6.51-5.588,7.193
 		C15.092,18.979,14.62,18.426,14.62,18.426z"/>
-        </svg>
+            </svg>
         </i>
     </a>
 </div>
@@ -137,35 +131,45 @@
 <div class="container-fluid text-center bg-primary vh-100">
     <div class="row">
         <div class="col-md-3 bg-dark d-flex justify-content-center align-items-center vh-1">
-            <div id="KnobTest1" class="dinoKnob"></div>
-            <script type="text/javascript">
+            <div id="KnobTest1"></div>
+            <script>
 		        $(document).ready(function()
 		        {
 			        $('#KnobTest1').dinoKnob({
-				        snap: 10,
+				        // Theme Light or Dark
+				        theme: 'dark',
+				        // Step Value of the Knob
+				        snap: 5,
 				        // Knob Display Max Value as 100%
 				        maxValue: 100,
-				        // Max ColorBar Angle
-				        maxAngle: 255,
-				        // Theme Light or Dark
-				        theme: 'light',
-				        // Circle Bar style Hot, Cold or Mono
-				        barStyle: 'mono',
+				        // Max angle value, for alarm icon
+				        maxAlarm: 200,
+				        // Circle Bar style Hot, Cold or Mono, yellow, blue, red, green
+				        barStyle: 'blue',
+				        // Enable Timer Button
+				        showTimer: true,
+				        // Enable Alerts Button
+				        showAlert: true,
+				        // Enable Labels Button
+				        showLabel: true,
 				        // Event on knob turn - change
-				        onTurn: function(percent, degree, ratio)
+				        onTurn: function(dinoId, percent, degree, ratio)
 				        {
-					        console.log(percent);
-					        console.log(degree);
-					        console.log(ratio);
+					        console.log(dinoId + ' ==> ' + percent);
+					        console.log(dinoId + ' ==> ' + degree);
+					        console.log(dinoId + ' ==> ' + ratio);
 
 					        $("#per1").val(percent);
 					        $("#des1").val(degree);
 					        $("#rat1").val(ratio);
 				        },
-				        onComplete: function(state)
+				        onComplete: function(dinoId, state, timerState)
 				        {
-				        	// Return Button State true or false
-					        console.log(state);
+					        // Return Button State true or false
+					        console.log(dinoId + ' ==> BUTTON ==> ' + state);
+					        console.log(dinoId + ' ==> TIMER ==> ' + timerState);
+					        $("#sta1").val(state);
+					        $("#stu1").val(timerState);
 				        }
 			        });
 
@@ -178,76 +182,96 @@
         </div>
 
         <div class="col-md-3 bg-danger d-flex justify-content-center align-items-center vh-1">
-            <div id="KnobTest2" class="dinoKnob"></div>
-            <script type="text/javascript">
+            <div id="KnobTest2"></div>
+            <script>
 		        $(document).ready(function()
 		        {
 			        $('#KnobTest2').dinoKnob({
-				        snap: 10,
-				        // Knob Max Value
-				        maxValue: 100,
-				        // Max ColorBar Angle
-				        maxAngle: 360,
 				        // Theme Light or Dark
 				        theme: 'dark',
+				        // Knob main Circle background color
+				        knobBgColor: 'rgba(39, 131, 0, 1)',
+				        // Step Value of the Knob
+				        snap: 5,
+				        // Knob Max Value
+				        maxValue: 100,
 				        // Circle Bar style Hot, Cold or Mono
-				        barStyle: 'cold',
+				        barStyle: 'green',
+				        // Enable Timer Button
+				        showTimer: false,
+				        // Enable Alerts Button
+				        showAlert: false,
+				        // Enable Labels Button
+				        showLabel: true,
 				        // Event on knob turn - change
-				        onTurn: function(percent, degree, ratio)
+				        onTurn: function(dinoId, percent, degree, ratio)
 				        {
-					        console.log(percent);
-					        console.log(degree);
-					        console.log(ratio);
+					        console.log(dinoId + ' ==> ' + percent);
+					        console.log(dinoId + ' ==> ' + degree);
+					        console.log(dinoId + ' ==> ' + ratio);
 
 					        $("#per2").val(percent);
 					        $("#des2").val(degree);
 					        $("#rat2").val(ratio);
 				        },
-				        onComplete: function(state)
+				        onComplete: function(dinoId, state, timerState)
 				        {
 					        // Return Button State true or false
-					        console.log(state);
+					        console.log(dinoId + ' ==> BUTTON ==> ' + state);
+					        console.log(dinoId + ' ==> TIMER ==> ' + timerState);
+					        $("#sta2").val(state);
+					        $("#stu2").val(timerState);
 				        }
 			        });
 
 			        // Depends on maxAngle, set to max of 255 default
 			        //$("#KnobTest2 input[type=checkbox]").prop('checked', true).trigger('change');
-			        $("#KnobTest2 input[type=hidden]").val(290).trigger('change');
+			        $("#KnobTest2 input[type=hidden]").val(180).trigger('change');
 			        //$('#KnobTest2').data('plugin_dinoKnob').destroy();
 		        });
             </script>
         </div>
 
         <div class="col-md-3 bg-secondary d-flex justify-content-center align-items-center vh-1">
-            <div id="KnobTest3" class="dinoKnob"></div>
-            <script type="text/javascript">
+            <div id="KnobTest3"></div>
+            <script>
 			    $(document).ready(function()
 			    {
 				    $('#KnobTest3').dinoKnob({
-					    snap: 10,
+					    // Theme Light or Dark
+					    theme: 'light',
+					    // Knob main Circle background color
+					    knobBgColor: 'rgba(121, 5, 146, 1)',
+					    // Step Value of the Knob from wheel
+					    snap: 5,
 					    // Knob Max Value
 					    maxValue: 100,
-					    // Max ColorBar Angle
-					    maxAngle: 200,
-					    // Theme Light or Dark
-					    theme: 'dark',
 					    // Circle Bar style Hot, Cold or Mono
 					    barStyle: 'hot',
+					    // Enable Timer Button
+					    showTimer: true,
+					    // Enable Alerts Button
+					    showAlert: false,
+					    // Enable Labels Button
+					    showLabel: true,
 					    // Event on knob turn - change
-					    onTurn: function(percent, degree, ratio)
+					    onTurn: function(dinoId, percent, degree, ratio)
 					    {
-						    console.log(percent);
-						    console.log(degree);
-						    console.log(ratio);
+						    console.log(dinoId + ' ==> ' + percent);
+						    console.log(dinoId + ' ==> ' + degree);
+						    console.log(dinoId + ' ==> ' + ratio);
 
 						    $("#per3").val(percent);
 						    $("#des3").val(degree);
 						    $("#rat3").val(ratio);
 					    },
-					    onComplete: function(state)
+					    onComplete: function(dinoId, state, timerState)
 					    {
 						    // Return Button State true or false
-						    console.log(state);
+						    console.log(dinoId + ' ==> BUTTON ==> ' + state);
+						    console.log(dinoId + ' ==> TIMER ==> ' + timerState);
+						    $("#sta3").val(state);
+						    $("#stu3").val(timerState);
 					    }
 				    });
 
@@ -260,35 +284,45 @@
         </div>
 
         <div class="col-md-3 bg-primary d-flex justify-content-center align-items-center vh-1">
-            <div id="KnobTest4" class="dinoKnob"></div>
-            <script type="text/javascript">
+            <div id="KnobTest4"></div>
+            <script>
 			    $(document).ready(function()
 			    {
 				    $('#KnobTest4').dinoKnob({
-					    snap: 10,
-					    // Knob Max Value
-					    maxValue: 100,
-					    // Max ColorBar Angle
-					    maxAngle: 280,
 					    // Theme Light or Dark
 					    theme: 'light',
+					    // Knob main Circle background color
+					    knobBgColor: 'rgba(210, 18, 18, 1)',
+					    // Step Value of the Knob
+					    snap: 5,
+					    // Knob Max Value
+					    maxValue: 100,
 					    // Circle Bar style Hot, Cold or Mono
-					    barStyle: 'hot',
+					    barStyle: 'red',
+					    // Enable Timer Button
+					    showTimer: false,
+					    // Enable Alerts Button
+					    showAlert: false,
+					    // Enable Labels Button
+					    showLabel: false,
 					    // Event on knob turn - change
-					    onTurn: function(percent, degree, ratio)
+					    onTurn: function(dinoId, percent, degree, ratio)
 					    {
-						    console.log(percent);
-						    console.log(degree);
-						    console.log(ratio);
+						    console.log(dinoId + ' ==> ' + percent);
+						    console.log(dinoId + ' ==> ' + degree);
+						    console.log(dinoId + ' ==> ' + ratio);
 
 						    $("#per4").val(percent);
 						    $("#des4").val(degree);
 						    $("#rat4").val(ratio);
 					    },
-					    onComplete: function(state)
+					    onComplete: function(dinoId, state, timerState)
 					    {
 						    // Return Button State true or false
-						    console.log(state);
+						    console.log(dinoId + ' ==> BUTTON ==> ' + state);
+						    console.log(dinoId + ' ==> TIMER ==> ' + timerState);
+						    $("#sta4").val(state);
+						    $("#stu4").val(timerState);
 					    }
 				    });
 
@@ -299,50 +333,82 @@
 			    });
             </script>
         </div>
+    </div>
 
-        <div class="row g-0">
-            <div class="col-md-3 bg-dark p-3">
-                <div class="input-group flex-wrap">
-                    <label class="input-group-text" for="per1">Percent</label>
-                    <input id="per1" type="number" class="form-control" placeholder="0" />
-                    <label class="input-group-text" for="des1">Degree</label>
-                    <input id="des1" type="number" class="form-control" placeholder="0" />
-                    <label class="input-group-text" for="rat1">Ratio</label>
-                    <input id="rat1" type="number" class="form-control" placeholder="0" />
-                </div>
+    <footer class="row g-0 fixed-bottom">
+        <div class="col-md-3 bg-dark p-3">
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="sta1">State</label>
+                <input id="sta1" type="text" class="form-control" placeholder="false" />
+                <label class="input-group-text" for="rat1">Ratio</label>
+                <input id="rat1" type="number" class="form-control" placeholder="0" />
             </div>
-            <div class="col-md-3 bg-danger p-3">
-                <div class="input-group flex-nowrap">
-                    <label class="input-group-text" for="per2">Percent</label>
-                    <input id="per2" type="number" class="form-control" placeholder="0" />
-                    <label class="input-group-text" for="des2">Degree</label>
-                    <input id="des2" type="number" class="form-control" placeholder="0" />
-                    <label class="input-group-text" for="rat2">Ratio</label>
-                    <input id="rat2" type="number" class="form-control" placeholder="0" />
-                </div>
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="per1">Percent</label>
+                <input id="per1" type="number" class="form-control col-6" placeholder="0" />
+                <label class="input-group-text" for="des1">Degree</label>
+                <input id="des1" type="number" class="form-control" placeholder="0" />
             </div>
-            <div class="col-md-3 bg-secondary p-3">
-                <div class="input-group flex-nowrap">
-                    <label class="input-group-text" for="per3">Percent</label>
-                    <input id="per3" type="number" class="form-control" placeholder="0" />
-                    <label class="input-group-text" for="des3">Degree</label>
-                    <input id="des3" type="number" class="form-control" placeholder="0" />
-                    <label class="input-group-text" for="rat3">Ratio</label>
-                    <input id="rat3" type="number" class="form-control" placeholder="0" />
-                </div>
-            </div>
-            <div class="col-md-3 bg-primary p-3">
-                <div class="input-group flex-nowrap">
-                    <label class="input-group-text" for="per4">Percent</label>
-                    <input id="per4" type="number" class="form-control" placeholder="0" />
-                    <label class="input-group-text" for="des4">Degree</label>
-                    <input id="des4" type="number" class="form-control" placeholder="0" />
-                    <label class="input-group-text" for="rat4">Ratio</label>
-                    <input id="rat4" type="number" class="form-control" placeholder="0" />
-                </div>
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="stu1">TimerState</label>
+                <input id="stu1" type="number" class="form-control" placeholder="0" />
             </div>
         </div>
-    </div>
+        <div class="col-md-3 bg-danger p-3">
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="sta2">State</label>
+                <input id="sta2" type="text" class="form-control" placeholder="false" />
+                <label class="input-group-text" for="rat2">Ratio</label>
+                <input id="rat2" type="number" class="form-control" placeholder="0" />
+            </div>
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="per2">Percent</label>
+                <input id="per2" type="number" class="form-control col-6" placeholder="0" />
+                <label class="input-group-text" for="des2">Degree</label>
+                <input id="des2" type="number" class="form-control" placeholder="0" />
+            </div>
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="stu2">TimerState</label>
+                <input id="stu2" type="number" class="form-control" placeholder="0" />
+            </div>
+        </div>
+        <div class="col-md-3 bg-secondary p-3">
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="sta3">State</label>
+                <input id="sta3" type="text" class="form-control" placeholder="false" />
+                <label class="input-group-text" for="rat3">Ratio</label>
+                <input id="rat3" type="number" class="form-control" placeholder="0" />
+            </div>
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="per3">Percent</label>
+                <input id="per3" type="number" class="form-control col-6" placeholder="0" />
+                <label class="input-group-text" for="des3">Degree</label>
+                <input id="des3" type="number" class="form-control" placeholder="0" />
+            </div>
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="stu3">TimerState</label>
+                <input id="stu3" type="number" class="form-control" placeholder="0" />
+            </div>
+        </div>
+        <div class="col-md-3 bg-primary p-3">
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="sta4">State</label>
+                <input id="sta4" type="text" class="form-control" placeholder="false" />
+                <label class="input-group-text" for="rat4">Ratio</label>
+                <input id="rat4" type="number" class="form-control" placeholder="0" />
+            </div>
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="per4">Percent</label>
+                <input id="per4" type="number" class="form-control col-6" placeholder="0" />
+                <label class="input-group-text" for="des4">Degree</label>
+                <input id="des4" type="number" class="form-control" placeholder="0" />
+            </div>
+            <div class="input-group flex-wrap mb-2">
+                <label class="input-group-text" for="stu4">TimerState</label>
+                <input id="stu4" type="number" class="form-control" placeholder="0" />
+            </div>
+        </div>
+    </footer>
 </div>
 </body>
 </html>
