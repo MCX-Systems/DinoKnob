@@ -78,7 +78,7 @@
 		this._uId = this.createUniqId(8);
 		this._name = pluginName;
 		this._flag = false;
-		this._version = 'V2.04.2021';
+		this._version = 'V2.05.2021';
 		this._language = this.getUserLanguage()
 		/***************************************************************************/
 		// DinoKnob circle Bars color set
@@ -234,6 +234,7 @@
 					console.info('--------------------------------------------');
 					console.info(widget.capitalizeFirstLetter(widget._name) + ' ' + widget._version + ' successfully initialized and is ready.');
 					console.info('Language is set to: ' + widget.options.language);
+					console.info('Plugin Description: ' + widget.getI18n('plugin_version', widget.options.language));
 					console.info('Uniq ID generated: ' + widget._uId);
 					console.info('--------------------------------------------');
 					console.info('--------------------------------------------');
@@ -560,9 +561,9 @@
 
 				if (widget.options.debug)
 				{
-					console.log(widget._uId + ' ==> PERCENT ==> ' + widget._angle.toFixed(0));
-					console.log(widget._uId + ' ==> DEGREE ==> ' + widget._angle.toFixed(0) / 360);
-					console.log(widget._uId + ' ==> RATIO ==> ' + percentValue.toFixed(0));
+					console.log(widget._uId + ' ==> RATIO ==> ' + widget._angle.toFixed(0) / 360);
+					console.log(widget._uId + ' ==> DEGREE ==> ' + widget._angle.toFixed(0));
+					console.log(widget._uId + ' ==> PERCENT ==> ' + percentValue.toFixed(0));
 				}
 
 				return false;
@@ -918,9 +919,9 @@
 
 					if (plugin.options.debug)
 					{
-						console.log(plugin._uId + ' ==> PERCENT ==> ' + plugin._angle.toFixed(0));
-						console.log(plugin._uId + ' ==> DEGREE ==> ' + plugin._angle.toFixed(0 / 360));
-						console.log(plugin._uId + ' ==> RATIO ==> ' + percentValue.toFixed(0));
+						console.log(plugin._uId + ' ==> RATIO ==> ' + val / 360);
+						console.log(plugin._uId + ' ==> DEGREE ==> ' + val);
+						console.log(plugin._uId + ' ==> PERCENT ==> ' + percentValue.toFixed(0));
 					}
 
 					return false;
@@ -1150,9 +1151,9 @@
 
 						if (plugin.options.debug)
 						{
-							console.log(plugin._uId + ' ==> PERCENT ==> ' + plugin._angle.toFixed(0));
-							console.log(plugin._uId + ' ==> DEGREE ==> ' + plugin._angle.toFixed(0) / 360);
-							console.log(plugin._uId + ' ==> RATIO ==> ' + percentValue.toFixed(0));
+							console.log(plugin._uId + ' ==> RATIO ==> ' + plugin._angle.toFixed(0) / 360);
+							console.log(plugin._uId + ' ==> DEGREE ==> ' + plugin._angle.toFixed(0));
+							console.log(plugin._uId + ' ==> PERCENT ==> ' + percentValue.toFixed(0));
 						}
 
 						return false;
@@ -1203,6 +1204,17 @@
 				if (typeof onTurn === "function")
 				{
 					onTurn.call(this.element, id, percent, degree, ratio);
+				}
+			},
+
+			timerUpdateCallback: function (timeLeft)
+			{
+				// Cache onTimer option
+				let onTimer = this.options.onTimer;
+
+				if (typeof onTimer === "function")
+				{
+					onTimer.call(this.element, timeLeft);
 				}
 			},
 
@@ -1355,6 +1367,39 @@
 					'<span>' + atob('Q3JlYXRlZCBCeTog') + '<br /><b>' +
 							   atob('PGEgaHJlZj0iaHR0cHM6Ly9tY3gtc3lzdGVtcy5uZXQiIHRhcmdldD0iYmxhbmsiPk1DWC1TeXN0ZW1zJnJlZzwvYT4=') + '</b></span>' +
 					'</address>';
+			},
+
+			/***************************************************************************/
+
+			/*
+			 * Internationalization of some texts used by the dinoKnob.
+			 * @return String the localized text item or the id if there's no translation found
+			 * @param key
+			 * @param lang
+			 */
+			getI18n: function(key, lang)
+			{
+				const i18n = {
+					en: {
+						plugin_title: 'DinoKnob',
+						plugin_version: 'Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (← ↑ → ↓ ) support.'
+					},
+					sl: {
+						plugin_title: 'DinoKnob',
+						plugin_version: 'Gumb za upravljanje / izbiranje in gumb za vklop z podporo miške, kolesa, dotika in tipkovnice (← ↑ → ↓).'
+					},
+					de: {
+						plugin_title: 'DinoKnob',
+						plugin_version: 'Knopf- / Wähl- und Ein- / Ausschalter mit Unterstützung für Maus, Rad, Touch und Tastatur (← ↑ → ↓).'
+					}
+				};
+
+				if (typeof i18n[lang] !== 'undefined' && typeof i18n[lang][key] !== 'undefined')
+				{
+					return i18n[lang][key];
+				}
+
+				return key;
 			}
 
 			/***************************************************************************/
@@ -1457,8 +1502,10 @@
 		/*---------------------------------------------*/
 		// Event on turn knob
 		onTurn: null,
-		// Event on timers and button click
+		// Event on timer and button click
 		onComplete: null,
+		// Event on timer left time
+		onTimer: null,
 		// Event on plugin error's
 		onError: null
 	};

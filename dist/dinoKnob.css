@@ -67,9 +67,9 @@
 
 .dinoKnob
 {
-	height: 150px;
+	height: 280px;
 	transition: all .5s ease-in-out;
-	width: 150px;
+	width: 280px;
 }
 
 .dinoKnob:focus
