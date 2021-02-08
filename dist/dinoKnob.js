@@ -418,17 +418,17 @@
 
 				if(!widget.options.showTimer)
 				{
-					jQuery(widget.element).find("#dinoKnobMenu1-" + widget._uId).addClass('disabled');
+					widget.$element.find("#dinoKnobMenu1-" + widget._uId).addClass('disabled');
 				}
 
 				if(!widget.options.showLabel)
 				{
-					jQuery(widget.element).find("#dinoKnobMenu2-" + widget._uId).addClass('disabled');
+					widget.$element.find("#dinoKnobMenu2-" + widget._uId).addClass('disabled');
 				}
 
 				if(!widget.options.showAlert)
 				{
-					jQuery(widget.element).find("#dinoKnobMenu3-" + widget._uId).addClass('disabled');
+					widget.$element.find("#dinoKnobMenu3-" + widget._uId).addClass('disabled');
 				}
 			},
 
@@ -535,24 +535,24 @@
 					percentValue = widget.options.maxValue;
 					if(widget.options.showAlert)
 					{
-						jQuery(widget.element).find("#dinoKnobMenu3-" + widget._uId).removeClass('active').addClass('active');
+						widget.$element.find("#dinoKnobMenu3-" + widget._uId).removeClass('active').addClass('active');
 					}
 				}
 				else if((widget._angle >= widget.options.maxAlarm) && widget.options.showAlert)
 				{
-					jQuery(widget.element).find("#dinoKnobMenu3-" + widget._uId).removeClass('active').addClass('active');
+					widget.$element.find("#dinoKnobMenu3-" + widget._uId).removeClass('active').addClass('active');
 				}
 				else
 				{
-					jQuery(widget.element).find("#dinoKnobMenu3-" + widget._uId).removeClass('active');
+					widget.$element.find("#dinoKnobMenu3-" + widget._uId).removeClass('active');
 				}
 
 				// return the value to the function turn
 				if(widget.options.showLabel)
 				{
-					jQuery(widget.element).find("#dinoKnobValue-" + widget._uId).html(percentValue.toFixed(0));
+					widget.$element.find("#dinoKnobValue-" + widget._uId).html(percentValue.toFixed(0));
 				}
-				jQuery(widget.element).find("#dinoKnobValueRaw-" + widget._uId).val(widget._angle.toFixed(0));
+				widget.$element.find("#dinoKnobValueRaw-" + widget._uId).val(widget._angle.toFixed(0));
 				widget.turnKnobUpdateCallback.call(widget, widget._uId, percentValue.toFixed(0), widget._angle, widget._angle.toFixed(0) / 360);
 
 				if (widget.options.debug)
@@ -652,7 +652,7 @@
 						let mid = (plugin._timerCounter > 180) ? 1 : 0;
 						let anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z';
 
-						jQuery(plugin.element).find('#dinoTimerLoader-' + plugin._uId).attr( "d", anim );
+						plugin.$element.find('#dinoTimerLoader-' + plugin._uId).attr( "d", anim );
 						if(plugin._doCountDown)
 						{
 							if(plugin._timerCounterLeft >= plugin._timerState * 1000)
@@ -783,7 +783,7 @@
 				{
 					e.preventDefault();
 
-					if(jQuery(plugin._powerButtonInput).is(':checked'))
+					if(plugin._powerButtonInput.is(':checked'))
 					{
 						plugin._buttonState = true;
 						plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState);
@@ -836,7 +836,7 @@
 				{
 					e.preventDefault();
 
-					let val = jQuery(plugin.element).find("#dinoKnobValueRaw-" + plugin._uId).val();
+					let val = plugin.$element.find("#dinoKnobValueRaw-" + plugin._uId).val();
 					let colorBars = plugin._bars.find('.dinoKnobColorBar');
 					let numBars, lastNum = -plugin.options.snap;
 
@@ -847,12 +847,10 @@
 						{
 							percentValue = (val / (plugin.options.maxAngle / 2)) * Math.abs(plugin.options.minValue);
 							percentValue = parseInt(plugin.options.minValue) + Math.abs(percentValue);
-
 						}
 						else if (val > (plugin.options.maxAngle / 2))
 						{
 							percentValue = ((val / (plugin.options.maxAngle / 2) * plugin.options.maxValue) - parseInt(plugin.options.maxValue));
-
 						}
 						else
 						{
@@ -869,16 +867,16 @@
 						percentValue = plugin.options.maxValue;
 						if(plugin.options.showAlert)
 						{
-							jQuery(plugin.element).find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
+							plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
 						}
 					}
 					else if((val >= plugin.options.maxAlarm) && plugin.options.showAlert)
 					{
-						jQuery(plugin.element).find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
+						plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
 					}
 					else
 					{
-						jQuery(plugin.element).find("#dinoKnobMenu3-" + plugin._uId).removeClass('active');
+						plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active');
 					}
 
 					/*--------------------------------------------------------------*/
@@ -902,10 +900,10 @@
 						'transform': 'rotate(' + val + 'deg)'
 					});
 
-					jQuery(plugin.element).find("#dinoKnobValueRaw-" + plugin._uId).val(val);
+					plugin.$element.find("#dinoKnobValueRaw-" + plugin._uId).val(val);
 					if(plugin.options.showLabel)
 					{
-						jQuery(plugin.element).find("#dinoKnobValue-" + plugin._uId).html(percentValue.toFixed(0));
+						plugin.$element.find("#dinoKnobValue-" + plugin._uId).html(percentValue.toFixed(0));
 					}
 					plugin.turnKnobUpdateCallback.call(plugin, plugin._uId, percentValue.toFixed(0), val, val / 360);
 
@@ -1092,16 +1090,16 @@
 							plugin._angle = plugin.options.maxAngle;
 							if(plugin.options.showAlert)
 							{
-								jQuery(plugin.element).find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
+								plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
 							}
 						}
 						else if((plugin._angle >= plugin.options.maxAlarm) && plugin.options.showAlert)
 						{
-							jQuery(plugin.element).find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
+							plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
 						}
 						else
 						{
-							jQuery(plugin.element).find("#dinoKnobMenu3-" + plugin._uId).removeClass('active');
+							plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active');
 						}
 
 						if (plugin._angle <= plugin.options.maxAngle)
@@ -1138,10 +1136,10 @@
 
 						/*--------------------------------------------------------------*/
 
-						jQuery(plugin.element).find("#dinoKnobValueRaw-" + plugin._uId).val(plugin._angle.toFixed(0));
+						plugin.$element.find("#dinoKnobValueRaw-" + plugin._uId).val(plugin._angle.toFixed(0));
 						if(plugin.options.showLabel)
 						{
-							jQuery(plugin.element).find("#dinoKnobValue-" + plugin._uId).html(percentValue.toFixed(0));
+							plugin.$element.find("#dinoKnobValue-" + plugin._uId).html(percentValue.toFixed(0));
 						}
 						plugin.turnKnobUpdateCallback.call(plugin, plugin._uId, percentValue.toFixed(0), plugin._angle, plugin._angle.toFixed(0) / 360);
 
@@ -1188,13 +1186,6 @@
 
 				if (typeof onComplete === "function")
 				{
-					/*
-						Use the "call" method so that inside of the onComplete
-						callback function the "this" keyword refers to the
-						specific DOM node that called the plugin.
-
-						More: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
-					*/
 					onComplete.call(this.element, id, state, timerState);
 				}
 			},
@@ -1207,6 +1198,17 @@
 				if (typeof onTurn === "function")
 				{
 					onTurn.call(this.element, id, percent, degree, ratio);
+				}
+			},
+
+			errorUpdateCallback: function (id, error)
+			{
+				// Cache onTurn option
+				let onError = this.options.onError;
+
+				if (typeof onError === "function")
+				{
+					onError.call(this.element, id, error);
 				}
 			},
 
@@ -1318,7 +1320,7 @@
 
 			createTimerFace: function()
 			{
-				return '<section class="dinoTimer">' +
+				return '<article class="dinoTimer">' +
 					'<svg class="dinoTimerRotate" viewbox="0 0 250 250">' +
 					'<defs>' +
 					'<linearGradient spreadMethod="pad" id="gradientTimer-' + this._uId + '" x1="0%" y1="0%" x2="0%" y2="100%">' +
@@ -1329,13 +1331,13 @@
 					'</defs>' +
 					'<path id="dinoTimerLoader-' + this._uId + '" transform="translate(125, 125)" class="dinoTimerLoader" fill="url(#gradientTimer-' + this._uId + ')" />' +
 					'</svg>' +
-					'<div class="dinoTimerDots">' +
+					'<section class="dinoTimerDots">' +
 					'<span class="dinoTimerTime deg0"></span>' +
 					'<span class="dinoTimerTime deg45"></span>' +
 					'<span class="dinoTimerTime deg90"></span>' +
 					'<span class="dinoTimerTime deg135"></span>' +
-					'</div>' +
-					'</section>';
+					'</section>' +
+					'</article>';
 			},
 
 			/***************************************************************************/
@@ -1400,7 +1402,7 @@
 	jQuery.fn.dinoKnob.defaults = {
 		// Theme Light or Dark
 		theme: 'light',
-		// Knob main Circle background color
+		// Knob main background color
 		knobBgColor: null,
 		// Step Value of the Knob
 		snap: 0,
