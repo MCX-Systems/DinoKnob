@@ -25,17 +25,45 @@
 	{
 		/***************************************************************************/
 
-		jQuery.event.special.touchstart = {
-			setup: function (_, ns, handle)
+		jQuery.event.special.mousewheel = {
+			setup: function( _, ns, handle )
 			{
-				this.addEventListener('touchstart', handle, {passive: !ns.includes('noPreventDefault')});
+				if ( ns.includes("noPreventDefault") )
+				{
+					this.addEventListener("mousewheel", handle, { passive: false });
+				}
+				else
+				{
+					this.addEventListener("mousewheel", handle, { passive: true });
+				}
+			}
+		};
+
+		jQuery.event.special.touchstart = {
+			setup: function( _, ns, handle )
+			{
+				if ( ns.includes("noPreventDefault") )
+				{
+					this.addEventListener("touchstart", handle, { passive: false });
+				}
+				else
+				{
+					this.addEventListener("touchstart", handle, { passive: true });
+				}
 			}
 		};
 
 		jQuery.event.special.touchmove = {
-			setup: function (_, ns, handle)
+			setup: function( _, ns, handle )
 			{
-				this.addEventListener('touchmove', handle, {passive: !ns.includes('noPreventDefault')});
+				if ( ns.includes("noPreventDefault") )
+				{
+					this.addEventListener("touchmove", handle, { passive: false });
+				}
+				else
+				{
+					this.addEventListener("touchmove", handle, { passive: true });
+				}
 			}
 		};
 
@@ -113,6 +141,7 @@
 			]
 		];
 		/***************************************************************************/
+		/* Create and append the knob widget */
 		jQuery(this.element).append(this.createKnobWidget());
 		jQuery(this.element).find('#dinoKnobValue-' + this._uId).html("0");
 		jQuery(this.element).find("#dinoKnobValueRaw-" + this._uId).val("0");
@@ -132,7 +161,7 @@
 		this._deg = 0;
 		this._angle = 0;
 		/***************************************************************************/
-		this._startDeg = -1;
+		this._startDeg = 0;
 		this._currentDeg = 0;
 		this._rotation = 0;
 		this._lastDeg = 0;
@@ -409,7 +438,8 @@
 			{
 				let widget = this;
 				let colorBars = widget._bars.find('.dinoKnobColorBar');
-				let numBars = 0, lastNum = -widget.options.step;
+				let numBars = 0;
+				let lastNum = -widget.options.step;
 
 				if (direction === 'up')
 				{
@@ -952,8 +982,6 @@
 
 				plugin.$element.on('mousewheel DOMMouseScroll MozMousePixelScroll' + '.' + plugin._name, '#dinoKnobMain-' + plugin._uId, function(e)
 				{
-					e.preventDefault();
-
 					if (e.originalEvent.wheelDelta < 0 || e.originalEvent.detail > 0)
 					{
 						plugin.rotateKnob('down');
@@ -1294,9 +1322,9 @@
 					'<svg class="dinoTimerRotate" viewbox="0 0 250 250">' +
 					'<defs>' +
 					'<linearGradient spreadMethod="pad" id="gradientTimer-' + this._uId + '" x1="0%" y1="0%" x2="0%" y2="100%">' +
-					'<stop offset="0%" style="stop-color:rgb(255, 255, 0); stop-opacity:1;" />' +
-					'<stop offset="50" style="stop-color:rgba(48, 48, 48, 0.5); stop-opacity:0.5;" />' +
-					'<stop offset="100%" style="stop-color:rgb(0, 0, 0); stop-opacity:1;" />' +
+					'<stop offset="0%" style="stop-color:rgb(255, 255, 0); stop-opacity: 1;" />' +
+					'<stop offset="50" style="stop-color:rgba(48, 48, 48, 0.5); stop-opacity: 0.5;" />' +
+					'<stop offset="100%" style="stop-color:rgb(0, 0, 0); stop-opacity: 1;" />' +
 					'</linearGradient>' +
 					'</defs>' +
 					'<path id="dinoTimerLoader-' + this._uId + '" transform="translate(125, 125)" class="dinoTimerLoader" fill="url(#gradientTimer-' + this._uId + ')" />' +

@@ -72,6 +72,12 @@
 	width: 150px;
 }
 
+.dinoKnob:focus
+{
+	outline: none;
+	border: 0;
+}
+
 .dinoKnob .disabled
 {
 	pointer-events: none;
