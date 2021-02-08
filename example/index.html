@@ -169,6 +169,13 @@
 
 					        $("#sta1").val(state);
 					        $("#stu1").val(timerState);
+				        },
+				        onError: function(dinoId, error)
+				        {
+					        // Return knob errors
+					        console.log(dinoId + ' ==> ERROR ==> ' + error);
+
+					        $("#err1").val(error);
 				        }
 			        });
 
@@ -221,6 +228,13 @@
 
 					        $("#sta2").val(state);
 					        $("#stu2").val(timerState);
+				        },
+				        onError: function(dinoId, error)
+				        {
+					        // Return knob errors
+					        console.log(dinoId + ' ==> ERROR ==> ' + error);
+
+					        $("#err2").val(error);
 				        }
 			        });
 
@@ -273,6 +287,13 @@
 
 						    $("#sta3").val(state);
 						    $("#stu3").val(timerState);
+					    },
+					    onError: function(dinoId, error)
+					    {
+						    // Return knob errors
+						    console.log(dinoId + ' ==> ERROR ==> ' + error);
+
+						    $("#err3").val(error);
 					    }
 				    });
 
@@ -326,6 +347,14 @@
 						    $("#sta4").val(state);
 						    $("#stu4").val(timerState);
 					    }
+					    ,
+					    onError: function(dinoId, error)
+					    {
+						    // Return knob errors
+						    console.log(dinoId + ' ==> ERROR ==> ' + error);
+
+						    $("#err4").val(error);
+					    }
 				    });
 
 				    // Depends on maxAngle, set to max of 255 default
@@ -341,76 +370,93 @@
         <div class="col-md-3 bg-dark p-3">
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="sta1">State</label>
-                <input id="sta1" type="text" class="form-control" placeholder="false" />
+                <input id="sta1" type="text" class="form-control" placeholder="false" readonly="readonly" />
                 <label class="input-group-text" for="rat1">Ratio</label>
-                <input id="rat1" type="number" class="form-control" placeholder="0" />
+                <input id="rat1" type="text" class="form-control" placeholder="0" readonly="readonly" />
             </div>
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="per1">Percent</label>
-                <input id="per1" type="number" class="form-control col-6" placeholder="0" />
+                <input id="per1" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
                 <label class="input-group-text" for="des1">Degree</label>
-                <input id="des1" type="number" class="form-control" placeholder="0" />
+                <input id="des1" type="text" class="form-control" placeholder="0" readonly="readonly" />
             </div>
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="stu1">TimerState</label>
-                <input id="stu1" type="number" class="form-control" placeholder="0" />
+                <input id="stu1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+                <label class="input-group-text" for="err1">ErrorState</label>
+                <input id="err1" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
             </div>
         </div>
         <div class="col-md-3 bg-danger p-3">
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="sta2">State</label>
-                <input id="sta2" type="text" class="form-control" placeholder="false" />
+                <input id="sta2" type="text" class="form-control" placeholder="false" readonly="readonly" />
                 <label class="input-group-text" for="rat2">Ratio</label>
-                <input id="rat2" type="number" class="form-control" placeholder="0" />
+                <input id="rat2" type="text" class="form-control" placeholder="0" readonly="readonly" />
             </div>
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="per2">Percent</label>
-                <input id="per2" type="number" class="form-control col-6" placeholder="0" />
+                <input id="per2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
                 <label class="input-group-text" for="des2">Degree</label>
-                <input id="des2" type="number" class="form-control" placeholder="0" />
+                <input id="des2" type="text" class="form-control" placeholder="0" readonly="readonly" />
             </div>
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="stu2">TimerState</label>
-                <input id="stu2" type="number" class="form-control" placeholder="0" />
+                <input id="stu2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+                <label class="input-group-text" for="err2">ErrorState</label>
+                <input id="err2" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
             </div>
         </div>
         <div class="col-md-3 bg-secondary p-3">
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="sta3">State</label>
-                <input id="sta3" type="text" class="form-control" placeholder="false" />
+                <input id="sta3" type="text" class="form-control" placeholder="false" readonly="readonly" />
                 <label class="input-group-text" for="rat3">Ratio</label>
-                <input id="rat3" type="number" class="form-control" placeholder="0" />
+                <input id="rat3" type="text" class="form-control" placeholder="0" readonly="readonly" />
             </div>
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="per3">Percent</label>
-                <input id="per3" type="number" class="form-control col-6" placeholder="0" />
+                <input id="per3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
                 <label class="input-group-text" for="des3">Degree</label>
-                <input id="des3" type="number" class="form-control" placeholder="0" />
+                <input id="des3" type="text" class="form-control" placeholder="0" readonly="readonly" />
             </div>
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="stu3">TimerState</label>
-                <input id="stu3" type="number" class="form-control" placeholder="0" />
+                <input id="stu3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+                <label class="input-group-text" for="err3">ErrorState</label>
+                <input id="err3" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
             </div>
         </div>
         <div class="col-md-3 bg-primary p-3">
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="sta4">State</label>
-                <input id="sta4" type="text" class="form-control" placeholder="false" />
+                <input id="sta4" type="text" class="form-control" placeholder="false" readonly="readonly" />
                 <label class="input-group-text" for="rat4">Ratio</label>
-                <input id="rat4" type="number" class="form-control" placeholder="0" />
+                <input id="rat4" type="text" class="form-control" placeholder="0" readonly="readonly" />
             </div>
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="per4">Percent</label>
-                <input id="per4" type="number" class="form-control col-6" placeholder="0" />
+                <input id="per4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
                 <label class="input-group-text" for="des4">Degree</label>
-                <input id="des4" type="number" class="form-control" placeholder="0" />
+                <input id="des4" type="text" class="form-control" placeholder="0" readonly="readonly" />
             </div>
             <div class="input-group flex-wrap mb-2">
                 <label class="input-group-text" for="stu4">TimerState</label>
-                <input id="stu4" type="number" class="form-control" placeholder="0" />
+                <input id="stu4" type="text" class="form-control" placeholder="0" readonly="readonly" />
+                <label class="input-group-text" for="err4">ErrorState</label>
+                <input id="err4" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
             </div>
         </div>
     </footer>
 </div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MP8H23FYPJ"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-MP8H23FYPJ');
+</script>
 </body>
 </html>
