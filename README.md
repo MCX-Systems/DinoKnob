@@ -44,21 +44,55 @@ $(document).ready(function()
 {
 	$('#KnobTest1').dinoKnob({
 		// Theme Light or Dark
-		theme: 'dark',
-		// Step Value of the Knob
-		snap: 5,
-		// Knob Display Max Value as 100%
+		// set's the shadow of knob
+		theme: 'light',
+		// Knob main background color
+		knobBgColor: null,
+		// Circle range Bar style: (Hot, Cold or Mono,
+		// yellow, blue, red, green) color
+		barStyle: 'hot',
+		/*---------------------------------------------*/
+		// Show Knob Value overlay
+		// on hover button #dinoKnobMenu2
+		showLabel: false,
+		// Step Value of the knob range when using
+		// mouse wheel or keyboard control
+		snap: 0,
+		// Knob current value we start with 0
+		// It can be set at runtime
+		value: 0,
+		// Knob Min Value starts with 0
+		// can't be a negative number
+		minValue: 0,
+		// Knob Max Value
+		// also maxAlarm depends on this value
 		maxValue: 100,
-		// Max angle value, for alarm icon
-		maxAlarm: 200,
-		// Circle Bar style Hot, Cold or Mono, yellow, blue, red, green
-		barStyle: 'blue',
+		/*---------------------------------------------*/
+		// Enable Alerts for overdrive on knob range
+		showAlert: false,
+		// Alarm icon
+		// Value to activate alarm depends on Max value
+		maxAlarm: 500,
+		/*---------------------------------------------*/
 		// Enable Timer Button
-		showTimer: true,
-		// Enable Alerts Button
-		showAlert: true,
-		// Enable Labels Button
-		showLabel: true,
+		showTimer: false, // default
+		// Preset timer 1 to 15 seconds
+		timer_1: 15, // seconds
+		// Preset timer 2 to 1 minute
+		timer_2: 60, // seconds
+		// Preset timer 3 to 5 minutes
+		timer_3: 300, // seconds
+		// Preset timer 4 to 10 minutes
+		timer_4: 600, // seconds
+		// Preset timer 5 to 15 minutes
+		timer_5: 900, // seconds
+		/*---------------------------------------------*/
+		// Plugin language automatic
+		// detection at runtime from browser
+		language: null,
+		// Enable plugin debug
+		debug: false,
+		/*---------------------------------------------*/
 		// Event on knob turn - change
 		onTurn: function(dinoId, percent, degree, ratio)
 		{
@@ -94,25 +128,15 @@ and the button state value \
 (`$("#KnobTest1 input[type=checkbox]").prop('checked', true).trigger('change')`) \
 programmatically in your script to display new values.
 
-Properties
-----------
-
-- `snap`: 
-- `minValue`: 
-- `maxValue`: 
-- `maxAngle`: 
-- `theme`: 
-- `barStyle`: 
-- `onComplete`: 
-- `onTurn`: 
-
 Return values from example
 ----------
 
+- `id`:
 - `state`: 
 - `percent`: 
 - `degree`:
 - `ratio`: 
+- `timer`:
 
 ## Credits
 - Based on [https://github.com/tutorialzine/KnobKnob](https://github.com/tutorialzine/KnobKnob)
