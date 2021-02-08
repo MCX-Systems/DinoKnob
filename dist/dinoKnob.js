@@ -50,7 +50,7 @@
 		this._uId = this.createUniqId(8);
 		this._name = pluginName;
 		this._flag = false;
-		this._version = 'V2.02.2021';
+		this._version = 'V2.03.2021';
 		this._language = this.getUserLanguage()
 		/***************************************************************************/
 		// DinoKnob circle Bars color set
@@ -215,7 +215,7 @@
 
 			createKnobWidget: function ()
 			{
-				return '<article id="dinoKnob-' + this._uId + '" class="dinoKnob">' +
+				return '<article id="dinoKnob-' + this._uId + '" class="dinoKnob" tabindex="0">' +
 
 				'<div id="dinoKnobBars-' + this._uId + '" class="dinoKnobBars"></div>' +
 
@@ -417,7 +417,7 @@
 					{
 						widget._angle = widget._angle + (widget._angle === widget.options.maxAngle ? widget.options.minAngle : widget.options.snap);
 
-						//--------------------------------------------------------------
+						/*--------------------------------------------------------------*/
 						numBars = Math.round(colorBars.length * (widget._angle / 360));
 
 						// Update the dom only when the number of active bars
@@ -432,8 +432,7 @@
 							lastNum = numBars;
 							colorBars.removeClass('active').slice(0, numBars).addClass('active');
 						}
-
-						//--------------------------------------------------------------
+						/*--------------------------------------------------------------*/
 
 						if (widget._angle >= widget.options.maxAngle)
 						{
@@ -451,7 +450,7 @@
 					{
 						widget._angle = widget._angle - (widget._angle === widget.options.minAngle ? widget.options.minAngle : widget.options.snap);
 
-						//--------------------------------------------------------------
+						/*--------------------------------------------------------------*/
 						numBars = Math.round(colorBars.length * (widget._angle / 360));
 
 						// Update the dom only when the number of active bars
@@ -466,8 +465,7 @@
 							lastNum = numBars;
 							colorBars.removeClass('active').slice(0, numBars).addClass('active');
 						}
-
-						//--------------------------------------------------------------
+						/*--------------------------------------------------------------*/
 
 						if (widget._angle <= widget.options.minAngle)
 						{
@@ -770,10 +768,10 @@
 							'border': '3px solid rgba(255, 197, 0, 1)'
 						});
 
-						//--------------------------------------------------------------
+						/*--------------------------------------------------------------*/
 						let numBars = Math.round((plugin._colorBarTheme.length * (plugin._angle / 360)));
 						plugin._bars.find(".dinoKnobColorBar").removeClass('active').slice(0, numBars).addClass('active');
-						//--------------------------------------------------------------
+						/*--------------------------------------------------------------*/
 
 						plugin.$element.find('.dinoKnobMenu').toggleClass('blob');
 						plugin.$element.find('#dinoKnobMain-' + plugin._uId).toggleClass('blob');
@@ -793,9 +791,9 @@
 							'border': '12px solid rgba(255, 197, 0, .5)'
 						});
 
-						//--------------------------------------------------------------
+						/*--------------------------------------------------------------*/
 						plugin._bars.find(".dinoKnobColorBar").removeClass('active');
-						//--------------------------------------------------------------
+						/*--------------------------------------------------------------*/
 
 						plugin.$element.find('.dinoKnobMenu').toggleClass('blob');
 						plugin.$element.find('#dinoKnobMain-' + plugin._uId).toggleClass('blob');
@@ -853,7 +851,7 @@
 						jQuery(plugin.element).find("#dinoKnobMenu3-" + plugin._uId).removeClass('active');
 					}
 
-					//--------------------------------------------------------------
+					/*--------------------------------------------------------------*/
 					numBars = Math.round((colorBars.length * (val / 360)));
 
 					// Update the dom only when the number of active bars
@@ -868,8 +866,7 @@
 						lastNum = numBars;
 						colorBars.removeClass('active').slice(0, numBars).addClass('active');
 					}
-
-					//--------------------------------------------------------------
+					/*--------------------------------------------------------------*/
 
 					plugin._knobTop.css({
 						'transform': 'rotate(' + val + 'deg)'
@@ -900,6 +897,58 @@
 				/*------------------------------------------------------------------------------------------------*/
 				/*  Manipulating Events  (mouse, keyboard, touch)                                                 */
 				/*------------------------------------------------------------------------------------------------*/
+
+				plugin.$element.on('mouseleave' + '.' + plugin._name, '#dinoKnob-' + plugin._uId, function (e)
+				{
+					e.preventDefault();
+
+					plugin.$element.find('#dinoKnob-' + plugin._uId).blur();
+				});
+
+				plugin.$element.on('mouseenter' + '.' + plugin._name, '#dinoKnob-' + plugin._uId, function (e)
+				{
+					e.preventDefault();
+
+					plugin.$element.find('#dinoKnob-' + plugin._uId).focus();
+				});
+
+				plugin.$element.on('keydown keypress' + '.' + plugin._name, function (e)
+				{
+					e.preventDefault();
+
+					let keycode = (e.keyCode ? e.keyCode : e.which);
+					switch (keycode)
+					{
+						case 40:
+							plugin.rotateKnob('down');
+							break;
+						case 38:
+							plugin.rotateKnob('up');
+							break;
+						case 37:
+							plugin.rotateKnob('down');
+							break;
+						case 39:
+							plugin.rotateKnob('up');
+							break;
+						case 98:
+							plugin.rotateKnob('down');
+							break;
+						case 104:
+							plugin.rotateKnob('up');
+							break;
+						case 100:
+							plugin.rotateKnob('down');
+							break;
+						case 102:
+							plugin.rotateKnob('up');
+							break;
+						default:
+							break;
+					}
+				});
+
+                /*--------------------------------------------------------------*/
 
 				plugin.$element.on('mousewheel DOMMouseScroll MozMousePixelScroll' + '.' + plugin._name, '#dinoKnobMain-' + plugin._uId, function(e)
 				{
@@ -1037,7 +1086,7 @@
 								}
 							}
 
-							//--------------------------------------------------------------
+							/*--------------------------------------------------------------*/
 							numBars = Math.round((colorBars.length * (plugin._angle / 360)));
 
 							// Update the dom only when the number of active bars
@@ -1052,15 +1101,14 @@
 								lastNum = numBars;
 								colorBars.removeClass('active').slice(0, numBars).addClass('active');
 							}
-
-							//--------------------------------------------------------------
+							/*--------------------------------------------------------------*/
 						}
 
 						plugin._knobTop.css({
 							'transform': 'rotate(' + plugin._angle + 'deg)'
 						});
 
-						//--------------------------------------------------------------
+						/*--------------------------------------------------------------*/
 
 						jQuery(plugin.element).find("#dinoKnobValueRaw-" + plugin._uId).val(plugin._angle.toFixed(0));
 						if(plugin.options.showLabel)
