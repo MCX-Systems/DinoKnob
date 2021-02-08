@@ -78,7 +78,7 @@
 		this._uId = this.createUniqId(8);
 		this._name = pluginName;
 		this._flag = false;
-		this._version = 'V2.03.2021';
+		this._version = 'V2.04.2021';
 		this._language = this.getUserLanguage()
 		/***************************************************************************/
 		// DinoKnob circle Bars color set
@@ -160,6 +160,8 @@
 		this._rad2deg = 180 / Math.PI;
 		this._deg = 0;
 		this._angle = 0;
+		this._minAngle = 0;
+		this._maxAngle = 260;
 		/***************************************************************************/
 		this._startDeg = 0;
 		this._currentDeg = 0;
@@ -443,9 +445,9 @@
 
 				if (direction === 'up')
 				{
-					if (widget._angle <= widget.options.maxAngle)
+					if (widget._angle <= widget._maxAngle)
 					{
-						widget._angle = widget._angle + (widget._angle === widget.options.maxAngle ? widget.options.minAngle : widget.options.snap);
+						widget._angle = widget._angle + (widget._angle === widget._maxAngle ? widget._minAngle : widget.options.snap);
 
 						/*--------------------------------------------------------------*/
 						numBars = Math.round(colorBars.length * (widget._angle / 360));
@@ -464,9 +466,9 @@
 						}
 						/*--------------------------------------------------------------*/
 
-						if (widget._angle >= widget.options.maxAngle)
+						if (widget._angle >= widget._maxAngle)
 						{
-							widget._angle = widget.options.maxAngle;
+							widget._angle = widget._maxAngle;
 						}
 
 						widget._knobTop.css({
@@ -476,9 +478,9 @@
 				}
 				else if (direction === 'down')
 				{
-					if ((widget._angle) >= widget.options.minAngle)
+					if ((widget._angle) >= widget._minAngle)
 					{
-						widget._angle = widget._angle - (widget._angle === widget.options.minAngle ? widget.options.minAngle : widget.options.snap);
+						widget._angle = widget._angle - (widget._angle === widget._minAngle ? widget._minAngle : widget.options.snap);
 
 						/*--------------------------------------------------------------*/
 						numBars = Math.round(colorBars.length * (widget._angle / 360));
@@ -497,9 +499,9 @@
 						}
 						/*--------------------------------------------------------------*/
 
-						if (widget._angle <= widget.options.minAngle)
+						if (widget._angle <= widget._minAngle)
 						{
-							widget._angle = widget.options.minAngle;
+							widget._angle = widget._minAngle;
 						}
 
 						widget._knobTop.css({
@@ -511,14 +513,14 @@
 				let percentValue;
 				if (widget.options.minValue < 0)
 				{
-					if (widget._angle < (widget.options.maxAngle / 2))
+					if (widget._angle < (widget._maxAngle / 2))
 					{
-						percentValue = (widget._angle / (widget.options.maxAngle / 2)) * Math.abs(widget.options.minValue);
+						percentValue = (widget._angle / (widget._maxAngle / 2)) * Math.abs(widget.options.minValue);
 						percentValue = parseInt(widget.options.minValue) + Math.abs(percentValue);
 					}
-					else if (widget._angle > (widget.options.maxAngle / 2))
+					else if (widget._angle > (widget._maxAngle / 2))
 					{
-						percentValue = ((widget._angle / (widget.options.maxAngle / 2) * widget.options.maxValue) - parseInt(widget.options.maxValue));
+						percentValue = ((widget._angle / (widget._maxAngle / 2) * widget.options.maxValue) - parseInt(widget.options.maxValue));
 					}
 					else
 					{
@@ -527,18 +529,19 @@
 				}
 				else
 				{
-					percentValue = (widget._angle / widget.options.maxAngle) * widget.options.maxValue;
+					percentValue = (widget._angle / widget._maxAngle) * widget.options.maxValue;
 				}
 
 				if(percentValue >= widget.options.maxValue)
 				{
 					percentValue = widget.options.maxValue;
-					if(widget.options.showAlert)
-					{
-						widget.$element.find("#dinoKnobMenu3-" + widget._uId).removeClass('active').addClass('active');
-					}
 				}
-				else if((widget._angle >= widget.options.maxAlarm) && widget.options.showAlert)
+
+				if((percentValue >= widget.options.maxAlarm) && widget.options.showAlert)
+				{
+					widget.$element.find("#dinoKnobMenu3-" + widget._uId).removeClass('active').addClass('active');
+				}
+				else if((percentValue >= widget.options.maxValue) && widget.options.showAlert)
 				{
 					widget.$element.find("#dinoKnobMenu3-" + widget._uId).removeClass('active').addClass('active');
 				}
@@ -843,14 +846,14 @@
 					let percentValue;
 					if (plugin.options.minValue < 0)
 					{
-						if (val < (plugin.options.maxAngle / 2))
+						if (val < (plugin._maxAngle / 2))
 						{
-							percentValue = (val / (plugin.options.maxAngle / 2)) * Math.abs(plugin.options.minValue);
+							percentValue = (val / (plugin._maxAngle / 2)) * Math.abs(plugin.options.minValue);
 							percentValue = parseInt(plugin.options.minValue) + Math.abs(percentValue);
 						}
-						else if (val > (plugin.options.maxAngle / 2))
+						else if (val > (plugin._maxAngle / 2))
 						{
-							percentValue = ((val / (plugin.options.maxAngle / 2) * plugin.options.maxValue) - parseInt(plugin.options.maxValue));
+							percentValue = ((val / (plugin._maxAngle / 2) * plugin.options.maxValue) - parseInt(plugin.options.maxValue));
 						}
 						else
 						{
@@ -859,18 +862,19 @@
 					}
 					else
 					{
-						percentValue = (val / plugin.options.maxAngle) * plugin.options.maxValue;
+						percentValue = (val / plugin._maxAngle) * plugin.options.maxValue;
 					}
 
 					if(percentValue >= plugin.options.maxValue)
 					{
 						percentValue = plugin.options.maxValue;
-						if(plugin.options.showAlert)
-						{
-							plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
-						}
 					}
-					else if((val >= plugin.options.maxAlarm) && plugin.options.showAlert)
+
+					if((percentValue >= plugin.options.maxAlarm) && plugin.options.showAlert)
+					{
+						plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
+					}
+					else if((percentValue >= plugin.options.maxValue) && plugin.options.showAlert)
 					{
 						plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
 					}
@@ -1061,14 +1065,14 @@
 						let percentValue;
 						if (plugin.options.minValue < 0)
 						{
-							if (plugin._angle < (plugin.options.maxAngle / 2))
+							if (plugin._angle < (plugin._maxAngle / 2))
 							{
-								percentValue = (plugin._angle / (plugin.options.maxAngle / 2)) * Math.abs(plugin.options.minValue);
+								percentValue = (plugin._angle / (plugin._maxAngle / 2)) * Math.abs(plugin.options.minValue);
 								percentValue = parseInt(plugin.options.minValue) + Math.abs(percentValue);
 							}
-							else if (plugin._angle > (plugin.options.maxAngle / 2))
+							else if (plugin._angle > (plugin._maxAngle / 2))
 							{
-								percentValue = ((plugin._angle / (plugin.options.maxAngle / 2) * plugin.options.maxValue) - parseInt(plugin.options.maxValue));
+								percentValue = ((plugin._angle / (plugin._maxAngle / 2) * plugin.options.maxValue) - parseInt(plugin.options.maxValue));
 							}
 							else
 							{
@@ -1077,7 +1081,7 @@
 						}
 						else
 						{
-							percentValue = (plugin._angle / plugin.options.maxAngle) * plugin.options.maxValue;
+							percentValue = (plugin._angle / plugin._maxAngle) * plugin.options.maxValue;
 						}
 
 						if(percentValue > plugin.options.maxValue)
@@ -1085,15 +1089,16 @@
 							percentValue = plugin.options.maxValue;
 						}
 
-						if (plugin._angle >= plugin.options.maxAngle)
+						if (plugin._angle >= plugin._maxAngle)
 						{
-							plugin._angle = plugin.options.maxAngle;
-							if(plugin.options.showAlert)
-							{
-								plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
-							}
+							plugin._angle = plugin._maxAngle;
 						}
-						else if((plugin._angle >= plugin.options.maxAlarm) && plugin.options.showAlert)
+
+						if((percentValue >= plugin.options.maxAlarm) && plugin.options.showAlert)
+						{
+							plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
+						}
+						else if((percentValue >= plugin.options.maxValue) && plugin.options.showAlert)
 						{
 							plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
 						}
@@ -1102,11 +1107,11 @@
 							plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active');
 						}
 
-						if (plugin._angle <= plugin.options.maxAngle)
+						if (plugin._angle <= plugin._maxAngle)
 						{
-							if(plugin._angle !== 0)
+							if(plugin._angle !== plugin._minAngle)
 							{
-								if(plugin._angle !== plugin.options.maxAngle)
+								if(plugin._angle !== plugin._maxAngle)
 								{
 									plugin._angle = plugin._angle + plugin.options.snap;
 								}
@@ -1163,7 +1168,7 @@
 					plugin._rotation = plugin._currentDeg;
 
 					// Marking the starting degree as invalid
-					plugin._startDeg = -1;
+					plugin._startDeg = 0;
 				});
 			},
 
@@ -1310,11 +1315,11 @@
 			createTimerIcons: function()
 			{
 				return '<ul>' +
-					'<li><button id="dinoTimer1-' + this._uId + '" type="button" data-timer="15"><img class="dinoKnobTimerImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAABVCAMAAADDsmKDAAAAV1BMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fXMzMwY+fVIJUOhAAAAG3RSTlMA8EAwEMDQgKDgIHBgkFCwIOvA0KVAEJCAcGAfAF7kAAADVUlEQVRYw82X2ZarIBBFZR7FnqfK/3/nZUhEBDGh++GeB1cCZktVHSo49UUNAy8+6+kXEsgjGAuomY5CKAckdPxkFSgyTOF0/SIBja1nBrn9KoGNUDCo8vEM7ABGgisHNPABDKj9yAJkIKbZL4BggtPFEyzYAYzxvmHA4HoJQ2IA4/4GI/4CQ0DuMQLc9LAQoiHFRlgjjAsp5kBHTGxi3aNwCHPIxhohvcVQ5a8DMsBpxtDFG2lIEhS+YTQP0FPpdnpgSRjmP7UouzGCZNM8Cq5SzX1gESkpII9cGGXasxYQKSiLpCO92kROprQySJ2QTMWQ2CKsbtSAJ06mwI6jBYed+Ex2FEicTAlym6A5NKUM3fgTMkevFKNXiIJDIUHXmDccyuWSKPwaJeabp7NZBLHtmEsUjmzkMMtpCitSIK6Ozuvts9tmy83rGhkNFIDAKUoVKF5qIhySpGv0IHmLDE8LQOJsjeM8KYAJukK21b1cXl8+f55iWm8gm+50ZPc0Fyj2Gk7ZES5Jr98fAcQgygSObRj7RqkawmXVW1iSgShBkO3sH1Ql5ZL1vJakuZQ86xPfwXylWme7VqK8olSY5/Je3exRidLDvK/PVNHAR4lxUw/zUmSg2YZUqlEX81R0LID6AGbSIruYz2I02li2FoO7mOePsiQxLF16L6G7mO9WALJejO5iXiuHoH12SAY3lItdSkQv7z1Dupi3hmHBa9nFpKYjFcWuirVpztEzXcxXa8KVjrW52i3lYreimsvUTD3MT3uGA2zOTix/a6nYTNUfHioyvPQw71NboggDvEQHk4vdyjG5E/PydDSDi9qk1jGgGuP+BiP+K8w8dnT2oqX9BlT6ZokbfEDh+byE6gFM2e3wkHHq3+U2dq5O01xGoqqbph1yjquMgkZqxaoYJHjZgQSXdtPVH/u5WKODy3s3RP/woKFi96VR8wfiwbD4gdfSMexejjw6/BEIkg/4t11acz9H9G6V6+vJaUQpAd1pRfoQyvqUiS4Ap7vLoUzpLxc4PrQLg0zpJS+JNUFYQtLpWztG6zsi2S3EcEhCdjoVlXATWoTD2g9hLKRah5m+rwMw6Ci9+P4SpB5rSmRWNQNJPD0sYha1QTCBp2FhjK3xl5MC/wOxI3nU8RC8DQAAAABJRU5ErkJggg==" alt="Timer-1" /></button></li>' +
-					'<li><button id="dinoTimer2-' + this._uId + '" type="button" data-timer="60"><img class="dinoKnobTimerImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEUAAABUCAMAAADj2QolAAAAYFBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwY+fUY+fXMzMzMzMzMzMzMzMwY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fXMzMwY+fUiSYD7AAAAHnRSTlMA8BCAwKBAYNAwIOBAP1CwcJDjMPHAsWtREKCI0MsmOwGYAAADUElEQVRYw62X63KcMAyFfb+mBjaXJk2rff+3bLG9KwNegmjOj51hFn9IR5LHZvvyOgIAH6xgpxUUACilIgBPZyGeQ0w1JAB9GiLxwZ3DCA62fXQwMrokTEuTOBf0UDaL5IlgEkxrLrgTCRnGTDDBGz//BMYUEBl1CUiQCtT8IxmbwHwDRdIpA4g1RYOg+5LWFEf3xYCe3U12lKNMs7sBFCMrQsiwWXm5BkunjDAsKAYiOyEHuqF4DubUOEYYxI2S+JF8Qg/jgA+ZEhV0IWJZegupW24OVcp3P+PEAsJ9PytZYgmsKw1OtBA7Mbr8lDEI4aC3XlmpVM7JKS1Nb0vVGYMQWGGSjrCSGsUKAhWDEHCtHRG6GkxrJtwxCPF3hubwUOrOCYhhPpoCMbymNDYMN8hZk+INJ9SEdMFInRfaAinOeHcnSLOwGiMcqysZg0WaIRnLbH2VT50WsepmjxA8Z2PbhkligozVlSGbajxdr69vn09l16mc6G1+LySxakOE6PwXUore3uenGiyfMZ2G1xWCxwOkVF1+zhUcbpj+1BSIC2xNQf2Z4xkrhvUkSx0F61BQbx+3fouiu10DjsGWgmk9394dugcNLH6Hgnp5vkUz9k3BIPsUxMhS6G4+nn1BQYzq5aRK6+5SUL8/qgNmG0pkRynXX9UatQ3FHKdcnzprfOESKJcav2aoKWMplOu/Ycj7YVPVmF0hUS7VGbv0VtIo13cm7sXGCfIESi3TPN18UaHIiJSXMtz4dZ7NJlKuz8y3wyTQlkMUrFJdiOYaMuWTMVfaDCmeTHkthqq2RIxOKd3qDlIufcoFVx6gfPx4oD6FLtm0XcKpIkqta2T+l+JxNgnaNP1MmYiAbdM7LDtJaWGFPmnvtFhnTxoT2xxw06LJrPzMR5JApWhchSlpIiQAJoSF54IYysZNSQoGe5V3Ti+G2v0gO8cxR8hp7J53Ii0nD7PStviU1hPxwflAEjDCwaOiKsQcgoDp/3cQE3Zf9BxvATtKHOoA7WKc2ctmAtgtJ16xdGB93e9P465vCvY4NkIW/8o8CVXKrvwx9yuf8+wrGYd3z2k0Zk7UJDng/VOKQyPCYUcqHO1v+ZCjSXOfhg4ijoERJdKkWsKwg/gLmdqpum7j6DwAAAAASUVORK5CYII=" alt="Timer-2" /></button></li>' +
-					'<li><button id="dinoTimer3-' + this._uId + '" type="button" data-timer="300"><img class="dinoKnobTimerImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEUAAABUCAMAAADj2QolAAAAY1BMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fXMzMxydGtGAAAAH3RSTlMA8IBgQBAwwKDQIHDgULCQoN+QMCD2ENF/P8CwcE9g/WKfWAAAA3ZJREFUWMO9l9ly4yAQRZsdSUhynIwz2Ub9/185MqsFKDFKKvfBVZji0BsNgs/FNcFVRvdwWL1CJBOlakVpcRAiCSoOVsxg1x+F0DgQGrtD1nTIbocapwOQAaecytspBrNA8APGSNQl94BDDIBxyqj/AZjbXaLXJYqiQv+zgn+Ewn6EQtspI9KcMmFz+Qo0ALIfBzowOnDZ23+apXG0RWLlfKTtFIlEREoYt4tiJxJFEmvbEZ8MDxRG7vFHQkUzonEUg8hqKdgmjeFcw3CFXlM1yR2RGwiRe2VjVWGkdWnApt0E9LszchosJkJIpSFyOgWPiNKDrLTUzmISBDMMmzAX0WMGQYeJkC2l1wSrMlTcUiJmDBAyysjAfZHIkSxiQChp7Cwj3kNK0taKUsb5QGdFEod5U/z2mmk3thC0Hsoulgjb5FcOcUaJuCgFImEnYCQY3ldyPodZDsGBm2hKObr4zsnopGVZnt/eH23JU3RiNrZESpGV4QqxYS1u9sXp4fxkXwARUyt4FiAk7wBL1OnKGQLGVE+Ng5RvgyXp+XwJhYJs52j52qtTgl9rfHqXLV4y/A4KSi1b/QMQFlN00DDRia8py3m1xhdGLhrpJSXX32svvyrPQ196WlKSUz5TJtvV9oEZ6pRSa4ht3dDSFCLupjxcakt0VgAlpQwNzY0R1km4n/Ln4alcNCRT6pRSJwCdJaSzLjZRlieXbZ1i64ZtlL9+8+0JGhspDz6+Mt3Hq0QjZXl0D4oBrFwBddBKeQe4KVU/aKac3PbqlkKbKa8AOoXXucebKYsP769S/uxShh+xhbXY8otxAVuCzZRnn+nvVd1bVnV+0H4CyG0v0Na99tMoN6FgNrytncGXi/xWlzrnXQqMHTZ2zLT58e795qtlzC61ronyCILkHigb3wbKKbvV0iEwDbfaBXpSXj/Kgu+mfABMlcRyDLkvVb2Lxur7YA7vkVK1oPSkeoRFeGOVqkBEF7Na80l/TTkHCOmhFN3DbLPzESA4wv6reRKfvZpPT/a5mwWlTDcauUt5fVmHIwlG1yUcBmmdcroyxIwFpO4UGp5TXs8fF9uKSLFRNcSewyDq5eXibWWm+H6qi5P43cu37o4avTr5OcM5HqVmyq2o7m6+YuEecYWfSKdaa+ckRoP6wZSIjgloVc90+hYnah73Ef8BT2TmJiE5NSIAAAAASUVORK5CYII=" alt="Timer-3" /></button></li>' +
-					'<li><button id="dinoTimer4-' + this._uId + '" type="button" data-timer="600"><img class="dinoKnobTimerImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEUAAABVCAMAAAAohdmAAAAAZlBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwY+fUY+fUY+fXMzMwY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fXMzMxBrxzjAAAAIHRSTlMA8ECAEMBg0KAwIJBw4FA/YRCw0KDegLAg8sEwj1Pk0RQRQncAAAObSURBVFjDxZjndqMwEIXVK+ASO3GcLcz7v+RiFbAkWFnsnpP7AxMwn2bujIRiVBMjkxj6JwkOTlLsZ5iJ0VtKqZw+9U6IxsBJ4CkAsS8SDPQpNwCyh8KhSywCzHYYCzy9YIHuCcVkNce4GcJA5pdUuzME6HQQVNBwQGiArp0yPUc5cAgHB/4uCs0pQzvFAM8pdkffSV9p6uROe7yn6+zjAx5yQXSg2imsh+GZojE2qF0EMFkoGu+c1AKAskDp8Cv5DGwtGgzYU6YTsTpQNqxc9YYGCqhVTyyoBLKZNHfSm6uheobYrXWVOG2UUVqPiRAMOMewwXIMUVwJU0AAAiZCIMUwIaFQ35kMEjARklKMgg1xklAiRs8QMSSMKkeLGYOQFWcPic1JYZa01LvbWQ6zFAv16RxGautD8xBXbh39wCrrRKJwvEUcBBxGsjlDDwGJBA5GigVxONzC2Ww5RS4BENJBAsY4qyTz2WTtPk56uxxPLqA+ZiVdQRjLiy9ZsNWmt8ag+/HJNm5kqGqKUQGCh+zOOOs6caJznJ0LyDKKNGiD4jL7msbznqj1xcFDGCooid6nKypYXMrgAKlQxo9TxKxMUhkgVcr4NmF8pxbf7txlgyqUiGGu4javkMtnQBVKTAohXeQU/TqjKiVaHCrK01CSNOuUcSp4XwRD08rVKb8RIkUw2IXSQPk8hqqarOEoaqCMV7dKAnSZt6aJMh59Bn2aEEdtlI98cOJCa6SMJ/+cSPpWVyllSmFqL7Zg1Eq5IMQXJ8IfzZQ3hCxMejZXNVNGZ8VCcd3STrl5e8m/UQ4lRfwvylhTnUK/i3IKlLTS90ZKWJayrrs0EHzXqYUyt+CxjfLDr1M8mY0E3dooR8SSt4kO9l4bzR3SRsNuB4TeWyBxlWLpiqnbUjogFgZPFjs1VampQiKfOb2P7dYQSnyoeKs1OHMPoajyZW/Q6cUyfd7mRxYt7+6vV3sF2XJXFvYj3YsNfAkFAbO6q9MvWXOJFtAMEvdYHlOHbO3fWB9vHKuzEMkwZCkNDqMni69/qc5PF8n2Ui0gjnD6sQaI21Qj011ziYnv/cNqOPfDow44gWxiuHlw3vJcLl8P+xRESA0D1Ln/8+PXpydc7++H5N90i/4mEr6FrSlvmsjAovaDCYcg2ekE0Z3nO7oC8e5FYW4pJaSjlvfLRVpnxORLFb9b1Dn9OgKnjHpeCheIs0Dt0p3iEcUVJWhTfwDRlyhFV2umZgAAAABJRU5ErkJggg==" alt="Timer-4" /></button></li>' +
-					'<li><button id="dinoTimer5-' + this._uId + '" type="button" data-timer="900"><img class="dinoKnobTimerImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEUAAABVCAMAAAAohdmAAAAAZlBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwY+fXMzMzMzMzMzMzMzMwY+fXMzMwY+fUY+fUY+fXMzMwY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fXMzMxYy/yPAAAAIHRSTlMAQMCA8GCg0BAwQOAgcJAQsMHvgFDgMGDQjk9vsB+g7V6o09gAAAPySURBVFjDxZhpc9sgEIYFCKxbciy58dns//+TBbF4LY44uNPp+0GZUVYPe3G5eKWOaRV/pUq0sGr6C9BcAkxCiKHVf6s3IT3AgN+yFnbvYSSUNcWm3sN0CHFSMLxBmUBuM91C94YrbRDh8EZqe/9V2WZTFOisCCaYFNI8dMNwyM4vB/0AAYIDNw+hmcD+D0VB51MmeCO70qe0ZTalBr4WXBitncNgKrLFga2fGnF6kSm2Thyi9OaZr0FjiCKh7Ip3pKBlSKmUNzfjknFvwK51JUAbg9S1N2wfLdQEVq2ILqjlxsH0EsS4kXq1kCGkT2AqZlQnILseMQiB0Ju6nzg4tXyYQ0/AYgii32wQQwuBJulBHIYgoJ5dhbhK0dFAJWHEA9K7kOYWvpFyZj17YIpKdeX6T1enjtPIXPTMaBZqR2+lS4TFCCnRNQOxCZaly+ewrUwnJ0DxykDAYhRFqAZYsZVyhjR/x6YZ3bZdojtMB2Ax6mmcQtqQdw8GqfnS2p/OG46sy9X5zis+Qihwolh93G9mwIkwkU6Vg4Zg1AEFtT+a2jhM9BiBEBPoeT/6FNRpdI0CMrExG/U6naevr0NAQS1HjTHjxRec3g0wfhrrm0ch/dJu2wqFEdUunOOy2l5DCmEwqCGgcFxfxwVtG6KEGFyPmV+hNdLKhIP6JEoMI2gZILWIvpLpJU350CleMyxDVyZd4mfTMUZBRzGmNnSlK8aPTW8QJRaT8p2ZsT6HrektTdFt2dl6kBS64psSJdAB27Sj3sd8H3zTJqRQ1mwEPQWEES6+6YKURGbKTbEHQ6li5oc05YqJoL61zFPUb6SEGgu56V+cE58R03ua0tgqCYR0mKWo7TFJObjhrZh17Bi13ScpV5sK/lyiLmV9TlH2W4qwqb7EjX+f0xThphJRDl95+sAv/wXlVwYBIxqeImKU3QxRdr1K5+mOFL/rskRdh8I1ap9HadzwKG6TdMosEc1GKlKXmZgrLnZ0NEbPlhzK2e6ztPC6ReuSAVkwoN5bvZneSLIqxEGr8rZ6njMJltHmYQo32IzM/EJX2DNFojPNz7t/xu0ncEYmeyZc1Cv8womKXXY/bOAjFoRHT3U7PI+9TooEo9qn4G0AMa8gNeAm4msGh7l+n5PmcamJ3lgR830Pf94QEt6vqYPtD3PHU8qRi2mLko67icM33pzPS4xxGh8+wxxlEAaEmRzN3Y/lYhjMu3Gkg4LW2pwPe3Rpf7/c1kqiAYaTkgDHeUzW2/ExaZEBO4QkxUpAKdlt/kF346F4qWqAh1ouhGSzEIrTyx0rfqKaQ1pt/yMGJjEUpj1HleRAortxvpiYdvRjBeU61B/r+FFSKwMZ+gAAAABJRU5ErkJggg==" alt="Timer-5" /></button></li>' +
+					'<li><button id="dinoTimer1-' + this._uId + '" type="button" data-timer="' + this.options.timer_1 + '"><img class="dinoKnobTimerImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAABVCAMAAADDsmKDAAAAV1BMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fXMzMwY+fVIJUOhAAAAG3RSTlMA8EAwEMDQgKDgIHBgkFCwIOvA0KVAEJCAcGAfAF7kAAADVUlEQVRYw82X2ZarIBBFZR7FnqfK/3/nZUhEBDGh++GeB1cCZktVHSo49UUNAy8+6+kXEsgjGAuomY5CKAckdPxkFSgyTOF0/SIBja1nBrn9KoGNUDCo8vEM7ABGgisHNPABDKj9yAJkIKbZL4BggtPFEyzYAYzxvmHA4HoJQ2IA4/4GI/4CQ0DuMQLc9LAQoiHFRlgjjAsp5kBHTGxi3aNwCHPIxhohvcVQ5a8DMsBpxtDFG2lIEhS+YTQP0FPpdnpgSRjmP7UouzGCZNM8Cq5SzX1gESkpII9cGGXasxYQKSiLpCO92kROprQySJ2QTMWQ2CKsbtSAJ06mwI6jBYed+Ex2FEicTAlym6A5NKUM3fgTMkevFKNXiIJDIUHXmDccyuWSKPwaJeabp7NZBLHtmEsUjmzkMMtpCitSIK6Ozuvts9tmy83rGhkNFIDAKUoVKF5qIhySpGv0IHmLDE8LQOJsjeM8KYAJukK21b1cXl8+f55iWm8gm+50ZPc0Fyj2Gk7ZES5Jr98fAcQgygSObRj7RqkawmXVW1iSgShBkO3sH1Ql5ZL1vJakuZQ86xPfwXylWme7VqK8olSY5/Je3exRidLDvK/PVNHAR4lxUw/zUmSg2YZUqlEX81R0LID6AGbSIruYz2I02li2FoO7mOePsiQxLF16L6G7mO9WALJejO5iXiuHoH12SAY3lItdSkQv7z1Dupi3hmHBa9nFpKYjFcWuirVpztEzXcxXa8KVjrW52i3lYreimsvUTD3MT3uGA2zOTix/a6nYTNUfHioyvPQw71NboggDvEQHk4vdyjG5E/PydDSDi9qk1jGgGuP+BiP+K8w8dnT2oqX9BlT6ZokbfEDh+byE6gFM2e3wkHHq3+U2dq5O01xGoqqbph1yjquMgkZqxaoYJHjZgQSXdtPVH/u5WKODy3s3RP/woKFi96VR8wfiwbD4gdfSMexejjw6/BEIkg/4t11acz9H9G6V6+vJaUQpAd1pRfoQyvqUiS4Ap7vLoUzpLxc4PrQLg0zpJS+JNUFYQtLpWztG6zsi2S3EcEhCdjoVlXATWoTD2g9hLKRah5m+rwMw6Ci9+P4SpB5rSmRWNQNJPD0sYha1QTCBp2FhjK3xl5MC/wOxI3nU8RC8DQAAAABJRU5ErkJggg==" alt="Timer-1" /></button></li>' +
+					'<li><button id="dinoTimer2-' + this._uId + '" type="button" data-timer="' + this.options.timer_2 + '"><img class="dinoKnobTimerImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEUAAABUCAMAAADj2QolAAAAYFBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwY+fUY+fXMzMzMzMzMzMzMzMwY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fXMzMwY+fUiSYD7AAAAHnRSTlMA8BCAwKBAYNAwIOBAP1CwcJDjMPHAsWtREKCI0MsmOwGYAAADUElEQVRYw62X63KcMAyFfb+mBjaXJk2rff+3bLG9KwNegmjOj51hFn9IR5LHZvvyOgIAH6xgpxUUACilIgBPZyGeQ0w1JAB9GiLxwZ3DCA62fXQwMrokTEuTOBf0UDaL5IlgEkxrLrgTCRnGTDDBGz//BMYUEBl1CUiQCtT8IxmbwHwDRdIpA4g1RYOg+5LWFEf3xYCe3U12lKNMs7sBFCMrQsiwWXm5BkunjDAsKAYiOyEHuqF4DubUOEYYxI2S+JF8Qg/jgA+ZEhV0IWJZegupW24OVcp3P+PEAsJ9PytZYgmsKw1OtBA7Mbr8lDEI4aC3XlmpVM7JKS1Nb0vVGYMQWGGSjrCSGsUKAhWDEHCtHRG6GkxrJtwxCPF3hubwUOrOCYhhPpoCMbymNDYMN8hZk+INJ9SEdMFInRfaAinOeHcnSLOwGiMcqysZg0WaIRnLbH2VT50WsepmjxA8Z2PbhkligozVlSGbajxdr69vn09l16mc6G1+LySxakOE6PwXUore3uenGiyfMZ2G1xWCxwOkVF1+zhUcbpj+1BSIC2xNQf2Z4xkrhvUkSx0F61BQbx+3fouiu10DjsGWgmk9394dugcNLH6Hgnp5vkUz9k3BIPsUxMhS6G4+nn1BQYzq5aRK6+5SUL8/qgNmG0pkRynXX9UatQ3FHKdcnzprfOESKJcav2aoKWMplOu/Ycj7YVPVmF0hUS7VGbv0VtIo13cm7sXGCfIESi3TPN18UaHIiJSXMtz4dZ7NJlKuz8y3wyTQlkMUrFJdiOYaMuWTMVfaDCmeTHkthqq2RIxOKd3qDlIufcoFVx6gfPx4oD6FLtm0XcKpIkqta2T+l+JxNgnaNP1MmYiAbdM7LDtJaWGFPmnvtFhnTxoT2xxw06LJrPzMR5JApWhchSlpIiQAJoSF54IYysZNSQoGe5V3Ti+G2v0gO8cxR8hp7J53Ii0nD7PStviU1hPxwflAEjDCwaOiKsQcgoDp/3cQE3Zf9BxvATtKHOoA7WKc2ctmAtgtJ16xdGB93e9P465vCvY4NkIW/8o8CVXKrvwx9yuf8+wrGYd3z2k0Zk7UJDng/VOKQyPCYUcqHO1v+ZCjSXOfhg4ijoERJdKkWsKwg/gLmdqpum7j6DwAAAAASUVORK5CYII=" alt="Timer-2" /></button></li>' +
+					'<li><button id="dinoTimer3-' + this._uId + '" type="button" data-timer="' + this.options.timer_3 + '"><img class="dinoKnobTimerImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEUAAABUCAMAAADj2QolAAAAY1BMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fXMzMxydGtGAAAAH3RSTlMA8IBgQBAwwKDQIHDgULCQoN+QMCD2ENF/P8CwcE9g/WKfWAAAA3ZJREFUWMO9l9ly4yAQRZsdSUhynIwz2Ub9/185MqsFKDFKKvfBVZji0BsNgs/FNcFVRvdwWL1CJBOlakVpcRAiCSoOVsxg1x+F0DgQGrtD1nTIbocapwOQAaecytspBrNA8APGSNQl94BDDIBxyqj/AZjbXaLXJYqiQv+zgn+Ewn6EQtspI9KcMmFz+Qo0ALIfBzowOnDZ23+apXG0RWLlfKTtFIlEREoYt4tiJxJFEmvbEZ8MDxRG7vFHQkUzonEUg8hqKdgmjeFcw3CFXlM1yR2RGwiRe2VjVWGkdWnApt0E9LszchosJkJIpSFyOgWPiNKDrLTUzmISBDMMmzAX0WMGQYeJkC2l1wSrMlTcUiJmDBAyysjAfZHIkSxiQChp7Cwj3kNK0taKUsb5QGdFEod5U/z2mmk3thC0Hsoulgjb5FcOcUaJuCgFImEnYCQY3ldyPodZDsGBm2hKObr4zsnopGVZnt/eH23JU3RiNrZESpGV4QqxYS1u9sXp4fxkXwARUyt4FiAk7wBL1OnKGQLGVE+Ng5RvgyXp+XwJhYJs52j52qtTgl9rfHqXLV4y/A4KSi1b/QMQFlN00DDRia8py3m1xhdGLhrpJSXX32svvyrPQ196WlKSUz5TJtvV9oEZ6pRSa4ht3dDSFCLupjxcakt0VgAlpQwNzY0R1km4n/Ln4alcNCRT6pRSJwCdJaSzLjZRlieXbZ1i64ZtlL9+8+0JGhspDz6+Mt3Hq0QjZXl0D4oBrFwBddBKeQe4KVU/aKac3PbqlkKbKa8AOoXXucebKYsP769S/uxShh+xhbXY8otxAVuCzZRnn+nvVd1bVnV+0H4CyG0v0Na99tMoN6FgNrytncGXi/xWlzrnXQqMHTZ2zLT58e795qtlzC61ronyCILkHigb3wbKKbvV0iEwDbfaBXpSXj/Kgu+mfABMlcRyDLkvVb2Lxur7YA7vkVK1oPSkeoRFeGOVqkBEF7Na80l/TTkHCOmhFN3DbLPzESA4wv6reRKfvZpPT/a5mwWlTDcauUt5fVmHIwlG1yUcBmmdcroyxIwFpO4UGp5TXs8fF9uKSLFRNcSewyDq5eXibWWm+H6qi5P43cu37o4avTr5OcM5HqVmyq2o7m6+YuEecYWfSKdaa+ckRoP6wZSIjgloVc90+hYnah73Ef8BT2TmJiE5NSIAAAAASUVORK5CYII=" alt="Timer-3" /></button></li>' +
+					'<li><button id="dinoTimer4-' + this._uId + '" type="button" data-timer="' + this.options.timer_4 + '"><img class="dinoKnobTimerImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEUAAABVCAMAAAAohdmAAAAAZlBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwY+fUY+fUY+fXMzMwY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fXMzMxBrxzjAAAAIHRSTlMA8ECAEMBg0KAwIJBw4FA/YRCw0KDegLAg8sEwj1Pk0RQRQncAAAObSURBVFjDxZjndqMwEIXVK+ASO3GcLcz7v+RiFbAkWFnsnpP7AxMwn2bujIRiVBMjkxj6JwkOTlLsZ5iJ0VtKqZw+9U6IxsBJ4CkAsS8SDPQpNwCyh8KhSywCzHYYCzy9YIHuCcVkNce4GcJA5pdUuzME6HQQVNBwQGiArp0yPUc5cAgHB/4uCs0pQzvFAM8pdkffSV9p6uROe7yn6+zjAx5yQXSg2imsh+GZojE2qF0EMFkoGu+c1AKAskDp8Cv5DGwtGgzYU6YTsTpQNqxc9YYGCqhVTyyoBLKZNHfSm6uheobYrXWVOG2UUVqPiRAMOMewwXIMUVwJU0AAAiZCIMUwIaFQ35kMEjARklKMgg1xklAiRs8QMSSMKkeLGYOQFWcPic1JYZa01LvbWQ6zFAv16RxGautD8xBXbh39wCrrRKJwvEUcBBxGsjlDDwGJBA5GigVxONzC2Ww5RS4BENJBAsY4qyTz2WTtPk56uxxPLqA+ZiVdQRjLiy9ZsNWmt8ag+/HJNm5kqGqKUQGCh+zOOOs6caJznJ0LyDKKNGiD4jL7msbznqj1xcFDGCooid6nKypYXMrgAKlQxo9TxKxMUhkgVcr4NmF8pxbf7txlgyqUiGGu4javkMtnQBVKTAohXeQU/TqjKiVaHCrK01CSNOuUcSp4XwRD08rVKb8RIkUw2IXSQPk8hqqarOEoaqCMV7dKAnSZt6aJMh59Bn2aEEdtlI98cOJCa6SMJ/+cSPpWVyllSmFqL7Zg1Eq5IMQXJ8IfzZQ3hCxMejZXNVNGZ8VCcd3STrl5e8m/UQ4lRfwvylhTnUK/i3IKlLTS90ZKWJayrrs0EHzXqYUyt+CxjfLDr1M8mY0E3dooR8SSt4kO9l4bzR3SRsNuB4TeWyBxlWLpiqnbUjogFgZPFjs1VampQiKfOb2P7dYQSnyoeKs1OHMPoajyZW/Q6cUyfd7mRxYt7+6vV3sF2XJXFvYj3YsNfAkFAbO6q9MvWXOJFtAMEvdYHlOHbO3fWB9vHKuzEMkwZCkNDqMni69/qc5PF8n2Ui0gjnD6sQaI21Qj011ziYnv/cNqOPfDow44gWxiuHlw3vJcLl8P+xRESA0D1Ln/8+PXpydc7++H5N90i/4mEr6FrSlvmsjAovaDCYcg2ekE0Z3nO7oC8e5FYW4pJaSjlvfLRVpnxORLFb9b1Dn9OgKnjHpeCheIs0Dt0p3iEcUVJWhTfwDRlyhFV2umZgAAAABJRU5ErkJggg==" alt="Timer-4" /></button></li>' +
+					'<li><button id="dinoTimer5-' + this._uId + '" type="button" data-timer="' + this.options.timer_5 + '"><img class="dinoKnobTimerImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEUAAABVCAMAAAAohdmAAAAAZlBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwY+fXMzMzMzMzMzMzMzMwY+fXMzMwY+fUY+fUY+fXMzMwY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fXMzMxYy/yPAAAAIHRSTlMAQMCA8GCg0BAwQOAgcJAQsMHvgFDgMGDQjk9vsB+g7V6o09gAAAPySURBVFjDxZhpc9sgEIYFCKxbciy58dns//+TBbF4LY44uNPp+0GZUVYPe3G5eKWOaRV/pUq0sGr6C9BcAkxCiKHVf6s3IT3AgN+yFnbvYSSUNcWm3sN0CHFSMLxBmUBuM91C94YrbRDh8EZqe/9V2WZTFOisCCaYFNI8dMNwyM4vB/0AAYIDNw+hmcD+D0VB51MmeCO70qe0ZTalBr4WXBitncNgKrLFga2fGnF6kSm2Thyi9OaZr0FjiCKh7Ip3pKBlSKmUNzfjknFvwK51JUAbg9S1N2wfLdQEVq2ILqjlxsH0EsS4kXq1kCGkT2AqZlQnILseMQiB0Ju6nzg4tXyYQ0/AYgii32wQQwuBJulBHIYgoJ5dhbhK0dFAJWHEA9K7kOYWvpFyZj17YIpKdeX6T1enjtPIXPTMaBZqR2+lS4TFCCnRNQOxCZaly+ewrUwnJ0DxykDAYhRFqAZYsZVyhjR/x6YZ3bZdojtMB2Ax6mmcQtqQdw8GqfnS2p/OG46sy9X5zis+Qihwolh93G9mwIkwkU6Vg4Zg1AEFtT+a2jhM9BiBEBPoeT/6FNRpdI0CMrExG/U6naevr0NAQS1HjTHjxRec3g0wfhrrm0ch/dJu2wqFEdUunOOy2l5DCmEwqCGgcFxfxwVtG6KEGFyPmV+hNdLKhIP6JEoMI2gZILWIvpLpJU350CleMyxDVyZd4mfTMUZBRzGmNnSlK8aPTW8QJRaT8p2ZsT6HrektTdFt2dl6kBS64psSJdAB27Sj3sd8H3zTJqRQ1mwEPQWEES6+6YKURGbKTbEHQ6li5oc05YqJoL61zFPUb6SEGgu56V+cE58R03ua0tgqCYR0mKWo7TFJObjhrZh17Bi13ScpV5sK/lyiLmV9TlH2W4qwqb7EjX+f0xThphJRDl95+sAv/wXlVwYBIxqeImKU3QxRdr1K5+mOFL/rskRdh8I1ap9HadzwKG6TdMosEc1GKlKXmZgrLnZ0NEbPlhzK2e6ztPC6ReuSAVkwoN5bvZneSLIqxEGr8rZ6njMJltHmYQo32IzM/EJX2DNFojPNz7t/xu0ncEYmeyZc1Cv8womKXXY/bOAjFoRHT3U7PI+9TooEo9qn4G0AMa8gNeAm4msGh7l+n5PmcamJ3lgR830Pf94QEt6vqYPtD3PHU8qRi2mLko67icM33pzPS4xxGh8+wxxlEAaEmRzN3Y/lYhjMu3Gkg4LW2pwPe3Rpf7/c1kqiAYaTkgDHeUzW2/ExaZEBO4QkxUpAKdlt/kF346F4qWqAh1ouhGSzEIrTyx0rfqKaQ1pt/yMGJjEUpj1HleRAortxvpiYdvRjBeU61B/r+FFSKwMZ+gAAAABJRU5ErkJggg==" alt="Timer-5" /></button></li>' +
 					'</ul>';
 			},
 
@@ -1401,40 +1406,60 @@
 	*/
 	jQuery.fn.dinoKnob.defaults = {
 		// Theme Light or Dark
+		// set's the shadow of knob
 		theme: 'light',
 		// Knob main background color
 		knobBgColor: null,
-		// Step Value of the Knob
+		// Circle range Bar style: (Hot, Cold or Mono,
+		// yellow, blue, red, green) color
+		barStyle: 'hot',
+		/*---------------------------------------------*/
+		// Show Knob Value overlay
+		// on hover button #dinoKnobMenu2
+		showLabel: false,
+		// Step Value of the knob range when using
+		// mouse wheel or keyboard control
 		snap: 0,
-		// Knob Value
+		// Knob current value we start with 0
+		// It can be set at runtime
 		value: 0,
-		// Knob Min Value
+		// Knob Min Value starts with 0
+		// can't be a negative number
 		minValue: 0,
 		// Knob Max Value
+		// also maxAlarm depends on this value
 		maxValue: 100,
-		// Min ColorBar Angle
-		minAngle: 0,
-		// Max ColorBar Angle
-		maxAngle: 255,
-		// Max angle value, for alarm icon
-		maxAlarm: 255,
-		// Circle Bar style Hot, Cold or Mono
-		barStyle: 'hot',
-		// Enable Timer Button
-		showTimer: false,
-		// Enable Alerts
+		/*---------------------------------------------*/
+		// Enable Alerts for overdrive on knob range
 		showAlert: false,
-		// Enable Labels
-		showLabel: false,
-		// Plugin language
+		// Alarm icon
+		// Value to activate alarm depends on Max value
+		maxAlarm: 500,
+        /*---------------------------------------------*/
+		// Enable Timer Button
+		showTimer: false, // default
+		// Preset timer 1 to 15 seconds
+		timer_1: 15, // seconds
+		// Preset timer 2 to 1 minute
+		timer_2: 60, // seconds
+        // Preset timer 3 to 5 minutes
+		timer_3: 300, // seconds
+        // Preset timer 4 to 10 minutes
+		timer_4: 600, // seconds
+		// Preset timer 5 to 15 minutes
+		timer_5: 900, // seconds
+		/*---------------------------------------------*/
+		// Plugin language automatic
+		// detection at runtime from browser
 		language: null,
 		// Enable plugin debug
 		debug: false,
-		// Event on turn
+		/*---------------------------------------------*/
+		// Event on turn knob
 		onTurn: null,
-		// Event on complete
+		// Event on timers and button click
 		onComplete: null,
-		// Event on error
+		// Event on plugin error's
 		onError: null
 	};
 

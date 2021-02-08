@@ -675,13 +675,13 @@
 	
 	40%
 	{
-		box-shadow: 0 0 0 5px rgb(246, 52, 52), 0 0 10px 10px rgb(255, 197, 0), 0 0 0 2px rgb(255, 255, 0);
+		box-shadow: 0 0 0 3px rgb(246, 52, 52), 0 0 6px 6px rgb(255, 197, 0), 0 0 0 2px rgb(255, 255, 0);
 		opacity: 0.5;
 	}
 	
 	100%
 	{
-		box-shadow: 0 0 0 5px rgb(246, 52, 52), 0 0 10px 10px rgb(255, 197, 0), 0 0 0 2px rgb(255, 255, 0);
+		box-shadow: 0 0 0 3px rgb(246, 52, 52), 0 0 6px 6px rgb(255, 197, 0), 0 0 0 2px rgb(255, 255, 0);
 		opacity: 0;
 		transform: scale(1.5);
 	}
