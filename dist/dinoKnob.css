@@ -458,7 +458,7 @@
 
 .dinoKnob .dinoKnobInfo hr
 {
-	margin: 0 0 10px;
+	margin: 5px 0 5px;
 	padding: 0;
 }
 
@@ -467,6 +467,11 @@
 {
 	color: rgb(241, 130, 7);
 	font-size: 14px;
+}
+
+.dinoKnob .dinoKnobInfo address span b
+{
+	color: rgb(231, 208, 87);
 }
 
 .dinoKnob .dinoKnobInfo address a:hover

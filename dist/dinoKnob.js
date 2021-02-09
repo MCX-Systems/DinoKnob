@@ -78,7 +78,6 @@
 		this._uId = this.createUniqId(8);
 		this._name = pluginName;
 		this._flag = false;
-		this._version = 'V2.05.2021';
 		this._language = this.getUserLanguage()
 		/***************************************************************************/
 		// DinoKnob circle Bars color set
@@ -157,16 +156,14 @@
 		this._timersLi = jQuery(this.element).find('#dinoKnobTimers-' + this._uId);
 		this._bars = jQuery(this.element).find('#dinoKnobBars-' + this._uId);
 		/***************************************************************************/
-		this._rad2deg = 180 / Math.PI;
-		this._deg = 0;
 		this._angle = 0;
 		this._minAngle = 0;
 		this._maxAngle = 260;
 		/***************************************************************************/
 		this._startDeg = 0;
 		this._currentDeg = 0;
-		this._rotation = 0;
 		this._lastDeg = 0;
+		this._rotation = 0;
 		this._colorBarTheme = [];
 		/***************************************************************************/
 		this._defaults = jQuery.fn.dinoKnob.defaults;
@@ -232,9 +229,9 @@
 				{
 					console.info('--------------------------------------------');
 					console.info('--------------------------------------------');
-					console.info(widget.capitalizeFirstLetter(widget._name) + ' ' + widget._version + ' successfully initialized and is ready.');
+					console.info(widget.capitalizeFirstLetter(widget._name) + ' ' + jQuery.fn.dinoKnob.version + ' successfully initialized and is ready.');
 					console.info('Language is set to: ' + widget.options.language);
-					console.info('Plugin Description: ' + widget.getI18n('plugin_version', widget.options.language));
+					console.info('Plugin Description: ' + widget.getI18n('plugin_desc', widget.options.language));
 					console.info('Uniq ID generated: ' + widget._uId);
 					console.info('--------------------------------------------');
 					console.info('--------------------------------------------');
@@ -358,6 +355,8 @@
 			{
 				let widget = this;
 				let knobBarTheme = widget.options.barStyle;
+				let rad2deg = 180 / Math.PI;
+				let deg = 0;
 
 				if(knobBarTheme === "hot"){widget._colorBarTheme = widget._knobColorThemes[0];}
 				else if(knobBarTheme === "cold"){widget._colorBarTheme = widget._knobColorThemes[1];}
@@ -369,13 +368,13 @@
 
 				for(let i = 0; i < widget._colorBarTheme.length; i++)
 				{
-					widget._deg = i * 12;
+					deg = i * 12;
 					// Create the color bar
 					jQuery('<span id="dinoKnobColorBar-' + widget._uId + '-' + i + '" class="dinoKnobColorBar">').css({
 						'backgroundColor': widget._colorBarTheme[i],
-						'transform': 'rotate(' + widget._deg + 'deg)',
-						'top': Math.round(-Math.sin(widget._deg / widget._rad2deg) * 100 + 115),
-						'left': Math.round(Math.cos((180 - widget._deg) / widget._rad2deg) * 100 + 110)
+						'transform': 'rotate(' + deg + 'deg)',
+						'top': Math.round(-Math.sin(deg / rad2deg) * 100 + 115),
+						'left': Math.round(Math.cos((180 - deg) / rad2deg) * 100 + 110)
 					}).appendTo(widget._bars);
 
 					widget._bars.find('#dinoKnobColorBar-' + widget._uId + '-' + i).css({
@@ -511,38 +510,19 @@
 					}
 				}
 
-				let percentValue;
-				if (widget.options.minValue < 0)
+				let inputValue;
+				inputValue = (widget._angle / widget._maxAngle) * widget.options.maxValue;
+
+				if(inputValue >= widget.options.maxValue)
 				{
-					if (widget._angle < (widget._maxAngle / 2))
-					{
-						percentValue = (widget._angle / (widget._maxAngle / 2)) * Math.abs(widget.options.minValue);
-						percentValue = parseInt(widget.options.minValue) + Math.abs(percentValue);
-					}
-					else if (widget._angle > (widget._maxAngle / 2))
-					{
-						percentValue = ((widget._angle / (widget._maxAngle / 2) * widget.options.maxValue) - parseInt(widget.options.maxValue));
-					}
-					else
-					{
-						percentValue = 0;
-					}
-				}
-				else
-				{
-					percentValue = (widget._angle / widget._maxAngle) * widget.options.maxValue;
+					inputValue = widget.options.maxValue;
 				}
 
-				if(percentValue >= widget.options.maxValue)
-				{
-					percentValue = widget.options.maxValue;
-				}
-
-				if((percentValue >= widget.options.maxAlarm) && widget.options.showAlert)
+				if((inputValue >= widget.options.maxAlarm) && widget.options.showAlert)
 				{
 					widget.$element.find("#dinoKnobMenu3-" + widget._uId).removeClass('active').addClass('active');
 				}
-				else if((percentValue >= widget.options.maxValue) && widget.options.showAlert)
+				else if((inputValue >= widget.options.maxValue) && widget.options.showAlert)
 				{
 					widget.$element.find("#dinoKnobMenu3-" + widget._uId).removeClass('active').addClass('active');
 				}
@@ -554,16 +534,19 @@
 				// return the value to the function turn
 				if(widget.options.showLabel)
 				{
-					widget.$element.find("#dinoKnobValue-" + widget._uId).html(percentValue.toFixed(0));
+					widget.$element.find("#dinoKnobValue-" + widget._uId).html(inputValue.toFixed(0));
 				}
+
+				let r = widget._angle / widget._maxAngle;
 				widget.$element.find("#dinoKnobValueRaw-" + widget._uId).val(widget._angle.toFixed(0));
-				widget.turnKnobUpdateCallback.call(widget, widget._uId, percentValue.toFixed(0), widget._angle, widget._angle.toFixed(0) / 360);
+				widget.turnKnobUpdateCallback.call(widget, widget._uId, inputValue.toFixed(0), (r * 100).toFixed(0), widget._angle.toFixed(0), r.toFixed(2));
 
 				if (widget.options.debug)
 				{
-					console.log(widget._uId + ' ==> RATIO ==> ' + widget._angle.toFixed(0) / 360);
-					console.log(widget._uId + ' ==> DEGREE ==> ' + widget._angle.toFixed(0));
-					console.log(widget._uId + ' ==> PERCENT ==> ' + percentValue.toFixed(0));
+					console.log(widget._uId + ' ==> VALUE ==> ' + inputValue.toFixed(0));
+					console.log(widget._uId + ' ==> PERCENT ==> ' + (r * 100).toFixed(0));
+					console.log(widget._uId + ' ==> ANGLE ==> ' + widget._angle.toFixed(0));
+					console.log(widget._uId + ' ==> RATIO ==> ' + r.toFixed(2));
 				}
 
 				return false;
@@ -649,7 +632,7 @@
 						plugin._timerCounter++;
 						plugin._timerCounter %= 360;
 
-						let r = (plugin._timerCounter * Math.PI / 180);
+						let r = plugin.degreesToRadians(plugin._timerCounter);
 						let x = Math.sin(r) * 125;
 						let y = Math.cos(r) * -125;
 
@@ -844,38 +827,19 @@
 					let colorBars = plugin._bars.find('.dinoKnobColorBar');
 					let numBars, lastNum = -plugin.options.snap;
 
-					let percentValue;
-					if (plugin.options.minValue < 0)
+					let inputValue;
+					inputValue = (val / plugin._maxAngle) * plugin.options.maxValue;
+
+					if(inputValue >= plugin.options.maxValue)
 					{
-						if (val < (plugin._maxAngle / 2))
-						{
-							percentValue = (val / (plugin._maxAngle / 2)) * Math.abs(plugin.options.minValue);
-							percentValue = parseInt(plugin.options.minValue) + Math.abs(percentValue);
-						}
-						else if (val > (plugin._maxAngle / 2))
-						{
-							percentValue = ((val / (plugin._maxAngle / 2) * plugin.options.maxValue) - parseInt(plugin.options.maxValue));
-						}
-						else
-						{
-							percentValue = 0;
-						}
-					}
-					else
-					{
-						percentValue = (val / plugin._maxAngle) * plugin.options.maxValue;
+						inputValue = plugin.options.maxValue;
 					}
 
-					if(percentValue >= plugin.options.maxValue)
-					{
-						percentValue = plugin.options.maxValue;
-					}
-
-					if((percentValue >= plugin.options.maxAlarm) && plugin.options.showAlert)
+					if((inputValue >= plugin.options.maxAlarm) && plugin.options.showAlert)
 					{
 						plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
 					}
-					else if((percentValue >= plugin.options.maxValue) && plugin.options.showAlert)
+					else if((inputValue >= plugin.options.maxValue) && plugin.options.showAlert)
 					{
 						plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
 					}
@@ -908,9 +872,11 @@
 					plugin.$element.find("#dinoKnobValueRaw-" + plugin._uId).val(val);
 					if(plugin.options.showLabel)
 					{
-						plugin.$element.find("#dinoKnobValue-" + plugin._uId).html(percentValue.toFixed(0));
+						plugin.$element.find("#dinoKnobValue-" + plugin._uId).html(inputValue.toFixed(0));
 					}
-					plugin.turnKnobUpdateCallback.call(plugin, plugin._uId, percentValue.toFixed(0), val, val / 360);
+
+					let r = val / plugin._maxAngle;
+					plugin.turnKnobUpdateCallback.call(plugin, plugin._uId, inputValue.toFixed(0), (r * 100).toFixed(0), val, r.toFixed(2));
 
 					plugin._angle = val;
 					plugin._currentDeg = val;
@@ -919,9 +885,10 @@
 
 					if (plugin.options.debug)
 					{
-						console.log(plugin._uId + ' ==> RATIO ==> ' + val / 360);
-						console.log(plugin._uId + ' ==> DEGREE ==> ' + val);
-						console.log(plugin._uId + ' ==> PERCENT ==> ' + percentValue.toFixed(0));
+						console.log(plugin._uId + ' ==> VALUE ==> ' + inputValue.toFixed(0));
+						console.log(plugin._uId + ' ==> PERCENT ==> ' + (r * 100).toFixed(0));
+						console.log(plugin._uId + ' ==> ANGLE ==> ' + val);
+						console.log(plugin._uId + ' ==> RATIO ==> ' + r.toFixed(2));
 					}
 
 					return false;
@@ -983,7 +950,7 @@
 
                 /*--------------------------------------------------------------*/
 
-				plugin.$element.on('mousewheel DOMMouseScroll MozMousePixelScroll' + '.' + plugin._name, '#dinoKnobMain-' + plugin._uId, function(e)
+				plugin.$element.on('mousewheel DOMMouseScroll' + '.' + plugin._name, '#dinoKnobMain-' + plugin._uId, function(e)
 				{
 					if (e.originalEvent.wheelDelta < 0 || e.originalEvent.detail > 0)
 					{
@@ -999,12 +966,11 @@
 
 				plugin.$element.on('mousedown touchstart' + '.' + plugin._name, function (e)
 				{
-					e.preventDefault();
-
-					let a, b, deg, tmp, rad2deg = 180 / Math.PI;
+					let a, b, deg, tmp;
 					let offset = plugin.$element.offset();
 					let colorBars = plugin._bars.find('.dinoKnobColorBar');
-					let numBars = 0, lastNum = -plugin.options.snap;
+					let numBars = 0;
+					let lastNum = -plugin.options.snap;
 
 					let center = {
 						y: offset.top + plugin.$element.height() / 2,
@@ -1013,11 +979,9 @@
 
 					plugin.$element.on('mousemove.rem touchmove.rem' + '.' + plugin._name,  function (e)
 					{
-						e.preventDefault();
-
 						a = center.y - e.pageY;
 						b = center.x - e.pageX;
-						deg = Math.atan2(a, b) * rad2deg;
+						deg = plugin.radiansToDegrees(Math.atan2(a, b));
 
 						// we have to make sure that negative
 						// angles are turned into positive:
@@ -1063,43 +1027,24 @@
 						plugin._currentDeg = tmp;
 						plugin._lastDeg = tmp;
 
-						let percentValue;
-						if (plugin.options.minValue < 0)
-						{
-							if (plugin._angle < (plugin._maxAngle / 2))
-							{
-								percentValue = (plugin._angle / (plugin._maxAngle / 2)) * Math.abs(plugin.options.minValue);
-								percentValue = parseInt(plugin.options.minValue) + Math.abs(percentValue);
-							}
-							else if (plugin._angle > (plugin._maxAngle / 2))
-							{
-								percentValue = ((plugin._angle / (plugin._maxAngle / 2) * plugin.options.maxValue) - parseInt(plugin.options.maxValue));
-							}
-							else
-							{
-								percentValue = 0;
-							}
-						}
-						else
-						{
-							percentValue = (plugin._angle / plugin._maxAngle) * plugin.options.maxValue;
-						}
-
-						if(percentValue > plugin.options.maxValue)
-						{
-							percentValue = plugin.options.maxValue;
-						}
-
-						if (plugin._angle >= plugin._maxAngle)
+						if (plugin._angle > plugin._maxAngle)
 						{
 							plugin._angle = plugin._maxAngle;
 						}
 
-						if((percentValue >= plugin.options.maxAlarm) && plugin.options.showAlert)
+						let inputValue;
+						inputValue = (plugin._angle / plugin._maxAngle) * plugin.options.maxValue;
+
+						if(inputValue >= plugin.options.maxValue)
+						{
+							inputValue = plugin.options.maxValue;
+						}
+
+						if((inputValue >= plugin.options.maxAlarm) && plugin.options.showAlert)
 						{
 							plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
 						}
-						else if((percentValue >= plugin.options.maxValue) && plugin.options.showAlert)
+						else if((inputValue >= plugin.options.maxValue) && plugin.options.showAlert)
 						{
 							plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active').addClass('active');
 						}
@@ -1108,7 +1053,7 @@
 							plugin.$element.find("#dinoKnobMenu3-" + plugin._uId).removeClass('active');
 						}
 
-						if (plugin._angle <= plugin._maxAngle)
+						if (plugin._angle < plugin._maxAngle)
 						{
 							if(plugin._angle !== plugin._minAngle)
 							{
@@ -1145,15 +1090,18 @@
 						plugin.$element.find("#dinoKnobValueRaw-" + plugin._uId).val(plugin._angle.toFixed(0));
 						if(plugin.options.showLabel)
 						{
-							plugin.$element.find("#dinoKnobValue-" + plugin._uId).html(percentValue.toFixed(0));
+							plugin.$element.find("#dinoKnobValue-" + plugin._uId).html(inputValue.toFixed(0));
 						}
-						plugin.turnKnobUpdateCallback.call(plugin, plugin._uId, percentValue.toFixed(0), plugin._angle, plugin._angle.toFixed(0) / 360);
+
+						let r = (plugin._angle / plugin._maxAngle);
+						plugin.turnKnobUpdateCallback.call(plugin, plugin._uId, inputValue.toFixed(0), (r * 100).toFixed(0), plugin._angle.toFixed(0), r.toFixed(2));
 
 						if (plugin.options.debug)
 						{
-							console.log(plugin._uId + ' ==> RATIO ==> ' + plugin._angle.toFixed(0) / 360);
-							console.log(plugin._uId + ' ==> DEGREE ==> ' + plugin._angle.toFixed(0));
-							console.log(plugin._uId + ' ==> PERCENT ==> ' + percentValue.toFixed(0));
+							console.log(plugin._uId + ' ==> VALUE ==> ' + inputValue.toFixed(0));
+							console.log(plugin._uId + ' ==> PERCENT ==> ' + (r * 100).toFixed(0));
+							console.log(plugin._uId + ' ==> ANGLE ==> ' + plugin._angle.toFixed(0));
+							console.log(plugin._uId + ' ==> RATIO ==> ' + r.toFixed(2));
 						}
 
 						return false;
@@ -1187,6 +1135,7 @@
 
 			buttonStateCallback: function (id, state, timerState)
 			{
+				// TODO Add alarm state return
 				// Cache onComplete option
 				let onComplete = this.options.onComplete;
 
@@ -1196,19 +1145,20 @@
 				}
 			},
 
-			turnKnobUpdateCallback: function (id, percent, degree, ratio)
+			turnKnobUpdateCallback: function (id, value, percent, degree, ratio)
 			{
 				// Cache onTurn option
 				let onTurn = this.options.onTurn;
 
 				if (typeof onTurn === "function")
 				{
-					onTurn.call(this.element, id, percent, degree, ratio);
+					onTurn.call(this.element, id, value, percent, degree, ratio);
 				}
 			},
 
 			timerUpdateCallback: function (timeLeft)
 			{
+				// TODO return time left from active timer until 0
 				// Cache onTimer option
 				let onTimer = this.options.onTimer;
 
@@ -1220,6 +1170,7 @@
 
 			errorUpdateCallback: function (id, error)
 			{
+				// TODO Implement plugin error return
 				// Cache onTurn option
 				let onError = this.options.onError;
 
@@ -1242,7 +1193,7 @@
 					}
 				});
 			},
-
+          
 			/***************************************************************************/
 
 			createUniqId: function (idLength)
@@ -1324,6 +1275,18 @@
 
 			/***************************************************************************/
 
+			degreesToRadians: function(degrees)
+			{
+				return degrees * Math.PI / 180;
+			},
+
+			radiansToDegrees: function(radians)
+			{
+				return radians * 180 / Math.PI;
+			},
+
+			/***************************************************************************/
+
 			createTimerIcons: function()
 			{
 				return '<ul>' +
@@ -1361,9 +1324,8 @@
 
 			createCreatedBy: function()
 			{
-				return '<address>' +
-					'<b>' + this.capitalizeFirstLetter(this._name) + '</b>' +
-					'<p>' + this._version + '</p><hr />' +
+				return '<address><b>' + this.capitalizeFirstLetter(this._name) + '</b><br />' +
+					'<span><b>' + jQuery.fn.dinoKnob.version + '</b></span><hr />' +
 					'<span>' + atob('Q3JlYXRlZCBCeTog') + '<br /><b>' +
 							   atob('PGEgaHJlZj0iaHR0cHM6Ly9tY3gtc3lzdGVtcy5uZXQiIHRhcmdldD0iYmxhbmsiPk1DWC1TeXN0ZW1zJnJlZzwvYT4=') + '</b></span>' +
 					'</address>';
@@ -1382,15 +1344,15 @@
 				const i18n = {
 					en: {
 						plugin_title: 'DinoKnob',
-						plugin_version: 'Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (← ↑ → ↓ ) support.'
+						plugin_desc: 'Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (← ↑ → ↓ ) support.'
 					},
 					sl: {
 						plugin_title: 'DinoKnob',
-						plugin_version: 'Gumb za upravljanje / izbiranje in gumb za vklop z podporo miške, kolesa, dotika in tipkovnice (← ↑ → ↓).'
+						plugin_desc: 'Gumb za upravljanje / izbiranje in gumb za vklop z podporo miške, kolesa, dotika in tipkovnice (← ↑ → ↓).'
 					},
 					de: {
 						plugin_title: 'DinoKnob',
-						plugin_version: 'Knopf- / Wähl- und Ein- / Ausschalter mit Unterstützung für Maus, Rad, Touch und Tastatur (← ↑ → ↓).'
+						plugin_desc: 'Knopf- / Wähl- und Ein- / Ausschalter mit Unterstützung für Maus, Rad, Touch und Tastatur (← ↑ → ↓).'
 					}
 				};
 
@@ -1436,6 +1398,9 @@
 		*/
 		return this;
 	};
+
+	/* Return current version */
+	jQuery.fn.dinoKnob.version = 'v2.06.2021';
 
 	/*
 		Attach the default plugin options directly to the plugin object. This
