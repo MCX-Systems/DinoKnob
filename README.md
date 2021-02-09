@@ -1,6 +1,18 @@
 # DinoKnob
 Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (← ↑ → ↓ ) support.
 
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/MCX-Systems/DinoKnob/graphs/commit-activity)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fmcx-systems.net%2FDinoKnob)
+![GitHub last commit](https://img.shields.io/github/last-commit/MCX-Systems/DinoKnob)
+![GitHub issues](https://img.shields.io/github/issues-raw/MCX-Systems/DinoKnob)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/MCX-Systems/DinoKnob)
+
+![CPAN](https://img.shields.io/cpan/l/Config-Augeas)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/MCX-Systems/DinoKnob)
+![npm bundle size (version)](https://img.shields.io/bundlephobia/min/dino-knob/2.07.2021)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/MCX-Systems/DinoKnob)
+![GitHub forks](https://img.shields.io/github/forks/MCX-Systems/DinoKnob?style=social)
+
 ## Example Page
 Live example page: [https://mcx-systems.net/DinoKnob](https://mcx-systems.net/DinoKnob/)
 
