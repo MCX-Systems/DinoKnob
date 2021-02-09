@@ -20,12 +20,12 @@
     <!-- CSS stylesheets -->
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css?v=xQ73jw73PA" />
     <!-- DinoKnob stylesheets -->
-    <link rel="stylesheet" href="../dist/dinoKnob.min.css?v=xQ73jw73PA" />
+    <link rel="stylesheet" href="../dist/dinoKnob.css?v=xQ73jw73PA" />
     <!-- JavaScript includes -->
     <script src="../node_modules/jquery/dist/jquery.min.js?v=xQ73jw73PA"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js?v=xQ73jw73PA"></script>
     <!-- DinoKnob Plugin -->
-    <script src="../dist/dinoKnob.min.js?v=xQ73jw73PA"></script>
+    <script src="../dist/dinoKnob.js?v=xQ73jw73PA"></script>
     <style>
         body
         {
@@ -81,28 +81,31 @@
         <article class="container-fluid p-2">
             <section class="app-download bg-danger text-center d-none d-md-flex">
                 <a href="https://mcx-systems.github.io/DinoKnob/" target="_blank">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAATlBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADEoqZZAAAAGXRSTlMAOJigQFC3xqZ7HgjKg3NtM/Xq45N/UxgF/u6CEAAAAGxJREFUKM/V0DkShDAMRNEezMgL66zQ978ouKAokE1Gwgv7lxJh03NWIlXG8LxHqPzPxGCdqXDguPrqE7vsdoQyfOL+Dkj0r5Nf4U96ZHmHnU6khdKKdChIA8WQxcVBHoqsIRVDkw8NQs2MOkwsHBBgJY/YWAAAAABJRU5ErkJggg==" alt="Download DinoKnob">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAATlBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADEoqZZAAAAGXRSTlMAOJigQFC3xqZ7HgjKg3NtM/Xq45N/UxgF/u6CEAAAAGxJREFUKM/V0DkShDAMRNEezMgL66zQ978ouKAokE1Gwgv7lxJh03NWIlXG8LxHqPzPxGCdqXDguPrqE7vsdoQyfOL+Dkj0r5Nf4U96ZHmHnU6khdKKdChIA8WQxcVBHoqsIRVDkw8NQs2MOkwsHBBgJY/YWAAAAABJRU5ErkJggg==" alt="Download DinoKnob" />
                 </a>
             </section>
-
-            <a class="navbar-brand" href="https://mcx-systems.github.io/DinoKnob/"><b>DinoKnob - V2.04.2021</b></a>
+            <a class="navbar-brand" href="https://mcx-systems.github.io/DinoKnob/"><b id="plugV"></b></a>
+            <script>
+	            let v = document.getElementById('plugV');
+	            v.innerHTML = document.getElementById('plugV').innerHTML = 'DinoKnob - ' + $.fn.dinoKnob.version;
+            </script>
         </article>
 
         <article class="row mt-5">
             <section class="col bg-dark d-flex justify-content-center">
-                <div id="KnobTest1"></div>
+                <div id="KnobExample1"></div>
             </section>
 
             <section class="col bg-warning d-flex justify-content-center">
-                <div id="KnobTest2"></div>
+                <div id="KnobExample2"></div>
             </section>
 
             <section class="col bg-secondary d-flex justify-content-center">
-                <div id="KnobTest3"></div>
+                <div id="KnobExample3"></div>
             </section>
 
             <section class="col bg-primary d-flex justify-content-center">
-                <div id="KnobTest4"></div>
+                <div id="KnobExample4"></div>
             </section>
         </article>
     </header>
@@ -124,22 +127,29 @@
                 <div class="input-group mb-2">
                     <label class="input-group-text bg-dark text-white" for="sta1">State:</label>
                     <input id="sta1" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                    <label class="input-group-text bg-dark text-white" for="rat1">Ratio:</label>
-                    <input id="rat1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-dark text-white" for="err1">ErrorState:</label>
+                    <input id="err1" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
                 </div>
 
                 <div class="input-group mb-2">
                     <label class="input-group-text bg-dark text-white" for="per1">Percent:</label>
                     <input id="per1" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-dark text-white" for="des1">Degree:</label>
+                    <label class="input-group-text bg-dark text-white" for="rat1">Ratio:</label>
+                    <input id="rat1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+                </div>
+
+                <div class="input-group mb-2">
+                    <label class="input-group-text bg-dark text-white" for="val1">Value:</label>
+                    <input id="val1" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-dark text-white" for="des1">Angle:</label>
                     <input id="des1" type="text" class="form-control" placeholder="0" readonly="readonly" />
                 </div>
 
                 <div class="input-group mb-2">
                     <label class="input-group-text bg-dark text-white" for="stu1">TimerState:</label>
                     <input id="stu1" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-dark text-white" for="err1">ErrorState:</label>
-                    <input id="err1" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+                    <label class="input-group-text bg-dark text-white" for="still1">TimerLeft:</label>
+                    <input id="still1" type="text" class="form-control" placeholder="0:00:00" readonly="readonly" />
                 </div>
             </div>
 
@@ -154,24 +164,31 @@
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-danger text-white" for="sta2">State</label>
+                    <label class="input-group-text bg-warning text-white" for="sta2">State:</label>
                     <input id="sta2" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                    <label class="input-group-text bg-danger text-white" for="rat2">Ratio</label>
+                    <label class="input-group-text bg-warning text-white" for="err2">ErrorState:</label>
+                    <input id="err2" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+                </div>
+
+                <div class="input-group mb-2">
+                    <label class="input-group-text bg-warning text-white" for="per2">Percent:</label>
+                    <input id="per2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-warning text-white" for="rat2">Ratio:</label>
                     <input id="rat2" type="text" class="form-control" placeholder="0" readonly="readonly" />
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-danger text-white" for="per2">Percent</label>
-                    <input id="per2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-danger text-white" for="des2">Degree</label>
+                    <label class="input-group-text bg-warning text-white" for="val2">Value:</label>
+                    <input id="val2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-warning text-white" for="des2">Angle:</label>
                     <input id="des2" type="text" class="form-control" placeholder="0" readonly="readonly" />
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-danger text-white" for="stu2">TimerState</label>
+                    <label class="input-group-text bg-warning text-white" for="stu2">TimerState:</label>
                     <input id="stu2" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-danger text-white" for="err2">ErrorState</label>
-                    <input id="err2" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+                    <label class="input-group-text bg-warning text-white" for="still2">TimerLeft:</label>
+                    <input id="still2" type="text" class="form-control" placeholder="0:00:00" readonly="readonly" />
                 </div>
             </div>
 
@@ -186,24 +203,31 @@
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-secondary text-white" for="sta3">State</label>
+                    <label class="input-group-text bg-secondary text-white" for="sta3">State:</label>
                     <input id="sta3" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                    <label class="input-group-text bg-secondary text-white" for="rat3">Ratio</label>
+                    <label class="input-group-text bg-secondary text-white" for="err3">ErrorState:</label>
+                    <input id="err3" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+                </div>
+
+                <div class="input-group mb-2">
+                    <label class="input-group-text bg-secondary text-white" for="per3">Percent:</label>
+                    <input id="per3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-secondary text-white" for="rat3">Ratio:</label>
                     <input id="rat3" type="text" class="form-control" placeholder="0" readonly="readonly" />
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-secondary text-white" for="per3">Percent</label>
-                    <input id="per3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-secondary text-white" for="des3">Degree</label>
+                    <label class="input-group-text bg-secondary text-white" for="val3">Value:</label>
+                    <input id="val3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-secondary text-white" for="des3">Angle:</label>
                     <input id="des3" type="text" class="form-control" placeholder="0" readonly="readonly" />
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-secondary text-white" for="stu3">TimerState</label>
+                    <label class="input-group-text bg-secondary text-white" for="stu3">TimerState:</label>
                     <input id="stu3" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-secondary text-white" for="err3">ErrorState</label>
-                    <input id="err3" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+                    <label class="input-group-text bg-secondary text-white" for="still3">TimerLeft:</label>
+                    <input id="still3" type="text" class="form-control" placeholder="0:00:00" readonly="readonly" />
                 </div>
             </div>
 
@@ -218,24 +242,31 @@
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-primary text-white" for="sta4">State</label>
+                    <label class="input-group-text bg-primary text-white" for="sta4">State:</label>
                     <input id="sta4" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                    <label class="input-group-text bg-primary text-white" for="rat4">Ratio</label>
+                    <label class="input-group-text bg-primary text-white" for="err4">ErrorState:</label>
+                    <input id="err4" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+                </div>
+
+                <div class="input-group mb-2">
+                    <label class="input-group-text bg-primary text-white" for="per4">Percent:</label>
+                    <input id="per4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-primary text-white" for="rat4">Ratio:</label>
                     <input id="rat4" type="text" class="form-control" placeholder="0" readonly="readonly" />
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-primary text-white" for="per4">Percent</label>
-                    <input id="per4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-primary text-white" for="des4">Degree</label>
+                    <label class="input-group-text bg-primary text-white" for="val4">Value:</label>
+                    <input id="val4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-primary text-white" for="des4">Angle:</label>
                     <input id="des4" type="text" class="form-control" placeholder="0" readonly="readonly" />
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-primary text-white" for="stu4">TimerState</label>
+                    <label class="input-group-text bg-primary text-white" for="stu4">TimerState:</label>
                     <input id="stu4" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-primary text-white" for="err4">ErrorState</label>
-                    <input id="err4" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+                    <label class="input-group-text bg-primary text-white" for="still4">TimerLeft:</label>
+                    <input id="still4" type="text" class="form-control" placeholder="0:00:00" readonly="readonly" />
                 </div>
             </div>
         </div>
@@ -245,7 +276,7 @@
 <script>
 	$(document).ready(function()
 	{
-		$('#KnobTest1').dinoKnob({
+		$('#KnobExample1').dinoKnob({
 			// Theme Light or Dark
 			theme: 'dark',
 			// Step Value of the Knob
@@ -265,15 +296,17 @@
             // Enable Debug
             debug: true,
 			// Event on knob turn - change
-			onTurn: function(dinoId, percent, degree, ratio)
+			onTurn: function(dinoId, value, percent, degree, ratio)
 			{
+				console.log(dinoId + ' ==> VALUE ==> ' + value);
 				console.log(dinoId + ' ==> PERCENT ==> ' + percent);
-				console.log(dinoId + ' ==> DEGREE ==> ' + degree);
+				console.log(dinoId + ' ==> ANGLE ==> ' + degree);
 				console.log(dinoId + ' ==> RATIO ==> ' + ratio);
 
 				$("#per1").val(percent);
 				$("#des1").val(degree);
 				$("#rat1").val(ratio);
+				$("#val1").val(value);
 			},
 			onComplete: function(dinoId, state, timerState)
 			{
@@ -294,12 +327,12 @@
 		});
 
 		// Depends on maxAngle, set to max of 255 default
-		$("#KnobTest1 input[type=checkbox]").prop('checked', true).trigger('change');
-		$("#KnobTest1 input[type=hidden]").val(255).trigger('change');
-		$("#range1").val($("#KnobTest1 input[type=hidden]").val());
-		//$('#KnobTest1').data('plugin_dinoKnob').destroy();
+		$("#KnobExample1 input[type=checkbox]").prop('checked', true).trigger('change');
+		$("#KnobExample1 input[type=hidden]").val(255).trigger('change');
+		$("#range1").val($("#KnobExample1 input[type=hidden]").val());
+		//$('#KnobExample1').data('plugin_dinoKnob').destroy();
 
-		$('#KnobTest2').dinoKnob({
+		$('#KnobExample2').dinoKnob({
 			// Theme Light or Dark
 			theme: 'dark',
 			// Knob main Circle background color
@@ -317,15 +350,17 @@
 			// Enable Labels Button
 			showLabel: true,
 			// Event on knob turn - change
-			onTurn: function(dinoId, percent, degree, ratio)
+			onTurn: function(dinoId, value, percent, degree, ratio)
 			{
+				console.log(dinoId + ' ==> VALUE ==> ' + value);
 				console.log(dinoId + ' ==> PERCENT ==> ' + percent);
-				console.log(dinoId + ' ==> DEGREE ==> ' + degree);
+				console.log(dinoId + ' ==> ANGLE ==> ' + degree);
 				console.log(dinoId + ' ==> RATIO ==> ' + ratio);
 
 				$("#per2").val(percent);
 				$("#des2").val(degree);
 				$("#rat2").val(ratio);
+				$("#val2").val(value);
 			},
 			onComplete: function(dinoId, state, timerState)
 			{
@@ -346,12 +381,12 @@
 		});
 
 		// Depends on maxAngle, set to max of 255 default
-		//$("#KnobTest2 input[type=checkbox]").prop('checked', true).trigger('change');
-		$("#KnobTest2 input[type=hidden]").val(125).trigger('change');
-		$("#range2").val($("#KnobTest2 input[type=hidden]").val());
-		//$('#KnobTest2').data('plugin_dinoKnob').destroy();
+		//$("#KnobExample2 input[type=checkbox]").prop('checked', true).trigger('change');
+		$("#KnobExample2 input[type=hidden]").val(125).trigger('change');
+		$("#range2").val($("#KnobExample2 input[type=hidden]").val());
+		//$('#KnobExample2').data('plugin_dinoKnob').destroy();
 
-		$('#KnobTest3').dinoKnob({
+		$('#KnobExample3').dinoKnob({
 			// Theme Light or Dark
 			theme: 'light',
 			// Knob main Circle background color
@@ -369,15 +404,17 @@
 			// Enable Labels Button
 			showLabel: true,
 			// Event on knob turn - change
-			onTurn: function(dinoId, percent, degree, ratio)
+			onTurn: function(dinoId, value, percent, degree, ratio)
 			{
+				console.log(dinoId + ' ==> VALUE ==> ' + value);
 				console.log(dinoId + ' ==> PERCENT ==> ' + percent);
-				console.log(dinoId + ' ==> DEGREE ==> ' + degree);
+				console.log(dinoId + ' ==> ANGLE ==> ' + degree);
 				console.log(dinoId + ' ==> RATIO ==> ' + ratio);
 
 				$("#per3").val(percent);
 				$("#des3").val(degree);
 				$("#rat3").val(ratio);
+				$("#val3").val(value);
 			},
 			onComplete: function(dinoId, state, timerState)
 			{
@@ -399,11 +436,11 @@
 
 		// Depends on maxAngle, set to max of 255 default
 		//$("#KnobTest3 input[type=checkbox]").prop('checked', true).trigger('change');
-		$("#KnobTest3 input[type=hidden]").val(35).trigger('change');
-		$("#range3").val($("#KnobTest3 input[type=hidden]").val());
-		//$('#KnobTest3').data('plugin_dinoKnob').destroy();
+		$("#KnobExample3 input[type=hidden]").val(35).trigger('change');
+		$("#range3").val($("#KnobExample3 input[type=hidden]").val());
+		//$('#KnobExample3').data('plugin_dinoKnob').destroy();
 
-		$('#KnobTest4').dinoKnob({
+		$('#KnobExample4').dinoKnob({
 			// Theme Light or Dark
 			theme: 'light',
 			// Knob main Circle background color
@@ -421,15 +458,17 @@
 			// Enable Labels Button
 			showLabel: false,
 			// Event on knob turn - change
-			onTurn: function(dinoId, percent, degree, ratio)
+			onTurn: function(dinoId, value, percent, degree, ratio)
 			{
+				console.log(dinoId + ' ==> VALUE ==> ' + value);
 				console.log(dinoId + ' ==> PERCENT ==> ' + percent);
-				console.log(dinoId + ' ==> DEGREE ==> ' + degree);
+				console.log(dinoId + ' ==> ANGLE ==> ' + degree);
 				console.log(dinoId + ' ==> RATIO ==> ' + ratio);
 
 				$("#per4").val(percent);
 				$("#des4").val(degree);
 				$("#rat4").val(ratio);
+				$("#val4").val(value);
 			},
 			onComplete: function(dinoId, state, timerState)
 			{
@@ -451,50 +490,50 @@
 		});
 
 		// Depends on maxAngle, set to max of 255 default
-		$("#KnobTest4 input[type=checkbox]").prop('checked', true).trigger('change');
-		$("#KnobTest4 input[type=hidden]").val(160).trigger('change');
-		$("#range4").val($("#KnobTest4 input[type=hidden]").val());
-		//$('#KnobTest4').data('plugin_dinoKnob').destroy();
+		$("#KnobExample4 input[type=checkbox]").prop('checked', true).trigger('change');
+		$("#KnobExample4 input[type=hidden]").val(160).trigger('change');
+		$("#range4").val($("#KnobExample4 input[type=hidden]").val());
+		//$('#KnobExample4').data('plugin_dinoKnob').destroy();
 	});
 
 	function function1(option)
 	{
-		(option === 1) ? $("#KnobTest1 input[type=checkbox]").prop('checked', false).trigger('change') : $("#KnobTest1 input[type=checkbox]").prop('checked', true).trigger('change');
+		(option === 1) ? $("#KnobExample1 input[type=checkbox]").prop('checked', false).trigger('change') : $("#KnobExample1 input[type=checkbox]").prop('checked', true).trigger('change');
 	}
 	let slider1 = document.getElementById('range1');
 	slider1.oninput = function ()
 	{
-		$("#KnobTest1 input[type=hidden]").val(slider1.value).trigger('change');
+		$("#KnobExample1 input[type=hidden]").val(slider1.value).trigger('change');
 	}
 
 	function function2(option)
 	{
-		(option === 1) ? $("#KnobTest2 input[type=checkbox]").prop('checked', false).trigger('change') : $("#KnobTest2 input[type=checkbox]").prop('checked', true).trigger('change');
+		(option === 1) ? $("#KnobExample2 input[type=checkbox]").prop('checked', false).trigger('change') : $("#KnobExample2 input[type=checkbox]").prop('checked', true).trigger('change');
 	}
 	let slider2 = document.getElementById('range2');
 	slider2.oninput = function ()
 	{
-		$("#KnobTest2 input[type=hidden]").val(slider2.value).trigger('change');
+		$("#KnobExample2 input[type=hidden]").val(slider2.value).trigger('change');
 	}
 
 	function function3(option)
 	{
-		(option === 1) ? $("#KnobTest3 input[type=checkbox]").prop('checked', false).trigger('change') : $("#KnobTest3 input[type=checkbox]").prop('checked', true).trigger('change');
+		(option === 1) ? $("#KnobExample3 input[type=checkbox]").prop('checked', false).trigger('change') : $("#KnobExample3 input[type=checkbox]").prop('checked', true).trigger('change');
 	}
 	let slider3 = document.getElementById('range3');
 	slider3.oninput = function ()
 	{
-		$("#KnobTest3 input[type=hidden]").val(slider3.value).trigger('change');
+		$("#KnobExample3 input[type=hidden]").val(slider3.value).trigger('change');
 	}
 
 	function function4(option)
 	{
-		(option === 1) ? $("#KnobTest4 input[type=checkbox]").prop('checked', false).trigger('change') : $("#KnobTest4 input[type=checkbox]").prop('checked', true).trigger('change');
+		(option === 1) ? $("#KnobExample4 input[type=checkbox]").prop('checked', false).trigger('change') : $("#KnobExample4 input[type=checkbox]").prop('checked', true).trigger('change');
 	}
 	let slider4 = document.getElementById('range4');
 	slider4.oninput = function ()
 	{
-		$("#KnobTest4 input[type=hidden]").val(slider4.value).trigger('change');
+		$("#KnobExample4 input[type=hidden]").val(slider4.value).trigger('change');
 	}
 </script>
 </body>
