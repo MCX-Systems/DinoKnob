@@ -56,81 +56,65 @@ $(document).ready(function()
 {
 	$('#KnobTest1').dinoKnob({
 		// Theme Light or Dark
-		// set's the shadow of knob
-		theme: 'light',
-		// Knob main background color
-		knobBgColor: null,
-		// Circle range Bar style: (Hot, Cold or Mono,
-		// yellow, blue, red, green) color
-		barStyle: 'hot',
-		/*---------------------------------------------*/
-		// Show Knob Value overlay
-		// on hover button #dinoKnobMenu2
-		showLabel: false,
-		// Step Value of the knob range when using
-		// mouse wheel or keyboard control
-		snap: 0,
-		// Knob current value we start with 0
-		// It can be set at runtime
-		value: 0,
-		// Knob Min Value starts with 0
-		// can't be a negative number
-		minValue: 0,
-		// Knob Max Value
-		// also maxAlarm depends on this value
+		theme: 'dark',
+		// Step Value of the Knob
+		snap: 5,
+		// Knob Display Max Value as 100%
 		maxValue: 100,
-		/*---------------------------------------------*/
-		// Enable Alerts for overdrive on knob range
-		showAlert: false,
-		// Alarm icon
-		// Value to activate alarm depends on Max value
-		maxAlarm: 500,
-		/*---------------------------------------------*/
+		// Max angle value, for alarm icon
+		maxAlarm: 50,
+		// Circle Bar style Hot, Cold or Mono, yellow, blue, red, green
+		barStyle: 'blue',
 		// Enable Timer Button
-		showTimer: false, // default
-		// Preset timer 1 to 15 seconds
-		timer_1: 15, // seconds
-		// Preset timer 2 to 1 minute
-		timer_2: 60, // seconds
-		// Preset timer 3 to 5 minutes
-		timer_3: 300, // seconds
-		// Preset timer 4 to 10 minutes
-		timer_4: 600, // seconds
-		// Preset timer 5 to 15 minutes
-		timer_5: 900, // seconds
-		/*---------------------------------------------*/
-		// Plugin language automatic
-		// detection at runtime from browser
-		language: null,
-		// Enable plugin debug
-		debug: false,
-		/*---------------------------------------------*/
+		showTimer: true,
+		// Enable Alerts Button
+		showAlert: true,
+		// Enable Labels Button
+		showLabel: true,
+		// Enable Debug
+		debug: true,
 		// Event on knob turn - change
-		onTurn: function(dinoId, percent, degree, ratio)
+		onTurn: function(dinoId, value, percent, degree, ratio)
 		{
+			console.log(dinoId + ' ==> VALUE ==> ' + value);
 			console.log(dinoId + ' ==> PERCENT ==> ' + percent);
-			console.log(dinoId + ' ==> DEGREE ==> ' + degree);
+			console.log(dinoId + ' ==> ANGLE ==> ' + degree);
 			console.log(dinoId + ' ==> RATIO ==> ' + ratio);
 
 			$("#per1").val(percent);
 			$("#des1").val(degree);
 			$("#rat1").val(ratio);
+			$("#val1").val(value);
 		},
-		onComplete: function(dinoId, state, timerState)
+		onComplete: function(dinoId, state, timerState, timerTime)
 		{
 			// Return Button State true or false
-			console.log(dinoId + ' ==> BUTTON ==> ' + state);
-			console.log(dinoId + ' ==> TIMER ==> ' + timerState);
-			
+			console.log(dinoId + ' ==> BUTTON STATE ==> ' + state);
+			console.log(dinoId + ' ==> TIMER STATE ==> ' + timerState);
+			console.log(dinoId + ' ==> TIMER SET ==> ' + timerTime);
+
 			$("#sta1").val(state);
 			$("#stu1").val(timerState);
+			$("#stp1").val(timerTime + ' seconds');
+		},
+		onTimer: function(dinoId, timeLeft)
+		{
+			$("#still1").val(timeLeft + ' seconds');
+		},
+		onError: function(dinoId, error)
+		{
+			// Return knob errors
+			console.log(dinoId + ' ==> ERROR ==> ' + error);
+
+			$("#err1").val(error);
 		}
 	});
 
 	// Depends on maxAngle, set to max of 255 default
-	$("#KnobTest1 input[type=checkbox]").prop('checked', true).trigger('change');
-	$("#KnobTest1 input[type=hidden]").val(255).trigger('change');
-	//$('#KnobTest1').data('plugin_dinoKnob').destroy();
+	$("#KnobExample1 input[type=checkbox]").prop('checked', true).trigger('change');
+	$("#KnobExample1 input[type=hidden]").val(255).trigger('change');
+	$("#range1").val($("#KnobExample1 input[type=hidden]").val());
+	//$('#KnobExample1').data('plugin_dinoKnob').destroy();
 });
 ```
 
@@ -143,12 +127,18 @@ programmatically in your script to display new values.
 Return values from example
 ----------
 
-- `id`:
-- `state`: 
-- `percent`: 
-- `degree`:
-- `ratio`: 
-- `timer`:
+Variable   | Type
+-----------|-------
+id         | String
+value      | int
+percent    | int
+degree     | int
+ratio      | int
+state      | bool
+timerState | bool
+timerTime  | int
+timeLeft   | int
+error      | String
 
 ## Credits
 - Based on [https://github.com/tutorialzine/KnobKnob](https://github.com/tutorialzine/KnobKnob)
