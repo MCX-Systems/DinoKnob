@@ -30,6 +30,10 @@
         body
         {
             background-color: rgb(0, 0, 0);
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
         }
         .theKnob
         {
@@ -112,7 +116,7 @@
 
     <main class="theKnob d-none d-lg-block">DINO KNOB</main>
 
-    <footer class="row fixed-bottom d-none d-lg-block">
+    <footer class="fixed-bottom d-none d-lg-block p-2 pb-0">
         <div class="row">
             <div class="col bg-dark">
                 <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
@@ -125,7 +129,7 @@
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-dark text-white" for="sta1">State:</label>
+                    <label class="input-group-text bg-dark text-white" for="sta1">ButtonState:</label>
                     <input id="sta1" type="text" class="form-control" placeholder="false" readonly="readonly" />
                     <label class="input-group-text bg-dark text-white" for="err1">ErrorState:</label>
                     <input id="err1" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
@@ -148,8 +152,13 @@
                 <div class="input-group mb-2">
                     <label class="input-group-text bg-dark text-white" for="stu1">TimerState:</label>
                     <input id="stu1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-dark text-white" for="stp1">TimerSet:</label>
+                    <input id="stp1" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+                </div>
+
+                <div class="input-group mb-2">
                     <label class="input-group-text bg-dark text-white" for="still1">TimerLeft:</label>
-                    <input id="still1" type="text" class="form-control" placeholder="0:00:00" readonly="readonly" />
+                    <input id="still1" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
                 </div>
             </div>
 
@@ -164,7 +173,7 @@
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-warning text-white" for="sta2">State:</label>
+                    <label class="input-group-text bg-warning text-white" for="sta2">ButtonState:</label>
                     <input id="sta2" type="text" class="form-control" placeholder="false" readonly="readonly" />
                     <label class="input-group-text bg-warning text-white" for="err2">ErrorState:</label>
                     <input id="err2" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
@@ -187,8 +196,13 @@
                 <div class="input-group mb-2">
                     <label class="input-group-text bg-warning text-white" for="stu2">TimerState:</label>
                     <input id="stu2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-warning text-white" for="stp2">TimerSet:</label>
+                    <input id="stp2" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+                </div>
+
+                <div class="input-group mb-2">
                     <label class="input-group-text bg-warning text-white" for="still2">TimerLeft:</label>
-                    <input id="still2" type="text" class="form-control" placeholder="0:00:00" readonly="readonly" />
+                    <input id="still2" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
                 </div>
             </div>
 
@@ -203,7 +217,7 @@
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-secondary text-white" for="sta3">State:</label>
+                    <label class="input-group-text bg-secondary text-white" for="sta3">ButtonState:</label>
                     <input id="sta3" type="text" class="form-control" placeholder="false" readonly="readonly" />
                     <label class="input-group-text bg-secondary text-white" for="err3">ErrorState:</label>
                     <input id="err3" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
@@ -226,8 +240,13 @@
                 <div class="input-group mb-2">
                     <label class="input-group-text bg-secondary text-white" for="stu3">TimerState:</label>
                     <input id="stu3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-secondary text-white" for="stp3">TimerSet:</label>
+                    <input id="stp3" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+                </div>
+
+                <div class="input-group mb-2">
                     <label class="input-group-text bg-secondary text-white" for="still3">TimerLeft:</label>
-                    <input id="still3" type="text" class="form-control" placeholder="0:00:00" readonly="readonly" />
+                    <input id="still3" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
                 </div>
             </div>
 
@@ -242,7 +261,7 @@
                 </div>
 
                 <div class="input-group mb-2">
-                    <label class="input-group-text bg-primary text-white" for="sta4">State:</label>
+                    <label class="input-group-text bg-primary text-white" for="sta4">ButtonState:</label>
                     <input id="sta4" type="text" class="form-control" placeholder="false" readonly="readonly" />
                     <label class="input-group-text bg-primary text-white" for="err4">ErrorState:</label>
                     <input id="err4" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
@@ -265,8 +284,13 @@
                 <div class="input-group mb-2">
                     <label class="input-group-text bg-primary text-white" for="stu4">TimerState:</label>
                     <input id="stu4" type="text" class="form-control" placeholder="0" readonly="readonly" />
+                    <label class="input-group-text bg-primary text-white" for="stp4">TimerSet:</label>
+                    <input id="stp4" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+                </div>
+
+                <div class="input-group mb-2">
                     <label class="input-group-text bg-primary text-white" for="still4">TimerLeft:</label>
-                    <input id="still4" type="text" class="form-control" placeholder="0:00:00" readonly="readonly" />
+                    <input id="still4" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
                 </div>
             </div>
         </div>
@@ -308,14 +332,20 @@
 				$("#rat1").val(ratio);
 				$("#val1").val(value);
 			},
-			onComplete: function(dinoId, state, timerState)
+			onComplete: function(dinoId, state, timerState, timerTime)
 			{
 				// Return Button State true or false
-				console.log(dinoId + ' ==> BUTTON ==> ' + state);
-				console.log(dinoId + ' ==> TIMER ==> ' + timerState);
+				console.log(dinoId + ' ==> BUTTON STATE ==> ' + state);
+				console.log(dinoId + ' ==> TIMER STATE ==> ' + timerState);
+				console.log(dinoId + ' ==> TIMER SET ==> ' + timerTime);
 
 				$("#sta1").val(state);
 				$("#stu1").val(timerState);
+				$("#stp1").val(timerTime + ' seconds');
+			},
+			onTimer: function(dinoId, timeLeft)
+			{
+				$("#still1").val(timeLeft + ' seconds');
 			},
 			onError: function(dinoId, error)
 			{
@@ -362,14 +392,20 @@
 				$("#rat2").val(ratio);
 				$("#val2").val(value);
 			},
-			onComplete: function(dinoId, state, timerState)
+			onComplete: function(dinoId, state, timerState, timerTime)
 			{
 				// Return Button State true or false
-				console.log(dinoId + ' ==> BUTTON ==> ' + state);
-				console.log(dinoId + ' ==> TIMER ==> ' + timerState);
+				console.log(dinoId + ' ==> BUTTON STATE ==> ' + state);
+				console.log(dinoId + ' ==> TIMER STATE ==> ' + timerState);
+				console.log(dinoId + ' ==> TIMER SET ==> ' + timerTime);
 
 				$("#sta2").val(state);
 				$("#stu2").val(timerState);
+				$("#stp2").val(timerTime + ' seconds');
+			},
+			onTimer: function(dinoId, timeLeft)
+			{
+				$("#still2").val(timeLeft + ' seconds');
 			},
 			onError: function(dinoId, error)
 			{
@@ -416,14 +452,20 @@
 				$("#rat3").val(ratio);
 				$("#val3").val(value);
 			},
-			onComplete: function(dinoId, state, timerState)
+			onComplete: function(dinoId, state, timerState, timerTime)
 			{
 				// Return Button State true or false
-				console.log(dinoId + ' ==> BUTTON ==> ' + state);
-				console.log(dinoId + ' ==> TIMER ==> ' + timerState);
+				console.log(dinoId + ' ==> BUTTON STATE ==> ' + state);
+				console.log(dinoId + ' ==> TIMER STATE ==> ' + timerState);
+				console.log(dinoId + ' ==> TIMER SET ==> ' + timerTime);
 
 				$("#sta3").val(state);
 				$("#stu3").val(timerState);
+				$("#stp3").val(timerTime + ' seconds');
+			},
+			onTimer: function(dinoId, timeLeft)
+			{
+				$("#still3").val(timeLeft + ' seconds');
 			},
 			onError: function(dinoId, error)
 			{
@@ -470,16 +512,21 @@
 				$("#rat4").val(ratio);
 				$("#val4").val(value);
 			},
-			onComplete: function(dinoId, state, timerState)
+			onComplete: function(dinoId, state, timerState, timerTime)
 			{
 				// Return Button State true or false
-				console.log(dinoId + ' ==> BUTTON ==> ' + state);
-				console.log(dinoId + ' ==> TIMER ==> ' + timerState);
+				console.log(dinoId + ' ==> BUTTON STATE ==> ' + state);
+				console.log(dinoId + ' ==> TIMER STATE ==> ' + timerState);
+				console.log(dinoId + ' ==> TIMER SET ==> ' + timerTime);
 
 				$("#sta4").val(state);
 				$("#stu4").val(timerState);
-			}
-			,
+				$("#stp4").val(timerTime + ' seconds');
+			},
+			onTimer: function(dinoId, timeLeft)
+			{
+				$("#still4").val(timeLeft + ' seconds');
+			},
 			onError: function(dinoId, error)
 			{
 				// Return knob errors
