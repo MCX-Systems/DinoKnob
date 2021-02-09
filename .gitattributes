@@ -1,5 +1,10 @@
+dist/dinoKnob.js -diff
+dist/dinoKnob.min.js -diff
+dist/dinoKnob.jquery.js -diff
+dist/dinoKnob.jquery.min.js -diff
+
 *.js linguist-detectable=true
-*.css linguist-detectable=false
+*.css linguist-detectable=true
 
 special-vendored-path/* linguist-vendored
 jquery.js linguist-vendored=true
