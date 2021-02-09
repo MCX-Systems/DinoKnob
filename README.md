@@ -7,7 +7,7 @@ Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (‚Üê ‚Ü
 ![GitHub issues](https://img.shields.io/github/issues-raw/MCX-Systems/DinoKnob)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/MCX-Systems/DinoKnob)
 
-![CPAN](https://img.shields.io/cpan/l/Config-Augeas)
+![CRAN/METACRAN](https://img.shields.io/cran/l/devtools)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/MCX-Systems/DinoKnob)
 ![npm bundle size (version)](https://img.shields.io/bundlephobia/min/dino-knob/2.07.2021)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/MCX-Systems/DinoKnob)
