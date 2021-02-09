@@ -1,10 +1,15 @@
 {
   "name": "dino-knob",
-  "version": "2.02.2021",
+  "version": "2.08.2021",
   "description": "Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard support, jQuery plugin.",
   "directories": {
+    "dist": "dist",
     "example": "example"
   },
+  "files": [
+    "dist",
+    "example"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MCX-Systems/DinoKnob.git"
@@ -12,6 +17,9 @@
   "author": "MCX-Systems <casardavorin@gmail.com>",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
     "bootstrap": "~5.0.0-beta1",
     "jquery": "~3.5.1"
   },
@@ -19,8 +27,13 @@
     "url": "https://github.com/MCX-Systems/DinoKnob/issues"
   },
   "homepage": "https://github.com/MCX-Systems/DinoKnob#readme",
-  "main": "example/index.html",
-  "dependencies": {},
+  "main": "dist/dinoKnob.js",
+  "browser": "dist/dinoKnob.js",
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "core-js": "^3.8.3",
+    "terser": "^5.6.0-beta"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }
