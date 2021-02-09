@@ -147,7 +147,8 @@
 		/***************************************************************************/
 		this._buttonState = false;
 		this._doCountDown = true;
-		this._timerState = 0;
+		this._timerState = false;
+		this._timerTime = 0;
 		this._timerCounter = 0;
 		this._timerCounterLeft = 0;
 		/***************************************************************************/
@@ -617,14 +618,19 @@
 
 					plugin._doCountDown = true;
 					plugin._timerCounter = 0;
-					plugin._timerState = jQuery(this).data('timer');
+
+					plugin._timerTime = jQuery(this).data('timer');
+					plugin._timerState = true;
+					//plugin._timerLeft = jQuery(this).data('timer');
+
 					plugin.$element.find('#dinoKnobTimers-' + plugin._uId).empty().html(plugin.createTimerFace());
-					plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState);
+					plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState, plugin._timerTime);
 
 					if (plugin.options.debug)
 					{
-						console.log(plugin._uId + ' ==> BUTTON ==> ' + plugin._buttonState);
-						console.log(plugin._uId + ' ==> TIMER ==> ' + plugin._timerState);
+						console.log(plugin._uId + ' ==> BUTTON STATE ==> ' + plugin._buttonState);
+						console.log(plugin._uId + ' ==> TIMER STATE ==> ' + plugin._timerState);
+						console.log(plugin._uId + ' ==> TIMER SET ==> ' + plugin._timerTime);
 					}
 
 					function drawCountDown()
@@ -642,7 +648,7 @@
 						plugin.$element.find('#dinoTimerLoader-' + plugin._uId).attr( "d", anim );
 						if(plugin._doCountDown)
 						{
-							if(plugin._timerCounterLeft >= plugin._timerState * 1000)
+							if(plugin._timerCounterLeft >= plugin._timerTime * 1000)
 							{
 								plugin._doCountDown = false;
 								plugin._timerCounter = 0;
@@ -659,12 +665,22 @@
 									this.rotateMenu(li[i], -360);
 								}
 
-								plugin.buttonStateCallback(plugin._uId, plugin._buttonState, 0);
+								plugin._timerTime = 0;
+								plugin._timerState = false;
+								plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState, plugin._timerTime);
 								plugin.$element.find('#dinoKnobTimers-' + plugin._uId).empty();
 							}
 
-							plugin._timerCounterLeft += Math.round((plugin._timerState / 360) * 1000);
-							setTimeout(drawCountDown, (plugin._timerState / 360) * 1000);
+							plugin._timerCounterLeft += Math.round((plugin._timerTime / 360) * 1000);
+							let timeL = plugin._timerTime - (plugin._timerCounterLeft / 1000).toFixed(0);
+							plugin.timerUpdateCallback(plugin._uId, timeL);
+
+							if (plugin.options.debug)
+							{
+								console.log(plugin._uId + ' ==> TIME LEFT ==> ' + timeL);
+							}
+
+							setTimeout(drawCountDown, (plugin._timerTime / 360) * 1000);
 						}
 					}
 
@@ -773,12 +789,13 @@
 					if(plugin._powerButtonInput.is(':checked'))
 					{
 						plugin._buttonState = true;
-						plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState);
+						plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState, plugin._timerTime);
 
 						if (plugin.options.debug)
 						{
-							console.log(plugin._uId + ' ==> BUTTON ==> ' + plugin._buttonState);
-							console.log(plugin._uId + ' ==> TIMER ==> ' + plugin._timerState);
+							console.log(plugin._uId + ' ==> BUTTON STATE ==> ' + plugin._buttonState);
+							console.log(plugin._uId + ' ==> TIMER STATE ==> ' + plugin._timerState);
+							console.log(plugin._uId + ' ==> TIMER SET ==> ' + plugin._timerTime);
 						}
 
 						plugin._knobTop.css({
@@ -796,12 +813,13 @@
 					else
 					{
 						plugin._buttonState = false;
-						plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState);
+						plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState, plugin._timerTime);
 
 						if (plugin.options.debug)
 						{
-							console.log(plugin._uId + ' ==> BUTTON ==> ' + plugin._buttonState);
-							console.log(plugin._uId + ' ==> TIMER ==> ' + plugin._timerState);
+							console.log(plugin._uId + ' ==> BUTTON STATE ==> ' + plugin._buttonState);
+							console.log(plugin._uId + ' ==> TIMER STATE ==> ' + plugin._timerState);
+							console.log(plugin._uId + ' ==> TIMER SET ==> ' + plugin._timerTime);
 						}
 
 						plugin._knobTop.css({
@@ -825,11 +843,11 @@
 
 					let val = plugin.$element.find("#dinoKnobValueRaw-" + plugin._uId).val();
 					let colorBars = plugin._bars.find('.dinoKnobColorBar');
-					let numBars, lastNum = -plugin.options.snap;
+					let numBars;
+					let	lastNum = -plugin.options.snap;
 
 					let inputValue;
 					inputValue = (val / plugin._maxAngle) * plugin.options.maxValue;
-
 					if(inputValue >= plugin.options.maxValue)
 					{
 						inputValue = plugin.options.maxValue;
@@ -1034,7 +1052,6 @@
 
 						let inputValue;
 						inputValue = (plugin._angle / plugin._maxAngle) * plugin.options.maxValue;
-
 						if(inputValue >= plugin.options.maxValue)
 						{
 							inputValue = plugin.options.maxValue;
@@ -1133,7 +1150,7 @@
 
 			/***************************************************************************/
 
-			buttonStateCallback: function (id, state, timerState)
+			buttonStateCallback: function (id, state, timerState, timerTime)
 			{
 				// TODO Add alarm state return
 				// Cache onComplete option
@@ -1141,7 +1158,7 @@
 
 				if (typeof onComplete === "function")
 				{
-					onComplete.call(this.element, id, state, timerState);
+					onComplete.call(this.element, id, state, timerState, timerTime);
 				}
 			},
 
@@ -1156,7 +1173,7 @@
 				}
 			},
 
-			timerUpdateCallback: function (timeLeft)
+			timerUpdateCallback: function (id, timeLeft)
 			{
 				// TODO return time left from active timer until 0
 				// Cache onTimer option
@@ -1164,7 +1181,7 @@
 
 				if (typeof onTimer === "function")
 				{
-					onTimer.call(this.element, timeLeft);
+					onTimer.call(this.element, id, timeLeft);
 				}
 			},
 
@@ -1400,7 +1417,7 @@
 	};
 
 	/* Return current version */
-	jQuery.fn.dinoKnob.version = 'v2.06.2021';
+	jQuery.fn.dinoKnob.version = 'v2.07.2021';
 
 	/*
 		Attach the default plugin options directly to the plugin object. This
