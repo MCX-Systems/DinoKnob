@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>DinoKnob Widget Example</title>
     <meta content="Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard support, jQuery plugin." name="description"/>
-    <meta content="knob, jquery, plugin, lights, dimmer, switch" name="keywords"/>
-    <meta content="Davorin Casar" name="author"/>
-    <title>DinoKnob Project</title>
+    <meta content="knob, jquery, plugin, lights, dimmer, switch, range" name="keywords"/>
+    <meta content="Davorin Casar (MCX-Systems)" name="author"/>
     <!-- FavIcon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png?v=xQ73jw73PA">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png?v=xQ73jw73PA">
@@ -27,46 +27,46 @@
     <!-- DinoKnob Plugin -->
     <script src="../dist/dinoKnob.js?v=xQ73jw73PA"></script>
     <style>
-        body
+		body
+		{
+			background-color: rgb(0, 0, 0);
+			margin: 0;
+			width: 100%;
+			height: 100%;
+			padding: 80px 0;
+			overflow: auto;
+		}
+        header, footer
         {
-            background-color: rgb(0, 0, 0);
-            margin: 0;
-            padding: 0;
             width: 100%;
-            height: 100%;
+            height: 50px;
+            vertical-align: middle;
+            text-align: center;
         }
-        .theKnob
-        {
-            position: absolute;
-	        top: 50%;
-            left: 40%;
-            font-size: 70px;
-            color: rgb(255, 197, 0);
-        }
-	    .app-download
-        {
-		    display: flex;
-		    justify-content: space-around;
-		    align-items: center;
-		    direction: rtl;
-		    top: 0;
-		    position: fixed;
-		    flex-direction: column;
-		    z-index: 100;
-		    left: 2rem;
-		    border-bottom-right-radius: 50%;
-		    border-bottom-left-radius: 50%;
-		    box-shadow: 1px 2px 14px 5px rgb(67, 67, 71);
-		    padding: 1rem;
-	    }
-        .app-download:hover
-        {
-	        box-shadow: 1px 2px 14px 5px rgb(0, 0, 0);
-        }
-	    .app-download img
-	    {
-            margin-top: -12px;
-	    }
+		.app-download
+		{
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			direction: rtl;
+			top: 0;
+			position: fixed;
+			flex-direction: column;
+			z-index: 100;
+			left: 2rem;
+			border-bottom-right-radius: 50%;
+			border-bottom-left-radius: 50%;
+			box-shadow: 1px 2px 14px 5px rgb(67, 67, 71);
+			padding: 1rem;
+		}
+		.app-download:hover
+		{
+			box-shadow: 1px 2px 14px 5px rgb(0, 0, 0);
+		}
+		.app-download img
+		{
+			margin-top: -12px;
+		}
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MP8H23FYPJ"></script>
@@ -78,222 +78,318 @@
 		gtag('config', 'G-MP8H23FYPJ');
     </script>
 </head>
-
 <body>
 <div class="container-fluid text-center">
-    <header class="fixed-top bg-dark">
-        <article class="container-fluid p-2">
-            <section class="app-download bg-danger text-center d-none d-md-flex">
-                <a href="https://mcx-systems.github.io/DinoKnob/" target="_blank">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAATlBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADEoqZZAAAAGXRSTlMAOJigQFC3xqZ7HgjKg3NtM/Xq45N/UxgF/u6CEAAAAGxJREFUKM/V0DkShDAMRNEezMgL66zQ978ouKAokE1Gwgv7lxJh03NWIlXG8LxHqPzPxGCdqXDguPrqE7vsdoQyfOL+Dkj0r5Nf4U96ZHmHnU6khdKKdChIA8WQxcVBHoqsIRVDkw8NQs2MOkwsHBBgJY/YWAAAAABJRU5ErkJggg==" alt="Download DinoKnob" />
-                </a>
-            </section>
-            <a class="navbar-brand" href="https://mcx-systems.github.io/DinoKnob/"><b id="plugV"></b></a>
-            <script>
-	            let v = document.getElementById('plugV');
-	            v.innerHTML = document.getElementById('plugV').innerHTML = 'DinoKnob - ' + $.fn.dinoKnob.version;
-            </script>
-        </article>
-
-        <article class="row mt-5">
-            <section class="col bg-dark d-flex justify-content-center">
-                <div id="KnobExample1"></div>
-            </section>
-
-            <section class="col bg-warning d-flex justify-content-center">
-                <div id="KnobExample2"></div>
-            </section>
-
-            <section class="col bg-secondary d-flex justify-content-center">
-                <div id="KnobExample3"></div>
-            </section>
-
-            <section class="col bg-primary d-flex justify-content-center">
-                <div id="KnobExample4"></div>
-            </section>
-        </article>
+    <header class="fixed-top btn-dark d-flex align-items-center justify-content-between">
+        <span class="app-download bg-danger text-center d-none d-md-flex">
+            <a href="https://mcx-systems.github.io/DinoKnob/" target="_blank">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAATlBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADEoqZZAAAAGXRSTlMAOJigQFC3xqZ7HgjKg3NtM/Xq45N/UxgF/u6CEAAAAGxJREFUKM/V0DkShDAMRNEezMgL66zQ978ouKAokE1Gwgv7lxJh03NWIlXG8LxHqPzPxGCdqXDguPrqE7vsdoQyfOL+Dkj0r5Nf4U96ZHmHnU6khdKKdChIA8WQxcVBHoqsIRVDkw8NQs2MOkwsHBBgJY/YWAAAAABJRU5ErkJggg==" alt="Download DinoKnob" />
+            </a>
+        </span>
+        <span>&nbsp;</span>
+        <h4 id="plugV" class="text-danger pt-1">JQuery-DinoKnob - v2.08.2021</h4>
+        <span>&nbsp;</span>
+        <script>
+		    document.getElementById('plugV').innerHTML = 'DinoKnob-' + $.fn.dinoKnob.version;
+        </script>
     </header>
 
-    <main class="theKnob d-none d-lg-block">DINO KNOB</main>
-
-    <footer class="fixed-bottom d-none d-lg-block p-2 pb-0">
-        <div class="row">
-            <div class="col bg-dark">
-                <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
-                    <button id="on1" onclick="function1(2)" class="btn btn-success rounded-0 mb-3">ON</button>
-                    <button id="off1" onclick="function1(1)" class="btn btn-danger text-white rounded-0 mb-3">OFF</button>
-                    <button id="timer1" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
-                    <button id="timer2" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
-                    <label for="range1"></label>
-                    <input id="range1" type="range" min="0" max="260" value="0" class="form-range" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-dark text-white" for="sta1">ButtonState:</label>
-                    <input id="sta1" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                    <label class="input-group-text bg-dark text-white" for="err1">ErrorState:</label>
-                    <input id="err1" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-dark text-white" for="per1">Percent:</label>
-                    <input id="per1" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-dark text-white" for="rat1">Ratio:</label>
-                    <input id="rat1" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-dark text-white" for="val1">Value:</label>
-                    <input id="val1" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-dark text-white" for="des1">Angle:</label>
-                    <input id="des1" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-dark text-white" for="stu1">TimerState:</label>
-                    <input id="stu1" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-dark text-white" for="stp1">TimerSet:</label>
-                    <input id="stp1" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-dark text-white" for="still1">TimerLeft:</label>
-                    <input id="still1" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-                </div>
-            </div>
-
-            <div class="col bg-warning">
-                <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
-                    <button id="on2" onclick="function2(2)" class="btn btn-success rounded-0 mb-3">ON</button>
-                    <button id="off2" onclick="function2(1)" class="btn btn-danger text-white rounded-0 mb-3">OFF</button>
-                    <button id="timer3" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
-                    <button id="timer4" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
-                    <label for="range2"></label>
-                    <input id="range2" type="range" min="0" max="260" value="0" class="form-range" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-warning text-white" for="sta2">ButtonState:</label>
-                    <input id="sta2" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                    <label class="input-group-text bg-warning text-white" for="err2">ErrorState:</label>
-                    <input id="err2" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-warning text-white" for="per2">Percent:</label>
-                    <input id="per2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-warning text-white" for="rat2">Ratio:</label>
-                    <input id="rat2" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-warning text-white" for="val2">Value:</label>
-                    <input id="val2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-warning text-white" for="des2">Angle:</label>
-                    <input id="des2" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-warning text-white" for="stu2">TimerState:</label>
-                    <input id="stu2" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-warning text-white" for="stp2">TimerSet:</label>
-                    <input id="stp2" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-warning text-white" for="still2">TimerLeft:</label>
-                    <input id="still2" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-                </div>
-            </div>
-
-            <div class="col bg-secondary">
-                <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
-                    <button id="on3" onclick="function3(2)" class="btn btn-success rounded-0 mb-3">ON</button>
-                    <button id="off3" onclick="function3(1)" class="btn btn-danger text-white rounded-0 mb-3">OFF</button>
-                    <button id="timer5" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
-                    <button id="timer6" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
-                    <label for="range3"></label>
-                    <input id="range3" type="range" min="0" max="260" value="0" class="form-range" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-secondary text-white" for="sta3">ButtonState:</label>
-                    <input id="sta3" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                    <label class="input-group-text bg-secondary text-white" for="err3">ErrorState:</label>
-                    <input id="err3" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-secondary text-white" for="per3">Percent:</label>
-                    <input id="per3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-secondary text-white" for="rat3">Ratio:</label>
-                    <input id="rat3" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-secondary text-white" for="val3">Value:</label>
-                    <input id="val3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-secondary text-white" for="des3">Angle:</label>
-                    <input id="des3" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-secondary text-white" for="stu3">TimerState:</label>
-                    <input id="stu3" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-secondary text-white" for="stp3">TimerSet:</label>
-                    <input id="stp3" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-secondary text-white" for="still3">TimerLeft:</label>
-                    <input id="still3" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-                </div>
-            </div>
-
-            <div class="col bg-primary">
-                <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
-                    <button id="on4" onclick="function4(2)" class="btn btn-success rounded-0 mb-3">ON</button>
-                    <button id="off4" onclick="function4(1)" class="btn btn-danger rounded-0 mb-3">OFF</button>
-                    <button id="timer7" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
-                    <button id="timer8" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
-                    <label for="range4"></label>
-                    <input id="range4" type="range" min="0" max="260" value="0" class="form-range" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-primary text-white" for="sta4">ButtonState:</label>
-                    <input id="sta4" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                    <label class="input-group-text bg-primary text-white" for="err4">ErrorState:</label>
-                    <input id="err4" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-primary text-white" for="per4">Percent:</label>
-                    <input id="per4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-primary text-white" for="rat4">Ratio:</label>
-                    <input id="rat4" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-primary text-white" for="val4">Value:</label>
-                    <input id="val4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-primary text-white" for="des4">Angle:</label>
-                    <input id="des4" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-primary text-white" for="stu4">TimerState:</label>
-                    <input id="stu4" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                    <label class="input-group-text bg-primary text-white" for="stp4">TimerSet:</label>
-                    <input id="stp4" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-                </div>
-
-                <div class="input-group mb-2">
-                    <label class="input-group-text bg-primary text-white" for="still4">TimerLeft:</label>
-                    <input id="still4" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-                </div>
-            </div>
+    <section class="row align-items-center">
+        <div class="col-md-6 col-lg-4 bg-primary d-flex justify-content-center p-3">
+            <div id="KnobExample1"></div>
         </div>
+        <div class="col-md-6 col-lg-4 bg-warning d-flex justify-content-center p-3">
+            <div id="KnobExample2"></div>
+        </div>
+        <div class="col-md-6 col-lg-4 bg-danger d-flex justify-content-center p-3">
+            <div id="KnobExample3"></div>
+        </div>
+    </section>
+
+    <article class="row mt-4 d-none d-lg-flex">
+        <section class="col-md-6 col-lg-4 bg-primary">
+            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+                <button id="on1" onclick="function1(2)" class="btn btn-success rounded-0 mb-3">ON</button>
+                <button id="off1" onclick="function1(1)" class="btn btn-danger text-white rounded-0 mb-3">OFF</button>
+                <button id="timer1" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+                <button id="timer2" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+                <label for="range1"></label>
+                <input id="range1" type="range" min="0" max="260" value="0" class="form-range" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-dark text-white" for="sta1">ButtonState:</label>
+                <input id="sta1" type="text" class="form-control" placeholder="false" readonly="readonly" />
+                <label class="input-group-text bg-dark text-white" for="err1">ErrorState:</label>
+                <input id="err1" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-dark text-white" for="per1">Percent:</label>
+                <input id="per1" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-dark text-white" for="rat1">Ratio:</label>
+                <input id="rat1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-dark text-white" for="val1">Value:</label>
+                <input id="val1" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-dark text-white" for="des1">Angle:</label>
+                <input id="des1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-dark text-white" for="stu1">TimerState:</label>
+                <input id="stu1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-dark text-white" for="stp1">TimerSet:</label>
+                <input id="stp1" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-dark text-white" for="still1">TimerLeft:</label>
+                <input id="still1" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+        </section>
+
+        <section class="col-md-6 col-lg-4 bg-warning">
+            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+                <button id="on2" onclick="function2(2)" class="btn btn-success rounded-0 mb-3">ON</button>
+                <button id="off2" onclick="function2(1)" class="btn btn-danger text-white rounded-0 mb-3">OFF</button>
+                <button id="timer3" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+                <button id="timer4" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+                <label for="range2"></label>
+                <input id="range2" type="range" min="0" max="260" value="0" class="form-range" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-warning text-white" for="sta2">ButtonState:</label>
+                <input id="sta2" type="text" class="form-control" placeholder="false" readonly="readonly" />
+                <label class="input-group-text bg-warning text-white" for="err2">ErrorState:</label>
+                <input id="err2" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-warning text-white" for="per2">Percent:</label>
+                <input id="per2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-warning text-white" for="rat2">Ratio:</label>
+                <input id="rat2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-warning text-white" for="val2">Value:</label>
+                <input id="val2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-warning text-white" for="des2">Angle:</label>
+                <input id="des2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-warning text-white" for="stu2">TimerState:</label>
+                <input id="stu2" type="text" class="form-control" placeholder="false" readonly="readonly" />
+                <label class="input-group-text bg-warning text-white" for="stp2">TimerSet:</label>
+                <input id="stp2" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-warning text-white" for="still2">TimerLeft:</label>
+                <input id="still2" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+        </section>
+
+        <section class="col-md-6 col-lg-4 bg-danger">
+            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+                <button id="on3" onclick="function3(2)" class="btn btn-success rounded-0 mb-3">ON</button>
+                <button id="off3" onclick="function3(1)" class="btn btn-warning text-white rounded-0 mb-3">OFF</button>
+                <button id="timer5" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+                <button id="timer6" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+                <label for="range3"></label>
+                <input id="range3" type="range" min="0" max="260" value="0" class="form-range" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-secondary text-white" for="sta3">ButtonState:</label>
+                <input id="sta3" type="text" class="form-control" placeholder="false" readonly="readonly" />
+                <label class="input-group-text bg-secondary text-white" for="err3">ErrorState:</label>
+                <input id="err3" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-secondary text-white" for="per3">Percent:</label>
+                <input id="per3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-secondary text-white" for="rat3">Ratio:</label>
+                <input id="rat3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-secondary text-white" for="val3">Value:</label>
+                <input id="val3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-secondary text-white" for="des3">Angle:</label>
+                <input id="des3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-secondary text-white" for="stu3">TimerState:</label>
+                <input id="stu3" type="text" class="form-control" placeholder="false" readonly="readonly" />
+                <label class="input-group-text bg-secondary text-white" for="stp3">TimerSet:</label>
+                <input id="stp3" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-secondary text-white" for="still3">TimerLeft:</label>
+                <input id="still3" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+        </section>
+    </article>
+
+    <section class="row align-items-center mt-4">
+        <div class="col-md-6 col-lg-4 bg-secondary d-flex justify-content-center p-3">
+            <div id="KnobExample4"></div>
+        </div>
+        <div class="col-md-6 col-lg-4 bg-dark d-flex justify-content-center p-3">
+            <div id="KnobExample5"></div>
+        </div>
+        <div class="col-md-6 col-lg-4 bg-success d-flex justify-content-center p-3">
+            <div id="KnobExample6"></div>
+        </div>
+    </section>
+
+    <article class="row mt-4 d-none d-lg-flex">
+        <section class="col-md-6 col-lg-4 bg-secondary">
+            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+                <button id="on4" onclick="function4(2)" class="btn btn-success rounded-0 mb-3">ON</button>
+                <button id="off4" onclick="function4(1)" class="btn btn-danger rounded-0 mb-3">OFF</button>
+                <button id="timer7" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+                <button id="timer8" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+                <label for="range4"></label>
+                <input id="range4" type="range" min="0" max="260" value="0" class="form-range" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-primary text-white" for="sta4">ButtonState:</label>
+                <input id="sta4" type="text" class="form-control" placeholder="false" readonly="readonly" />
+                <label class="input-group-text bg-primary text-white" for="err4">ErrorState:</label>
+                <input id="err4" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-primary text-white" for="per4">Percent:</label>
+                <input id="per4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-primary text-white" for="rat4">Ratio:</label>
+                <input id="rat4" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-primary text-white" for="val4">Value:</label>
+                <input id="val4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-primary text-white" for="des4">Angle:</label>
+                <input id="des4" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-primary text-white" for="stu4">TimerState:</label>
+                <input id="stu4" type="text" class="form-control" placeholder="false" readonly="readonly" />
+                <label class="input-group-text bg-primary text-white" for="stp4">TimerSet:</label>
+                <input id="stp4" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-primary text-white" for="still4">TimerLeft:</label>
+                <input id="still4" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+        </section>
+
+        <section class="col-md-6 col-lg-4 bg-dark">
+            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+                <button id="on5" onclick="function5(2)" class="btn btn-success rounded-0 mb-3">ON</button>
+                <button id="off5" onclick="function5(1)" class="btn btn-danger rounded-0 mb-3">OFF</button>
+                <button id="timer9" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+                <button id="timer10" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+                <label for="range5"></label>
+                <input id="range5" type="range" min="0" max="260" value="0" class="form-range" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-dark text-white" for="sta5">ButtonState:</label>
+                <input id="sta5" type="text" class="form-control" placeholder="false" readonly="readonly" />
+                <label class="input-group-text bg-dark text-white" for="err5">ErrorState:</label>
+                <input id="err5" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-dark text-white" for="per5">Percent:</label>
+                <input id="per5" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-dark text-white" for="rat5">Ratio:</label>
+                <input id="rat5" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-dark text-white" for="val5">Value:</label>
+                <input id="val5" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-dark text-white" for="des5">Angle:</label>
+                <input id="des5" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-dark text-white" for="stu5">TimerState:</label>
+                <input id="stu5" type="text" class="form-control" placeholder="false" readonly="readonly" />
+                <label class="input-group-text bg-dark text-white" for="stp5">TimerSet:</label>
+                <input id="stp5" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-dark text-white" for="still5">TimerLeft:</label>
+                <input id="still5" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+        </section>
+
+        <section class="col-md-6 col-lg-4 bg-success">
+            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+                <button id="on6" onclick="function6(2)" class="btn btn-warning rounded-0 mb-3">ON</button>
+                <button id="off6" onclick="function6(1)" class="btn btn-danger rounded-0 mb-3">OFF</button>
+                <button id="timer11" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+                <button id="timer12" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+                <label for="range6"></label>
+                <input id="range6" type="range" min="0" max="260" value="0" class="form-range" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-success text-white" for="sta6">ButtonState:</label>
+                <input id="sta6" type="text" class="form-control" placeholder="false" readonly="readonly" />
+                <label class="input-group-text bg-success text-white" for="err6">ErrorState:</label>
+                <input id="err6" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-success text-white" for="per6">Percent:</label>
+                <input id="per6" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-success text-white" for="rat6">Ratio:</label>
+                <input id="rat6" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-success text-white" for="val6">Value:</label>
+                <input id="val6" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+                <label class="input-group-text bg-success text-white" for="des6">Angle:</label>
+                <input id="des6" type="text" class="form-control" placeholder="0" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-success text-white" for="stu6">TimerState:</label>
+                <input id="stu6" type="text" class="form-control" placeholder="false" readonly="readonly" />
+                <label class="input-group-text bg-success text-white" for="stp6">TimerSet:</label>
+                <input id="stp6" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+
+            <div class="input-group mb-2">
+                <label class="input-group-text bg-success text-white" for="still6">TimerLeft:</label>
+                <input id="still6" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+            </div>
+        </section>
+    </article>
+
+    <footer class="fixed-bottom btn-dark d-flex align-items-center justify-content-between">
+        <span>&nbsp;</span>
+        <h5 class="text-warning pt-1">Created by: <b class="text-danger">MCX-Systems&reg;</b></h5>
+        <span>&nbsp;</span>
     </footer>
 </div>
 
@@ -317,28 +413,20 @@
 			showAlert: true,
 			// Enable Labels Button
 			showLabel: true,
-            // Enable Debug
-            debug: true,
+			// Enable Debug
+			debug: true,
 			// Event on knob turn - change
 			onTurn: function(dinoId, value, percent, degree, ratio)
 			{
-				console.log(dinoId + ' ==> VALUE ==> ' + value);
-				console.log(dinoId + ' ==> PERCENT ==> ' + percent);
-				console.log(dinoId + ' ==> ANGLE ==> ' + degree);
-				console.log(dinoId + ' ==> RATIO ==> ' + ratio);
-
 				$("#per1").val(percent);
 				$("#des1").val(degree);
 				$("#rat1").val(ratio);
 				$("#val1").val(value);
+
+				$("#range1").val($("#KnobExample1 input[type=hidden]").val());
 			},
 			onComplete: function(dinoId, state, timerState, timerTime)
 			{
-				// Return Button State true or false
-				console.log(dinoId + ' ==> BUTTON STATE ==> ' + state);
-				console.log(dinoId + ' ==> TIMER STATE ==> ' + timerState);
-				console.log(dinoId + ' ==> TIMER SET ==> ' + timerTime);
-
 				$("#sta1").val(state);
 				$("#stu1").val(timerState);
 				$("#stp1").val(timerTime + ' seconds');
@@ -350,8 +438,6 @@
 			onError: function(dinoId, error)
 			{
 				// Return knob errors
-				console.log(dinoId + ' ==> ERROR ==> ' + error);
-
 				$("#err1").val(error);
 			}
 		});
@@ -366,7 +452,7 @@
 			// Theme Light or Dark
 			theme: 'dark',
 			// Knob main Circle background color
-			knobBgColor: 'rgba(39, 131, 0, 1)',
+			knobBgColor: 'rgb(39, 131, 0)',
 			// Step Value of the Knob
 			snap: 5,
 			// Knob Max Value
@@ -379,26 +465,20 @@
 			showAlert: true,
 			// Enable Labels Button
 			showLabel: true,
+			// Enable Debug
+			debug: true,
 			// Event on knob turn - change
 			onTurn: function(dinoId, value, percent, degree, ratio)
 			{
-				console.log(dinoId + ' ==> VALUE ==> ' + value);
-				console.log(dinoId + ' ==> PERCENT ==> ' + percent);
-				console.log(dinoId + ' ==> ANGLE ==> ' + degree);
-				console.log(dinoId + ' ==> RATIO ==> ' + ratio);
-
 				$("#per2").val(percent);
 				$("#des2").val(degree);
 				$("#rat2").val(ratio);
 				$("#val2").val(value);
+
+				$("#range2").val($("#KnobExample2 input[type=hidden]").val());
 			},
 			onComplete: function(dinoId, state, timerState, timerTime)
 			{
-				// Return Button State true or false
-				console.log(dinoId + ' ==> BUTTON STATE ==> ' + state);
-				console.log(dinoId + ' ==> TIMER STATE ==> ' + timerState);
-				console.log(dinoId + ' ==> TIMER SET ==> ' + timerTime);
-
 				$("#sta2").val(state);
 				$("#stu2").val(timerState);
 				$("#stp2").val(timerTime + ' seconds');
@@ -410,8 +490,6 @@
 			onError: function(dinoId, error)
 			{
 				// Return knob errors
-				console.log(dinoId + ' ==> ERROR ==> ' + error);
-
 				$("#err2").val(error);
 			}
 		});
@@ -424,9 +502,9 @@
 
 		$('#KnobExample3').dinoKnob({
 			// Theme Light or Dark
-			theme: 'light',
+			theme: 'dark',
 			// Knob main Circle background color
-			knobBgColor: 'rgba(121, 5, 146, 1)',
+			knobBgColor: 'rgb(121, 5, 146)',
 			// Step Value of the Knob from wheel
 			snap: 5,
 			// Knob Max Value
@@ -442,23 +520,15 @@
 			// Event on knob turn - change
 			onTurn: function(dinoId, value, percent, degree, ratio)
 			{
-				console.log(dinoId + ' ==> VALUE ==> ' + value);
-				console.log(dinoId + ' ==> PERCENT ==> ' + percent);
-				console.log(dinoId + ' ==> ANGLE ==> ' + degree);
-				console.log(dinoId + ' ==> RATIO ==> ' + ratio);
-
 				$("#per3").val(percent);
 				$("#des3").val(degree);
 				$("#rat3").val(ratio);
 				$("#val3").val(value);
+
+				$("#range3").val($("#KnobExample3 input[type=hidden]").val());
 			},
 			onComplete: function(dinoId, state, timerState, timerTime)
 			{
-				// Return Button State true or false
-				console.log(dinoId + ' ==> BUTTON STATE ==> ' + state);
-				console.log(dinoId + ' ==> TIMER STATE ==> ' + timerState);
-				console.log(dinoId + ' ==> TIMER SET ==> ' + timerTime);
-
 				$("#sta3").val(state);
 				$("#stu3").val(timerState);
 				$("#stp3").val(timerTime + ' seconds');
@@ -469,9 +539,6 @@
 			},
 			onError: function(dinoId, error)
 			{
-				// Return knob errors
-				console.log(dinoId + ' ==> ERROR ==> ' + error);
-
 				$("#err3").val(error);
 			}
 		});
@@ -486,7 +553,7 @@
 			// Theme Light or Dark
 			theme: 'light',
 			// Knob main Circle background color
-			knobBgColor: 'rgba(210, 18, 18, 1)',
+			knobBgColor: 'rgb(210, 18, 18)',
 			// Step Value of the Knob
 			snap: 5,
 			// Knob Max Value
@@ -502,23 +569,15 @@
 			// Event on knob turn - change
 			onTurn: function(dinoId, value, percent, degree, ratio)
 			{
-				console.log(dinoId + ' ==> VALUE ==> ' + value);
-				console.log(dinoId + ' ==> PERCENT ==> ' + percent);
-				console.log(dinoId + ' ==> ANGLE ==> ' + degree);
-				console.log(dinoId + ' ==> RATIO ==> ' + ratio);
-
 				$("#per4").val(percent);
 				$("#des4").val(degree);
 				$("#rat4").val(ratio);
 				$("#val4").val(value);
+
+				$("#range4").val($("#KnobExample4 input[type=hidden]").val());
 			},
 			onComplete: function(dinoId, state, timerState, timerTime)
 			{
-				// Return Button State true or false
-				console.log(dinoId + ' ==> BUTTON STATE ==> ' + state);
-				console.log(dinoId + ' ==> TIMER STATE ==> ' + timerState);
-				console.log(dinoId + ' ==> TIMER SET ==> ' + timerTime);
-
 				$("#sta4").val(state);
 				$("#stu4").val(timerState);
 				$("#stp4").val(timerTime + ' seconds');
@@ -530,8 +589,6 @@
 			onError: function(dinoId, error)
 			{
 				// Return knob errors
-				console.log(dinoId + ' ==> ERROR ==> ' + error);
-
 				$("#err4").val(error);
 			}
 		});
@@ -541,6 +598,107 @@
 		$("#KnobExample4 input[type=hidden]").val(160).trigger('change');
 		$("#range4").val($("#KnobExample4 input[type=hidden]").val());
 		//$('#KnobExample4').data('plugin_dinoKnob').destroy();
+
+		$('#KnobExample5').dinoKnob({
+			// Theme Light or Dark
+			theme: 'light',
+			// Knob main Circle background color
+			knobBgColor: 'rgb(194, 214, 24)',
+			// Step Value of the Knob
+			snap: 5,
+			// Knob Max Value
+			maxValue: 100,
+			// Circle Bar style Hot, Cold or Mono
+			barStyle: 'cold',
+			// Enable Timer Button
+			showTimer: true,
+			// Enable Alerts Button
+			showAlert: false,
+			// Enable Labels Button
+			showLabel: false,
+			// Event on knob turn - change
+			onTurn: function(dinoId, value, percent, degree, ratio)
+			{
+				$("#per5").val(percent);
+				$("#des5").val(degree);
+				$("#rat5").val(ratio);
+				$("#val5").val(value);
+
+				$("#range5").val($("#KnobExample5 input[type=hidden]").val());
+			},
+			onComplete: function(dinoId, state, timerState, timerTime)
+			{
+				$("#sta5").val(state);
+				$("#stu5").val(timerState);
+				$("#stp5").val(timerTime + ' seconds');
+			},
+			onTimer: function(dinoId, timeLeft)
+			{
+				$("#still5").val(timeLeft + ' seconds');
+			},
+			onError: function(dinoId, error)
+			{
+				// Return knob errors
+				$("#err5").val(error);
+			}
+		});
+
+		// Depends on maxAngle, set to max of 255 default
+		$("#KnobExample5 input[type=checkbox]").prop('checked', true).trigger('change');
+		$("#KnobExample5 input[type=hidden]").val(160).trigger('change');
+		$("#range5").val($("#KnobExample5 input[type=hidden]").val());
+		//$('#KnobExample5').data('plugin_dinoKnob').destroy();
+
+		$('#KnobExample6').dinoKnob({
+			// Theme Light or Dark
+			theme: 'light',
+			// Knob main Circle background color
+			knobBgColor: 'rgb(108, 109, 106)',
+			// Step Value of the Knob
+			snap: 5,
+			// Knob Max Value
+			maxValue: 100,
+			// Circle Bar style Hot, Cold or Mono
+			barStyle: 'yellow',
+			// Enable Timer Button
+			showTimer: false,
+			// Enable Alerts Button
+			showAlert: false,
+			// Enable Labels Button
+			showLabel: false,
+			// Enable Debug
+			debug: true,
+			// Event on knob turn - change
+			onTurn: function(dinoId, value, percent, degree, ratio)
+			{
+				$("#per6").val(percent);
+				$("#des6").val(degree);
+				$("#rat6").val(ratio);
+				$("#val6").val(value);
+
+				$("#range6").val($("#KnobExample6 input[type=hidden]").val());
+			},
+			onComplete: function(dinoId, state, timerState, timerTime)
+			{
+				$("#sta6").val(state);
+				$("#stu6").val(timerState);
+				$("#stp6").val(timerTime + ' seconds');
+			},
+			onTimer: function(dinoId, timeLeft)
+			{
+				$("#still6").val(timeLeft + ' seconds');
+			},
+			onError: function(dinoId, error)
+			{
+				$("#err6").val(error);
+			}
+		});
+
+		// Depends on maxAngle, set to max of 255 default
+		$("#KnobExample6 input[type=checkbox]").prop('checked', true).trigger('change');
+		$("#KnobExample6 input[type=hidden]").val(160).trigger('change');
+		$("#range6").val($("#KnobExample6 input[type=hidden]").val());
+		//$('#KnobExample6').data('plugin_dinoKnob').destroy();
 	});
 
 	function function1(option)
@@ -581,6 +739,26 @@
 	slider4.oninput = function ()
 	{
 		$("#KnobExample4 input[type=hidden]").val(slider4.value).trigger('change');
+	}
+
+	function function5(option)
+	{
+		(option === 1) ? $("#KnobExample5 input[type=checkbox]").prop('checked', false).trigger('change') : $("#KnobExample5 input[type=checkbox]").prop('checked', true).trigger('change');
+	}
+	let slider5 = document.getElementById('range5');
+	slider5.oninput = function ()
+	{
+		$("#KnobExample5 input[type=hidden]").val(slider5.value).trigger('change');
+	}
+
+	function function6(option)
+	{
+		(option === 1) ? $("#KnobExample6 input[type=checkbox]").prop('checked', false).trigger('change') : $("#KnobExample6 input[type=checkbox]").prop('checked', true).trigger('change');
+	}
+	let slider6 = document.getElementById('range6');
+	slider6.oninput = function ()
+	{
+		$("#KnobExample6 input[type=hidden]").val(slider6.value).trigger('change');
 	}
 </script>
 </body>
