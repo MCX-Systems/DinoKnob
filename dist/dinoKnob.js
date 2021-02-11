@@ -6,7 +6,7 @@
  *
  * Created by 2007 - 2021 MCX-Systems
  */
-;(function ($, window, document, undefined)
+(function ($, window, document)
 {
 	/*
 		Store the name of the plugin in the "pluginName" variable. This
@@ -34,9 +34,9 @@
 		*/
 		this.element = element;
 		/***************************************************************************/
-		this._uId = this.createUniqId(8);
-		this._name = pluginName;
 		this._flag = false;
+		this._name = pluginName;
+		this._uId = this.createUniqId(8);
 		this._language = this.getUserLanguage();
 		/***************************************************************************/
 		// DinoKnob circle Bars color set
@@ -174,7 +174,7 @@
 				{
 					console.info('--------------------------------------------');
 					console.info('--------------------------------------------');
-					console.info(widget.capitalizeFirstLetter(widget._name) + ' ' + jQuery.fn.dinoKnob.version + ' successfully initialized and is ready.');
+					console.info(widget.capitalizeFirstLetter(widget._name) + ' ' + $.fn.dinoKnob.version + ' successfully initialized and is ready.');
 					console.info('Language is set to: ' + widget.options.language);
 					console.info('Plugin Description: ' + widget.getI18n('plugin_desc', widget.options.language));
 					console.info('Uniq ID generated: ' + widget._uId);
@@ -219,23 +219,23 @@
 
 				// Set default widget colors
 				widget.$element.find('#dinoKnobHolder-' + widget._uId).css({
-					'background-color': widget.options.knobBgColor ? widget.options.knobBgColor : 'rgb(6, 101, 191)'
+					'background-color': widget.options.knobBgColor
 				});
 
 				widget.$element.find('#dinoKnobValue-' + widget._uId).css({
-					'background-color': widget.options.knobBgColor ? widget.options.knobBgColor : 'rgb(6, 101, 191)'
+					'background-color': widget.options.knobBgColor
 				});
 
 				widget.$element.find('#dinoKnobTimers-' + widget._uId).css({
-					'background-color': widget.options.knobBgColor ? widget.options.knobBgColor : 'rgb(6, 101, 191)'
+					'background-color': widget.options.knobBgColor
 				});
 
 				widget.$element.find('#dinoKnobInfo-' + widget._uId).css({
-					'background-color': widget.options.knobBgColor ? widget.options.knobBgColor : 'rgb(6, 101, 191)'
+					'background-color': widget.options.knobBgColor
 				});
 
 				widget.$element.find('#dinoKnobNavigation-' + widget._uId + ' .dinoKnobMenu i').css({
-					'color': widget.options.knobBgColor ? widget.options.knobBgColor : 'rgb(6, 101, 191)'
+					'color': widget.options.knobBgColor
 				});
 
 				/*----------------------------------------------------------------------*/
@@ -450,7 +450,7 @@
 
 					plugin._timerState = true;
 					plugin._timerCounter = 0;
-					plugin._timerTime = jQuery(this).data('timer');
+					plugin._timerTime = $(this).data('timer');
 					plugin._doCountDown = true;
 
 					let timersLi = plugin.$element.find('#dinoKnobTimers-' + plugin._uId);
@@ -463,6 +463,9 @@
 						console.log(plugin._uId + ' ==> TIMER STATE ==> ' + plugin._timerState);
 						console.log(plugin._uId + ' ==> TIMER SET ==> ' + plugin._timerTime);
 					}
+
+					plugin.$element.find("#dinoKnobMenu1-" + plugin._uId).addClass('disabled');
+					plugin.$element.find("#dinoKnobMenu2-" + plugin._uId).addClass('disabled');
 
 					function drawCountDown()
 					{
@@ -500,6 +503,9 @@
 								plugin._timerState = false;
 								plugin.buttonStateCallback(plugin._uId, plugin._buttonState, plugin._timerState, plugin._timerTime);
 								plugin.$element.find('#dinoKnobTimers-' + plugin._uId).empty();
+
+								plugin.$element.find("#dinoKnobMenu1-" + plugin._uId).removeClass('disabled');
+								plugin.$element.find("#dinoKnobMenu2-" + plugin._uId).removeClass('disabled');
 							}
 
 							plugin._timerCounterLeft += Math.round((plugin._timerTime / 360) * 1000);
@@ -785,8 +791,6 @@
 							console.log(plugin._uId + ' ==> ANGLE ==> ' + plugin._angle.toFixed(0));
 							console.log(plugin._uId + ' ==> RATIO ==> ' + r.toFixed(2));
 						}
-
-						return false;
 					});
 
 					plugin.$element.on('mouseup touchend' + '.' + plugin._name, function (e)
@@ -891,7 +895,7 @@
 					// changes, instead of on every move
 					if(numBars === lastNum)
 					{
-						return false;
+						return lastNum;
 					}
 
 					if(plugin.$element.find('#dinoKnobSwitchInput-' + plugin._uId).prop('checked'))
@@ -959,7 +963,6 @@
 						bars.find(".dinoKnobBarColor").removeClass('active').slice(0, numBars).addClass('active');
 						/*--------------------------------------------------------------*/
 
-						plugin.$element.find('.dinoKnobMenu').toggleClass('blob');
 						plugin.$element.find('#dinoKnobHolder-' + plugin._uId).toggleClass('blob');
 					}
 					else
@@ -982,7 +985,6 @@
 						bars.find(".dinoKnobBarColor").removeClass('active');
 						/*--------------------------------------------------------------*/
 
-						plugin.$element.find('.dinoKnobMenu').toggleClass('blob');
 						plugin.$element.find('#dinoKnobHolder-' + plugin._uId).toggleClass('blob');
 					}
 				});
@@ -1032,7 +1034,7 @@
 						// changes, instead of on every move
 						if(numBars === lastNum)
 						{
-							return false;
+							return lastNum;
 						}
 
 						if(widget.$element.find('#dinoKnobSwitchInput-' + widget._uId).prop('checked'))
@@ -1065,7 +1067,7 @@
 						// changes, instead of on every move
 						if(numBars === lastNum)
 						{
-							return false;
+							return lastNum;
 						}
 
 						if(widget.$element.find('#dinoKnobSwitchInput-' + widget._uId).prop('checked'))
@@ -1181,7 +1183,7 @@
 			createCreatedBy: function()
 			{
 				return '<address><b>' + this.capitalizeFirstLetter(this._name) + '</b><br />' +
-					'<span><b>' + jQuery.fn.dinoKnob.version + '</b></span><hr />' +
+					'<span><b>' + $.fn.dinoKnob.version + '</b></span><hr />' +
 					'<span>' + atob('Q3JlYXRlZCBCeTog') + '<br /><b>' +
 					atob('PGEgaHJlZj0iaHR0cHM6Ly9tY3gtc3lzdGVtcy5uZXQiIHRhcmdldD0iYmxhbmsiPk1DWC1TeXN0ZW1zJnJlZzwvYT4=') + '</b></span>' +
 					'</address>';
@@ -1238,11 +1240,11 @@
 			rotateMenu: function (li, d)
 			{
 				let angleStart = -360;
-				jQuery({ d : angleStart }).animate({ d : d },
+				$({ d : angleStart }).animate({ d : d },
 					{
 						step: function(now)
 						{
-							jQuery(li).css({ transform: 'rotate(' + now + 'deg)' }).find('button').css({ transform: 'rotate(' + (-now) + 'deg)' });
+							$(li).css({ transform: 'rotate(' + now + 'deg)' }).find('button').css({ transform: 'rotate(' + (-now) + 'deg)' });
 						}
 					});
 			},
@@ -1341,14 +1343,14 @@
 			/***************************************************************************/
 
 			/*
-             * Internationalization of some texts used by the dinoKnob.
-             * @return String the localized text item or the id if there's no translation found
-             * @param key
-             * @param lang
-             */
+			 * Internationalization of some texts used by the dinoKnob.
+			 * @return String the localized text item or the id if there's no translation found
+			 * @param key
+			 * @param lang
+			 */
 			getI18n: function(key, lang)
 			{
-				const i18n = {
+				const i18N = {
 					en: {
 						plugin_title: 'DinoKnob',
 						plugin_desc: 'Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (← ↑ → ↓ ) support.'
@@ -1363,9 +1365,9 @@
 					}
 				};
 
-				if (typeof i18n[lang] !== 'undefined' && typeof i18n[lang][key] !== 'undefined')
+				if (typeof i18N[lang] !== 'undefined' && typeof i18N[lang][key] !== 'undefined')
 				{
-					return i18n[lang][key];
+					return i18N[lang][key];
 				}
 
 				return key;
@@ -1426,7 +1428,7 @@
 		// set's the shadow of knob
 		theme: 'light',
 		// Knob main background color
-		knobBgColor: null,
+		knobBgColor: 'rgb(6, 101, 191)',
 		// Circle range Bar style: (Hot, Cold or Mono,
 		// yellow, blue, red, green) color
 		barStyle: 'hot',
