@@ -6,7 +6,7 @@
  *
  * Created by 2007 - 2021 MCX-Systems
  */
-;(function (root, factory)
+(function (root, factory)
 {
 	if (typeof define === 'function' && define.amd)
 	{
@@ -20,8 +20,10 @@
 	{
 		root.DinoKnob = factory(root.jQuery);
 	}
-}(this, function (jQuery)
+}(this, function ()
 {
+	'use strict';
+
 	/*
 		Store the name of the plugin in the "pluginName" variable. This
 		variable is used in the "Plugin" constructor below, as well as the
@@ -641,23 +643,23 @@
 				/*  Manipulating Events  (mouse, keyboard, touch)                                                 */
 				/*------------------------------------------------------------------------------------------------*/
 
-				plugin.$element.on('mouseleave' + '.' + plugin._name, '#dinoKnob-' + plugin._uId, function (e)
+				plugin.$element.on('mouseleave' + '.' + plugin._name, function (e)
 				{
 					e.preventDefault();
 
-					plugin.$element.find('#dinoKnob-' + plugin._uId).blur();
+					plugin.$element.blur();
 				});
 
-				plugin.$element.on('mouseenter' + '.' + plugin._name, '#dinoKnob-' + plugin._uId, function (e)
+				plugin.$element.on('mouseenter' + '.' + plugin._name, function (e)
 				{
 					e.preventDefault();
 
-					plugin.$element.find('#dinoKnob-' + plugin._uId).focus();
+					plugin.$element.focus();
 				});
 
 				/*------------------------------------------------------------------------------------------------*/
 
-				plugin.$element.on('mousedown touchstart' + '.' + plugin._name, function (e)
+				plugin.$element.on('mousedown touchstart' + '.' + plugin._name, function ()
 				{
 					let a, b, deg, tmp;
 					let offset = plugin.$element.offset();
@@ -669,7 +671,7 @@
 						y: offset.top + plugin.$element.height() / 2,
 						x: offset.left + plugin.$element.width() / 2
 					};
-
+					
 					plugin.$element.on('mousemove.rem touchmove.rem' + '.' + plugin._name, function (e)
 					{
 						e.preventDefault();
@@ -1415,11 +1417,11 @@
 		// Theme Light or Dark
 		// set's the shadow of knob
 		theme: 'light',
-		// Knob main background color
-		knobBgColor: 'rgb(6, 101, 191)',
 		// Circle range Bar style: (Hot, Cold or Mono,
 		// yellow, blue, red, green) color
 		barStyle: 'hot',
+		// Knob main background color
+		knobBgColor: 'rgb(6, 101, 191)',
 		/*---------------------------------------------*/
 		// Show Knob Value overlay
 		// on hover button #dinoKnobMenu2
