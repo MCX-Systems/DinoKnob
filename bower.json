@@ -1,0 +1,28 @@
+{
+  "name": "dinoknob",
+  "description": "Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (← ↑ → ↓ ) support.",
+  "main": "index.js",
+  "authors": [
+    "MCX-Systems <casardavorin@gmail.com>"
+  ],
+  "license": "GPL-3.0-or-later",
+  "keywords": [
+    "knob",
+    "control",
+    "lights",
+    "dimmer",
+    "range",
+    "jquery",
+    "plugin",
+    "power",
+    "timer"
+  ],
+  "homepage": "https://mcx-systems.net/DinoKnob",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
