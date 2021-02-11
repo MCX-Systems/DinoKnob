@@ -6,7 +6,21 @@
  *
  * Created by 2007 - 2021 MCX-Systems
  */
-(function ($, window, document)
+;(function (root, factory)
+{
+	if (typeof define === 'function' && define.amd)
+	{
+		define(['jquery'], factory);
+	}
+	else if (typeof exports === 'object')
+	{
+		module.exports = factory(require('jquery'));
+	}
+	else
+	{
+		root.DinoKnob = factory(root.jQuery);
+	}
+}(this, function (jQuery)
 {
 	/*
 		Store the name of the plugin in the "pluginName" variable. This
@@ -413,7 +427,7 @@
 				/*
 					Create variable(s) that can be accessed by other plugin
 					functions. For example, "this.$element = $(this.element);"
-					will cache a jQuery reference to the elementthat initialized
+					will cache a jQuery reference to the element that initialized
 					the plugin. Cached variables can then be used in other methods.
 				*/
 				this.$element = $(this.element);
@@ -793,7 +807,7 @@
 						}
 					});
 
-					plugin.$element.on('mouseup touchend' + '.' + plugin._name, function (e)
+					plugin.$element.on('mouseup touchend' + '.' + plugin._name, function ()
 					{
 						plugin.$element.off('.rem');
 						// Saving the current rotation
@@ -867,7 +881,6 @@
 					let val = plugin.$element.find("#dinoKnobAngleValue-" + plugin._uId).val();
 					let bars = plugin.$element.find('#dinoKnobBars-' + plugin._uId);
 					let numBars;
-					let	lastNum = -plugin.options.snap;
 					let inputValue = (val / plugin._maxAngle) * plugin.options.maxValue;
 
 					if(inputValue > plugin.options.maxValue)
@@ -891,16 +904,8 @@
 					/*--------------------------------------------------------------*/
 					numBars = Math.round((plugin._colorBarTheme.length * (val / 360)));
 
-					// Update the dom only when the number of active bars
-					// changes, instead of on every move
-					if(numBars === lastNum)
-					{
-						return lastNum;
-					}
-
 					if(plugin.$element.find('#dinoKnobSwitchInput-' + plugin._uId).prop('checked'))
 					{
-						lastNum = numBars;
 						bars.find(".dinoKnobBarColor").removeClass('active').slice(0, numBars).addClass('active');
 					}
 					/*--------------------------------------------------------------*/
@@ -1019,7 +1024,6 @@
 				let widget = this;
 				let bars = widget.$element.find('#dinoKnobBars-' + widget._uId);
 				let numBars = 0;
-				let lastNum = -widget.options.step;
 
 				if (direction === 'up')
 				{
@@ -1030,16 +1034,8 @@
 						/*--------------------------------------------------------------*/
 						numBars = Math.round(widget._colorBarTheme.length * (widget._angle / 360));
 
-						// Update the dom only when the number of active bars
-						// changes, instead of on every move
-						if(numBars === lastNum)
-						{
-							return lastNum;
-						}
-
 						if(widget.$element.find('#dinoKnobSwitchInput-' + widget._uId).prop('checked'))
 						{
-							lastNum = numBars;
 							bars.find('.dinoKnobBarColor').removeClass('active').slice(0, numBars).addClass('active');
 						}
 						/*--------------------------------------------------------------*/
@@ -1063,16 +1059,8 @@
 						/*--------------------------------------------------------------*/
 						numBars = Math.round(widget._colorBarTheme.length * (widget._angle / 360));
 
-						// Update the dom only when the number of active bars
-						// changes, instead of on every move
-						if(numBars === lastNum)
-						{
-							return lastNum;
-						}
-
 						if(widget.$element.find('#dinoKnobSwitchInput-' + widget._uId).prop('checked'))
 						{
-							lastNum = numBars;
 							bars.find('.dinoKnobBarColor').removeClass('active').slice(0, numBars).addClass('active');
 						}
 						/*--------------------------------------------------------------*/
@@ -1409,7 +1397,7 @@
 	};
 
 	/* Return current version */
-	$.fn.dinoKnob.version = 'v3.21.2021';
+	$.fn.dinoKnob.version = 'v3.23.2021';
 
 	/*
 		Attach the default plugin options directly to the plugin object. This
@@ -1483,5 +1471,4 @@
 		// Event on plugin error's
 		onError: null
 	};
-
-})(jQuery, window, document);
+}));

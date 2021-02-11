@@ -91,7 +91,7 @@
 .dinoKnob .dinoKnobIcon
 {
 	background-color: transparent;
-	font-family: "dinoknob";
+	font-family: "dinoknob", serif;
 	font-size: 24px;
 	font-style: normal;
 	font-variant: normal;
@@ -336,8 +336,6 @@
 	opacity: 1;
 	stroke-dashoffset: 220;
 	-webkit-transition: stroke-dashoffset 1s ease 0s, -webkit-transform 0s ease;
-	transition: stroke-dashoffset 1s ease 0s, -webkit-transform 0s ease;
-	transition: transform 0s ease, stroke-dashoffset 1s ease 0s;
 	transition: transform 0s ease, stroke-dashoffset 1s ease 0s, -webkit-transform 0s ease;
 }
 
@@ -382,8 +380,6 @@
 	-webkit-transform: rotate(302deg);
 	transform: rotate(302deg);
 	-webkit-transition: stroke-dashoffset 0.4s ease 0.2s, -webkit-transform 0.4s ease 0.2s;
-	transition: stroke-dashoffset 0.4s ease 0.2s, -webkit-transform 0.4s ease 0.2s;
-	transition: transform 0.4s ease 0.2s, stroke-dashoffset 0.4s ease 0.2s;
 	transition: transform 0.4s ease 0.2s, stroke-dashoffset 0.4s ease 0.2s, -webkit-transform 0.4s ease 0.2s;
 }
 
@@ -404,7 +400,7 @@
 {
 	border: 0;
 	border-radius: 50%;
-	box-shadow: 0px 0 30px 10px rgba(0, 0, 0, 1);
+	box-shadow: 0 0 30px 10px rgba(0, 0, 0, 1);
 	cursor: pointer;
 	display: inline-flex;
 	outline: 0;

@@ -1,0 +1,38 @@
+{
+    "name": "dino-knob",
+    "title": "DinoKnob",
+    "description": "Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard support, jQuery plugin.",
+    "keywords": [
+        "button",
+        "switch",
+        "knob",
+        "timer",
+        "output",
+        "range"
+    ],
+    "version": "3.23.2021",
+    "author": {
+        "name": "MCX-Systems <casardavorin@gmail.com>",
+        "url": "https://github.com/MCX-Systems/DinoKnob/"
+    },
+    "maintainers": [
+        {
+            "name": "Davorin Casar",
+            "email": "casardavorin@gmail.com",
+            "url": "https://github.com/MCX-Systems/DinoKnob/"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "GPL-3.0-or-later",
+            "url": "https://opensource.org/licenses/GPL-3.0"
+        }
+    ],
+    "bugs": "https://github.com/MCX-Systems/DinoKnob/issues",
+    "homepage": "https://mcx-systems.net/DinoKnob",
+    "docs": "https://github.com/MCX-Systems/DinoKnob#readme",
+    "download": "git+https://github.com/MCX-Systems/DinoKnob.git",
+    "dependencies": {
+        "jquery": "~3.5.1"
+    }
+}
