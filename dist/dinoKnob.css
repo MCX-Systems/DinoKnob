@@ -15,7 +15,6 @@
 }
 
 /* DinoKnob Font Icons */
-
 @font-face
 {
 	font-family: "dinoknob";
@@ -27,55 +26,57 @@
 -----------------------------*/
 
 .dinoKnob,
-.dinoKnob .dinoKnobBars,
-.dinoKnob .dinoKnobColorBar,
-.dinoKnob .dinoKnobMain,
+.dinoKnob .dinoKnobHolder,
 .dinoKnob .dinoKnobTop,
-.dinoKnob .dinoKnobSwitch,
-.dinoKnob .dinoButton,
-.dinoKnob .dinoPower-off,
-.dinoKnob .dinoPower-on,
-.dinoKnob .dinoLine,
-.dinoKnob .dinoCircle,
-.dinoKnob .dinoKnobValue,
-.dinoKnob .dinoKnobTimers,
-.dinoKnob .dinoKnobInfo,
-.dinoKnob .dinoNavWrap,
-.dinoKnob .dinoKnobMenu,
 .dinoKnob .dinoKnobIcon,
-.dinoKnob .disabled
+.dinoKnob .dinoKnobBars,
+.dinoKnob .dinoKnobBarColor,
+.dinoKnob .dinoKnobSwitch,
+.dinoKnob .dinoKnobButton,
+.dinoKnob .dinoKnobPower-off,
+.dinoKnob .dinoKnobPower-on,
+.dinoKnob .dinoKnobLine,
+.dinoKnob .dinoKnobCircle,
+.dinoKnob .dinoNavWrap,
+.dinoKnob .dinoKnobMenu
 {
-	align-items: center;
-	align-self: center;
 	background-color: transparent;
 	border: 0;
-	display: flex;
-	flex-direction: column;
 	font-family: "Constantia", Verdana, serif;
 	font-size: 100%;
 	font-style: oblique;
 	height: 100%;
-	justify-content: center;
 	margin: 0;
+	outline: none;
 	padding: 0;
 	position: relative;
 	text-align: center;
-	vertical-align: baseline;
+	vertical-align: middle;
 	width: 100%;
 	z-index: 10;
 }
 
 .dinoKnob
 {
-	height: 280px;
-	transition: all .5s ease-in-out;
-	width: 280px;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	border-radius: 50%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	height: 240px;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	width: 240px;
+	z-index: 1;
 }
 
 .dinoKnob:focus
 {
-	outline: none;
 	border: 0;
+	outline: none;
 }
 
 .dinoKnob .disabled
@@ -83,57 +84,129 @@
 	pointer-events: none;
 }
 
-.dinoKnob .disabled i
-{
-	color: rgb(40, 39, 39);
-}
-
 /*----------------------------
-	Knob Main Section
+	Knob Icons Font
 -----------------------------*/
 
-.dinoKnob .dinoKnobMain
+.dinoKnob .dinoKnobIcon
 {
-	border-radius: 50%;
-	box-shadow: inset 0 0 42px 16px rgba(0, 0, 0, 0.75), 0 0 42px 16px rgba(0, 0, 0, 0.75);
-	display: block;
-	height: 150px;
+	color: rgb(255, 255, 255);
+	color: rgba(255, 255, 255, .5);
+	font-family: "dinoknob", serif;
+	font-size: 25px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	text-align: center;
+	-webkit-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
-	width: 150px;
+	vertical-align: middle;
 }
 
-.dinoKnob .dinoKnobMain:hover
+.dinoKnob .knob-icon-stopwatch:before
 {
-	box-shadow: inset 0 0 42px 16px rgba(0, 0, 0, 0.50), 0 0 42px 16px rgba(0, 0, 0, 0.50);
+	content: "\e800";
+}
+
+.dinoKnob .knob-icon-off:before
+{
+	content: "\e802";
+}
+
+.dinoKnob .knob-icon-alert:before
+{
+	content: "\e803";
+}
+
+.dinoKnob .knob-icon-th:before
+{
+	content: "\e804";
+}
+
+.dinoKnob .knob-icon-lightbulb:before
+{
+	content: "\e805";
+}
+
+.dinoKnob .knob-icon-contrast:before
+{
+	content: "\e806";
+}
+
+.dinoKnob .knob-icon-bell:before
+{
+	content: "\e807";
+}
+
+.dinoKnob .knob-icon-adjust:before
+{
+	content: "\e80a";
+}
+
+.dinoKnob .knob-icon-th-large:before
+{
+	content: "\e80b";
+}
+
+.dinoKnob .knob-icon-spin4:before
+{
+	content: "\e834";
+}
+
+.dinoKnob .knob-icon-plug-1:before
+{
+	content: "\f1e6";
 }
 
 /*----------------------------
-	Color Bar
+	Knob Size
+-----------------------------*/
+
+.dinoKnob .dinoKnobHolder
+{
+	border: 0;
+	border-radius: 50%;
+	height: 140px;
+	text-align: center;
+	width: 140px;
+}
+
+/*----------------------------
+	Knob Color Bar
 -----------------------------*/
 
 .dinoKnob .dinoKnobBars
 {
+	border-radius: 50%;
 	height: 240px;
+	left: 1px;
 	position: absolute;
 	text-align: center;
+	top: 1px;
+	-webkit-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 	vertical-align: middle;
 	width: 240px;
+	z-index: -1;
 }
 
-.dinoKnob .dinoKnobColorBar
+.dinoKnob .dinoKnobBarColor
 {
-	display: block;
 	height: 8px;
 	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 	position: absolute;
+	-webkit-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 	width: 16px;
+	z-index: -1;
 }
 
-.dinoKnob .dinoKnobColorBar.active
+.dinoKnob .dinoKnobBarColor.active
 {
 	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	-webkit-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 }
 
@@ -143,50 +216,74 @@
 
 .dinoKnob .dinoKnobTop
 {
-	background-color: transparent;
-	border: 12px solid rgba(255, 197, 0, .6);
+	border: 14px solid rgba(255, 197, 0, .8);
 	border-radius: 50%;
 	cursor: pointer;
 	display: block;
-	height: 150px;
-	width: 150px;
+	height: 168px;
+	position: absolute;
+	-webkit-transition: border-width .5s linear;
+	transition: border-width .5s linear;
+	width: 168px;
+	z-index: 5;
 }
 
-.dinoKnob .dinoKnobTop::after
+.dinoKnob .dinoKnobTop:after
 {
-	background-color: rgba(255, 197, 0, .6);
+	background-color: rgb(255, 197, 0);
 	border-radius: 50%;
-	box-shadow: 0 0 0.4em 0 rgba(255, 197, 0, .6);
 	content: "";
 	height: 6px;
-	left: 4px;
+	left: 2px;
 	position: absolute;
 	top: 50%;
 	width: 6px;
 }
 
 /*----------------------------
-	Power Button
+	Knob Power Button
 -----------------------------*/
 
 .dinoKnob .dinoKnobSwitch
 {
-	color: rgba(255, 197, 0, .5);
-	display: inline-block;
+	border-radius: 50%;
+	height: 140px;
+	left: 0;
+	text-align: center;
+	top: 0;
+	-webkit-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+	width: 140px;
+	box-shadow: inset 0 0 42px 16px rgba(0, 0, 0, 0.60), 0 0 42px 16px rgba(0, 0, 0, 0.60);
+}
+
+.dinoKnob .dinoKnobSwitch:hover
+{
+	box-shadow: inset 0 0 42px 20px rgba(0, 0, 0, 0.65), 0 0 50px 4px rgba(0, 0, 0, 0.65);
+}
+
+.dinoKnob .dinoKnobSwitch input
+{
+	border: 0;
+	cursor: pointer;
 	height: 100px;
-	left: 25px;
+	left: 18px;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 	position: absolute;
-	top: 22px;
+	top: 18px;
 	width: 100px;
 }
 
 .dinoKnob .dinoKnobSwitch .dinoButton
 {
-	align-items: center;
-	display: inline-block;
-	height: 100%;
-	justify-content: center;
-	width: 100%;
+	border: 0;
+	height: 120px;
+	left: 8px;
+	position: absolute;
+	top: 8px;
+	width: 120px;
+	z-index: -1;
 }
 
 .dinoKnob .dinoKnobSwitch .dinoButton .dinoPower-on,
@@ -194,95 +291,214 @@
 {
 	fill: none;
 	height: 100%;
+	left: 2px;
 	position: absolute;
-	stroke: rgb(255, 197, 0);
+	stroke: rgb(255, 255, 0);
 	stroke-linecap: round;
 	stroke-linejoin: bevel;
+	stroke-opacity: 1;
 	stroke-width: 6px;
+	top: -1px;
 	width: 100%;
 }
 
 .dinoKnob .dinoKnobSwitch .dinoButton .dinoPower-on .dinoLine,
-.dinoKnob .dinoKnobSwitch .dinoButton .dinoPower-off .dinoLine
+.dinoKnob .dinoKnobSwitch .dinoButton .dinoPower-off .dinoLine,
+.dinoKnob .dinoKnobSwitch .dinoButton .dinoPower-on .dinoCircle,
+.dinoKnob .dinoKnobSwitch .dinoButton .dinoPower-off .dinoCircle
 {
-	opacity: 0.5;
+	opacity: 0.3;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	z-index: 1000;
 }
 
 .dinoKnob .dinoKnobSwitch .dinoButton .dinoPower-on .dinoCircle,
 .dinoKnob .dinoKnobSwitch .dinoButton .dinoPower-off .dinoCircle
 {
-	opacity: 0.5;
 	stroke-dasharray: 220;
 	stroke-dashoffset: 40;
+	-webkit-transform: rotate(-58deg);
 	transform: rotate(-58deg);
-	transform-origin: center 54px;
+	-webkit-transform-origin: center 65px;
+	transform-origin: center 65px;
 }
 
 .dinoKnob .dinoKnobSwitch .dinoButton .dinoPower-on .dinoLine
 {
 	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	-webkit-transition: opacity 0.3s ease 1s;
 	transition: opacity 0.3s ease 1s;
 }
 
 .dinoKnob .dinoKnobSwitch .dinoButton .dinoPower-on .dinoCircle
 {
 	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 	stroke-dashoffset: 220;
+	-webkit-transition: stroke-dashoffset 1s ease 0s, -webkit-transform 0s ease;
+	transition: stroke-dashoffset 1s ease 0s, -webkit-transform 0s ease;
 	transition: transform 0s ease, stroke-dashoffset 1s ease 0s;
+	transition: transform 0s ease, stroke-dashoffset 1s ease 0s, -webkit-transform 0s ease;
 }
 
 /*----------------------------
-	Button Input
+	Knob Button Input
 -----------------------------*/
-
-.dinoKnob .dinoKnobSwitch input
-{
-	cursor: pointer;
-	height: 100%;
-	opacity: 0;
-	position: absolute;
-	width: 100%;
-	z-index: 100;
-}
-
-.dinoKnob .dinoKnobSwitch input:checked + .dinoButton::after
-{
-	backface-visibility: hidden;
-	opacity: .3;
-	transform: scale(1) perspective(1px) translateZ(0);
-	transition: opacity 0.5s ease, transform 0.5s ease;
-}
 
 .dinoKnob .dinoKnobSwitch input:checked + .dinoButton .dinoPower-on,
 .dinoKnob .dinoKnobSwitch input:checked + .dinoButton .dinoPower-off
 {
+	-webkit-animation: click-animation 0.3s ease forwards;
 	animation: click-animation 0.3s ease forwards;
+	-webkit-transform: scale(1);
 	transform: scale(1);
 }
 
 .dinoKnob .dinoKnobSwitch input:checked + .dinoButton .dinoPower-on .dinoLine,
 .dinoKnob .dinoKnobSwitch input:checked + .dinoButton .dinoPower-off .dinoLine
 {
+	-webkit-animation: line-animation 0.8s ease-in forwards;
 	animation: line-animation 0.8s ease-in forwards;
 }
 
 .dinoKnob .dinoKnobSwitch input:checked + .dinoButton .dinoPower-on .dinoCircle,
 .dinoKnob .dinoKnobSwitch input:checked + .dinoButton .dinoPower-off .dinoCircle
 {
+	-webkit-transform: rotate(302deg);
 	transform: rotate(302deg);
 }
 
 .dinoKnob .dinoKnobSwitch input:checked + .dinoButton .dinoPower-on .dinoLine
 {
 	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	-webkit-transition: opacity 0.05s ease-in 0.55s;
 	transition: opacity 0.05s ease-in 0.55s;
 }
 
 .dinoKnob .dinoKnobSwitch input:checked + .dinoButton .dinoPower-on .dinoCircle
 {
 	stroke-dashoffset: 40;
+	-webkit-transform: rotate(302deg);
 	transform: rotate(302deg);
+	-webkit-transition: stroke-dashoffset 0.4s ease 0.2s, -webkit-transform 0.4s ease 0.2s;
+	transition: stroke-dashoffset 0.4s ease 0.2s, -webkit-transform 0.4s ease 0.2s;
 	transition: transform 0.4s ease 0.2s, stroke-dashoffset 0.4s ease 0.2s;
+	transition: transform 0.4s ease 0.2s, stroke-dashoffset 0.4s ease 0.2s, -webkit-transform 0.4s ease 0.2s;
+}
+
+/*----------------------------
+	Knob Navbar
+-----------------------------*/
+
+.dinoKnob .dinoNavWrap
+{
+	bottom: 0;
+	height: 0;
+	left: 0;
+	position: absolute;
+	width: 0;
+}
+
+.dinoKnob .dinoKnobMenu
+{
+	background-color: transparent;
+	border: 0;
+	border-radius: 50%;
+	box-shadow: inset 0 0 30px 4px rgba(0, 0, 0, .8), 0 8px 30px 4px rgba(0, 0, 0, 1);
+	cursor: pointer;
+	display: block;
+	outline: 0;
+	position: absolute;
+	-webkit-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+}
+
+.dinoKnob .dinoKnobMenu:before
+{
+	border-radius: 50%;
+	content: "";
+	display: inline-block;
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+.dinoKnob .knobMenu1
+{
+	bottom: 15px;
+	height: 30px;
+	left: 50px;
+	width: 30px;
+}
+
+.dinoKnob .knobMenu2
+{
+	bottom: 46px;
+	height: 30px;
+	left: 14px;
+	width: 30px;
+}
+
+.dinoKnob .knobMenu3
+{
+	bottom: -2px;
+	height: 30px;
+	left: 100px;
+	width: 30px;
+}
+
+.dinoKnob .dinoKnobMenu i
+{
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	color: rgb(207, 207, 207);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+
+.dinoKnob .dinoKnobMenu.active:before
+{
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-animation: sonar-effect .8s ease-in-out 0.1s infinite;
+	animation: sonar-effect .8s ease-in-out 0.1s infinite;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+
+.dinoKnob .dinoKnobMenu.active i
+{
+	color: rgb(246, 52, 52) !important;
+}
+
+.dinoKnob .dinoKnobIcon:hover
+{
+	color: rgba(255, 255, 0, .8) !important;
+}
+
+.dinoKnob .disabled .dinoKnobIcon
+{
+	color: rgb(71, 71, 71) !important;
 }
 
 /*----------------------------
@@ -291,20 +507,69 @@
 
 .dinoKnob .dinoKnobValue,
 .dinoKnob .dinoKnobInfo,
-.dinoKnob .dinoKnobTimers
+.dinoKnob .dinoKnobTimers,
+.dinoKnob .dinoTimer
 {
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
 	border-radius: 50%;
 	box-shadow: inset 0 0 42px 16px rgba(0, 0, 0, 0.75);
-	display: flex;
-	height: 142px;
-	left: 4px;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	height: 160px;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	left: -10px;
 	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 	position: absolute;
-	top: 4px;
+	top: -10px;
+	-webkit-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 	visibility: collapse;
-	width: 142px;
-	z-index: 200;
+	width: 160px;
+	z-index: 20;
+}
+
+/*----------------------------
+	Info overlay
+-----------------------------*/
+
+.dinoKnob .dinoKnobInfo address
+{
+	color: rgb(231, 208, 87);
+	display: block;
+	font-size: 14px;
+	vertical-align: middle;
+}
+
+.dinoKnob .dinoKnobInfo hr
+{
+	margin: 5px 0 5px;
+	padding: 0;
+}
+
+.dinoKnob .dinoKnobInfo address b,
+.dinoKnob .dinoKnobInfo address a
+{
+	color: rgb(241, 130, 7);
+	font-size: 16px;
+}
+
+.dinoKnob .dinoKnobInfo address span b
+{
+	color: rgb(231, 208, 87);
+}
+
+.dinoKnob .dinoKnobInfo address a:hover
+{
+	color: rgb(241, 181, 96);
 }
 
 /*----------------------------
@@ -313,13 +578,13 @@
 
 .dinoKnob .dinoKnobValue
 {
-	color: rgb(195, 193, 193);
+	color: rgb(255, 255, 0);
 	font-family: "sa-digital-number", sans-serif;
-	font-size: 42px;
+	font-size: 44px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: normal;
-	z-index: 100;
+	z-index: 20;
 }
 
 /*----------------------------
@@ -328,19 +593,19 @@
 
 .dinoKnob .dinoKnobTimers
 {
-	z-index: 200;
+	z-index: 20;
 }
 
 .dinoKnob .dinoKnobTimers ul
 {
-	bottom: 10px;
-	left: 10px;
+	bottom: 8px;
+	left: 8px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	position: absolute;
-	right: 10px;
-	top: 10px;
+	right: 8px;
+	top: 8px;
 }
 
 .dinoKnob .dinoKnobTimers li
@@ -348,7 +613,9 @@
 	height: 100%;
 	margin: 0 50%;
 	position: absolute;
+	-webkit-transform: rotate(-360deg);
 	transform: rotate(-360deg);
+	-webkit-transition: all 0.8s ease-in-out;
 	transition: all 0.8s ease-in-out;
 	width: 0;
 }
@@ -367,41 +634,42 @@
 	height: auto;
 	max-width: 100%;
 	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
 .dinoKnob .dinoKnobTimers li button .dinoKnobTimerImage:hover
 {
 	opacity: .5;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 }
 
 /*----------------------------
 	CountDown Timer
 -----------------------------*/
 
-.dinoTimer
+.dinoKnob .dinoTimer
 {
 	border: 0;
-	height: 105%;
-	overflow: hidden;
-	position: absolute;
+	left: 0;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	top: 0;
+	-webkit-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
-	width: 105%;
+	visibility: visible;
+	z-index: 20;
 }
 
-.dinoTimer .dinoTimerRotate
+.dinoKnob .dinoTimer .dinoTimerRotate
 {
 	border: 0;
 	border-radius: 50%;
-	display: block;
 	height: 100%;
-	overflow: hidden;
-	position: relative;
-	transition: all .5s ease-in-out;
 	width: 100%;
 	z-index: 10;
 }
 
-.dinoTimer .dinoTimerDots
+.dinoKnob .dinoTimer .dinoTimerDots
 {
 	height: 100%;
 	left: 0;
@@ -412,225 +680,36 @@
 	z-index: 5;
 }
 
-.dinoTimer .dinoTimerDots .dinoTimerTime
+.dinoKnob .dinoTimer .dinoTimerDots .dinoTimerTime
 {
-	background-image: linear-gradient(rgb(255, 197, 0), rgb(255, 197, 0) 16%, rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgb(255, 197, 0) 84%, rgb(255, 197, 0));
+	background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(255, 197, 0, .7) 16%, rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgba(255, 197, 0, .7) 84%, rgba(0, 0, 0, 0));
+	background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(255, 197, 0, .7) 16%, rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgba(255, 197, 0, .7) 84%, rgba(0, 0, 0, 0));
 	display: inline-block;
 	height: 100%;
 	left: 50%;
-	margin-left: -2%;
+	margin-left: 2px;
+	margin-top: 2px;
 	overflow: hidden;
 	position: absolute;
-	width: 4%;
+	width: 2%;
 }
 
-.dinoTimer .dinoTimerDots .dinoTimerTime.deg45
+.dinoKnob .dinoTimer .dinoTimerDots .dinoTimerTime.deg45
 {
+	-webkit-transform: rotate(45deg);
 	transform: rotate(45deg);
 }
 
-.dinoTimer .dinoTimerDots .dinoTimerTime.deg90
+.dinoKnob .dinoTimer .dinoTimerDots .dinoTimerTime.deg90
 {
+	-webkit-transform: rotate(90deg);
 	transform: rotate(90deg);
 }
 
-.dinoTimer .dinoTimerDots .dinoTimerTime.deg135
+.dinoKnob .dinoTimer .dinoTimerDots .dinoTimerTime.deg135
 {
+	-webkit-transform: rotate(135deg);
 	transform: rotate(135deg);
-}
-
-/*----------------------------
-	Info overlay
------------------------------*/
-
-.dinoKnob .dinoKnobInfo
-{
-	z-index: 300;
-}
-
-.dinoKnob .dinoKnobInfo address
-{
-	color: rgb(231, 208, 87);
-	display: block;
-	font-size: 12px;
-	vertical-align: middle;
-}
-
-.dinoKnob .dinoKnobInfo hr
-{
-	margin: 5px 0 5px;
-	padding: 0;
-}
-
-.dinoKnob .dinoKnobInfo address b,
-.dinoKnob .dinoKnobInfo address a
-{
-	color: rgb(241, 130, 7);
-	font-size: 14px;
-}
-
-.dinoKnob .dinoKnobInfo address span b
-{
-	color: rgb(231, 208, 87);
-}
-
-.dinoKnob .dinoKnobInfo address a:hover
-{
-	color: rgb(241, 181, 96);
-}
-
-/*----------------------------
-	Knob Navbar
------------------------------*/
-
-.dinoKnob .dinoNavWrap
-{
-	bottom: -6px;
-	height: 0;
-	left: 6px;
-	position: absolute;
-	width: 0;
-}
-
-.dinoKnob .dinoKnobMenu
-{
-	border-radius: 50%;
-	box-shadow: inset 0 0 10px 4px rgba(0, 0, 0, .4), 0 8px 25px 2px rgba(0, 0, 0, 1);
-	cursor: pointer;
-	display: block;
-	position: absolute;
-	transition: all .5s ease-in-out;
-}
-
-.dinoKnob .dinoKnobMenu::before
-{
-	border-radius: 50%;
-	content: "";
-	display: inline-block;
-	height: 100%;
-	left: 0;
-	position: absolute;
-	top: 0;
-	width: 100%;
-}
-
-.dinoKnob .knobMenu1
-{
-	bottom: 9px;
-	height: 30px;
-	left: -28px;
-	width: 30px;
-}
-
-.dinoKnob .knobMenu2
-{
-	bottom: -20px;
-	height: 30px;
-	left: 6px;
-	width: 30px;
-}
-
-.dinoKnob .knobMenu3
-{
-	bottom: -32px;
-	height: 30px;
-	left: 50px;
-	width: 30px;
-}
-
-.dinoKnob .dinoKnobMenu.active::before
-{
-	animation: sonar-effect .8s ease-in-out 0.1s infinite;
-}
-
-.dinoKnob .dinoKnobMenu.active i
-{
-	color: rgb(246, 52, 52);
-}
-
-.dinoKnob .dinoKnobMenu:hover i
-{
-	color: rgb(255, 197, 0);
-}
-
-.dinoKnob .dinoKnobMenu:active,
-.dinoKnob .dinoKnobMenu:hover
-{
-	box-shadow: inset 0 0 15px 4px rgba(0, 0, 0, .8), 0 8px 25px 2px rgba(0, 0, 0, 1);
-}
-
-/*----------------------------
-	Knob Icons Font
------------------------------*/
-
-.dinoKnob .dinoKnobIcon
-{
-	color: rgb(255, 255, 255);
-	color: rgba(255, 255, 255, .5);
-	font-family: "dinoknob", serif;
-	font-size: 16px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	line-height: 32px;
-	text-align: center;
-	transition: all .5s ease-in-out;
-	vertical-align: middle;
-}
-
-.dinoKnob .knob-icon-stopwatch::before
-{
-	content: "\e800";
-}
-
-.dinoKnob .knob-icon-off::before
-{
-	content: "\e802";
-}
-
-.dinoKnob .knob-icon-alert::before
-{
-	content: "\e803";
-}
-
-.dinoKnob .knob-icon-th::before
-{
-	content: "\e804";
-}
-
-.dinoKnob .knob-icon-lightbulb::before
-{
-	content: "\e805";
-}
-
-.dinoKnob .knob-icon-contrast::before
-{
-	content: "\e806";
-}
-
-.dinoKnob .knob-icon-bell::before
-{
-	content: "\e807";
-}
-
-.dinoKnob .knob-icon-adjust::before
-{
-	content: "\e80a";
-}
-
-.dinoKnob .knob-icon-th-large::before
-{
-	content: "\e80b";
-}
-
-.dinoKnob .knob-icon-spin4::before
-{
-	content: "\e834";
-}
-
-.dinoKnob .knob-icon-plug-1::before
-{
-	content: "\f1e6";
 }
 
 /*----------------------------
@@ -638,37 +717,71 @@
 -----------------------------*/
 
 .dinoKnob .blob,
-.dinoKnob .blob::before
+.dinoKnob .blob:before
 {
+	-webkit-animation: blob 1.2s linear;
 	animation: blob 1.2s linear;
 }
 
 .dinoKnob .dinoAnimated
 {
+	-webkit-animation-duration: 1s;
 	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 }
 
 .dinoKnob .zoomIn
 {
+	-webkit-animation-name: zoomIn;
 	animation-name: zoomIn;
 }
 
 .dinoKnob .zoomOut
 {
+	-webkit-animation-name: zoomOut;
 	animation-name: zoomOut;
 }
 
 .dinoKnob .rotateIn
 {
+	-webkit-animation-name: rotateIn;
 	animation-name: rotateIn;
+	-webkit-transform-origin: center;
 	transform-origin: center;
 }
 
 .dinoKnob .rotateOut
 {
+	-webkit-animation-name: rotateOut;
 	animation-name: rotateOut;
+	-webkit-transform-origin: center;
 	transform-origin: center;
+}
+
+@-webkit-keyframes sonar-effect
+{
+	0%
+	{
+		opacity: 0.3;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	}
+	
+	40%
+	{
+		box-shadow: 0 0 0 3px rgb(246, 52, 52), 0 0 6px 6px rgb(255, 197, 0), 0 0 0 2px rgb(255, 255, 0);
+		opacity: 0.5;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	}
+	
+	100%
+	{
+		box-shadow: 0 0 0 3px rgb(246, 52, 52), 0 0 6px 6px rgb(255, 197, 0), 0 0 0 2px rgb(255, 255, 0);
+		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		-webkit-transform: scale(1.5);
+		transform: scale(1.5);
+	}
 }
 
 @keyframes sonar-effect
@@ -676,19 +789,62 @@
 	0%
 	{
 		opacity: 0.3;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
 	}
 	
 	40%
 	{
 		box-shadow: 0 0 0 3px rgb(246, 52, 52), 0 0 6px 6px rgb(255, 197, 0), 0 0 0 2px rgb(255, 255, 0);
 		opacity: 0.5;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 	}
 	
 	100%
 	{
 		box-shadow: 0 0 0 3px rgb(246, 52, 52), 0 0 6px 6px rgb(255, 197, 0), 0 0 0 2px rgb(255, 255, 0);
 		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		-webkit-transform: scale(1.5);
 		transform: scale(1.5);
+	}
+}
+
+@-webkit-keyframes line-animation
+{
+	0%
+	{
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+	
+	10%
+	{
+		-webkit-transform: translateY(10px);
+		transform: translateY(10px);
+	}
+	
+	40%
+	{
+		-webkit-transform: translateY(-25px);
+		transform: translateY(-25px);
+	}
+	
+	60%
+	{
+		-webkit-transform: translateY(-25px);
+		transform: translateY(-25px);
+	}
+	
+	85%
+	{
+		-webkit-transform: translateY(10px);
+		transform: translateY(10px);
+	}
+	
+	100%
+	{
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
 	}
 }
 
@@ -696,32 +852,59 @@
 {
 	0%
 	{
+		-webkit-transform: translateY(0);
 		transform: translateY(0);
 	}
 	
 	10%
 	{
+		-webkit-transform: translateY(10px);
 		transform: translateY(10px);
 	}
 	
 	40%
 	{
+		-webkit-transform: translateY(-25px);
 		transform: translateY(-25px);
 	}
 	
 	60%
 	{
+		-webkit-transform: translateY(-25px);
 		transform: translateY(-25px);
 	}
 	
 	85%
 	{
+		-webkit-transform: translateY(10px);
 		transform: translateY(10px);
 	}
 	
 	100%
 	{
+		-webkit-transform: translateY(0);
 		transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes click-animation
+{
+	0%
+	{
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	
+	50%
+	{
+		-webkit-transform: scale(0.9);
+		transform: scale(0.9);
+	}
+	
+	100%
+	{
+		-webkit-transform: scale(1);
+		transform: scale(1);
 	}
 }
 
@@ -729,17 +912,63 @@
 {
 	0%
 	{
+		-webkit-transform: scale(1);
 		transform: scale(1);
 	}
 	
 	50%
 	{
+		-webkit-transform: scale(0.9);
 		transform: scale(0.9);
 	}
 	
 	100%
 	{
+		-webkit-transform: scale(1);
 		transform: scale(1);
+	}
+}
+
+@-webkit-keyframes blob
+{
+	0%
+	{
+		border-radius: 999px 999px;
+	}
+	
+	5%
+	{
+		border-radius: 999px 200px;
+	}
+	
+	22%
+	{
+		border-radius: 400px 999px;
+	}
+	
+	34%
+	{
+		border-radius: 999px 700px;
+	}
+	
+	48%
+	{
+		border-radius: 700px 999px;
+	}
+	
+	70%
+	{
+		border-radius: 999px 999px;
+	}
+	
+	85%
+	{
+		border-radius: 850px 999px;
+	}
+	
+	100%
+	{
+		border-radius: 999px 999px;
 	}
 }
 
@@ -786,17 +1015,60 @@
 	}
 }
 
-@keyframes zoomIn
+@-webkit-keyframes zoomIn
 {
 	from
 	{
 		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		-webkit-transform: scale3d(0.3, 0.3, 0.3);
 		transform: scale3d(0.3, 0.3, 0.3);
 	}
 	
 	50%
 	{
 		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	}
+}
+
+@keyframes zoomIn
+{
+	from
+	{
+		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		-webkit-transform: scale3d(0.3, 0.3, 0.3);
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
+	
+	50%
+	{
+		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	}
+}
+
+@-webkit-keyframes zoomOut
+{
+	from
+	{
+		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	}
+	
+	50%
+	{
+		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		-webkit-transform: scale3d(0.3, 0.3, 0.3);
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
+	
+	to
+	{
+		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 	}
 }
 
@@ -805,17 +1077,40 @@
 	from
 	{
 		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 	}
 	
 	50%
 	{
 		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		-webkit-transform: scale3d(0.3, 0.3, 0.3);
 		transform: scale3d(0.3, 0.3, 0.3);
 	}
 	
 	to
 	{
 		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	}
+}
+
+@-webkit-keyframes rotateIn
+{
+	from
+	{
+		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		-webkit-transform: rotate3d(0, 0, 1, -200deg);
+		transform: rotate3d(0, 0, 1, -200deg);
+	}
+	
+	to
+	{
+		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
 	}
 }
 
@@ -824,13 +1119,34 @@
 	from
 	{
 		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		-webkit-transform: rotate3d(0, 0, 1, -200deg);
 		transform: rotate3d(0, 0, 1, -200deg);
 	}
 	
 	to
 	{
 		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+		-webkit-transform: translate3d(0, 0, 0);
 		transform: translate3d(0, 0, 0);
+	}
+}
+
+@-webkit-keyframes rotateOut
+{
+	from
+	{
+		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	}
+	
+	to
+	{
+		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		-webkit-transform: rotate3d(0, 0, 1, 200deg);
+		transform: rotate3d(0, 0, 1, 200deg);
 	}
 }
 
@@ -839,17 +1155,20 @@
 	from
 	{
 		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 	}
 	
 	to
 	{
 		opacity: 0;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+		-webkit-transform: rotate3d(0, 0, 1, 200deg);
 		transform: rotate3d(0, 0, 1, 200deg);
 	}
 }
 
 /*----------------------------
-	Device Screen Sizes
+	Knob Screen Sizes
 -----------------------------*/
 
 /*---------------------------*/
