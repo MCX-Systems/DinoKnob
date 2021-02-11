@@ -1,6 +1,6 @@
 {
   "name": "dino-knob",
-  "version": "2.08.2021",
+  "version": "3.21.2021",
   "description": "Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard support, jQuery plugin.",
   "directories": {
     "dist": "dist",
