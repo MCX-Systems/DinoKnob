@@ -1,0 +1,77 @@
+@font-face
+{
+	font-family: 'sa-digital-number';
+	font-style: normal;
+	font-weight: normal;
+	src: url("../font/DigitalNumbers-Regular.eot");
+	src: url("../font/DigitalNumbers-Regular.eot?#iefix") format("embedded-opentype"),
+	url("../font/DigitalNumbers-Regular.woff") format("woff"),
+	url("../font/DigitalNumbers-Regular.ttf") format("truetype"),
+	url("../font/DigitalNumbers-Regular.svg") format("svg");
+}
+
+[class^="iconNumber-"], [class*=" iconNumber-"]
+{
+	font-family: 'sa-digital-number', sans-serif;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+}
+
+.iconNumber-minus:before
+{
+	content: "\2d";
+}
+
+.iconNumber-zero:before
+{
+	content: "\30";
+}
+
+.iconNumber-one:before
+{
+	content: "\31";
+}
+
+.iconNumber-two:before
+{
+	content: "\32";
+}
+
+.iconNumber-three:before
+{
+	content: "\33";
+}
+
+.iconNumber-four:before
+{
+	content: "\34";
+}
+
+.iconNumber-five:before
+{
+	content: "\35";
+}
+
+.iconNumber-six:before
+{
+	content: "\36";
+}
+
+.iconNumber-seven:before
+{
+	content: "\37";
+}
+
+.iconNumber-eight:before
+{
+	content: "\38";
+}
+
+.iconNumber-nine:before
+{
+	content: "\39";
+}
