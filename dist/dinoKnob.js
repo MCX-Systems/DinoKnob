@@ -1,5 +1,6 @@
 /*
  * DinoKnob
+ * Requires: jQuery v1.7+
  *
  * JQuery and CSS3 based UI-Knob element implementing touch,
  * keyboard, mouse and scroll wheel support.
