@@ -268,7 +268,7 @@
 				{
 					widget.$element.find('#dinoKnob-' + widget._uId).css({
 						'-webkit-filter': 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'dinoBlurFilter-'+widget._uId+'\'><feGaussianBlur in=\'SourceGraphic\' result=\'blur\' stdDeviation=\'10\' /><feColorMatrix in=\'blur\' values=\'1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -8\' result=\'flt\' /><feBlend in2=\'flt\' in=\'SourceGraphic\' result=\'mix\' /></filter></svg>#dinoBlurFilter-'+widget._uId+'")',
-						'filter': 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'dinoBlurFilter-'+widget._uId+'\'><feGaussianBlur in=\'SourceGraphic\' result=\'blur\' stdDeviation=\'10\' /><feColorMatrix in=\'blur\' values=\'1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -8\' result=\'flt\' /><feBlend in2=\'flt\' in=\'SourceGraphic\' result=\'mix\' /></filter></svg>#dinoBlurFilter-'+widget._uId+'")'
+						'filter': 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'dinoBlurFilter-'+widget._uId+'\'><feGaussianBlur in=\'SourceGraphic\' result=\'blur\' stdDeviation=\'10\' /><feColorMatrix in=\'blur\' values=\'1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6\' result=\'flt\' /><feBlend in2=\'flt\' in=\'SourceGraphic\' result=\'mix\' /></filter></svg>#dinoBlurFilter-'+widget._uId+'")'
 					});
 				}
 
