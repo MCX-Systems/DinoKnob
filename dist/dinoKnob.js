@@ -9,9 +9,9 @@
  */
 (function (root, factory)
 {
-	if (typeof define === 'function' && define.amd)
+	if (typeof window.define === 'function' && window.define.amd)
 	{
-		define(['jquery'], factory);
+		window.define(['jquery'], factory);
 	}
 	else if (typeof exports === 'object')
 	{
@@ -19,7 +19,7 @@
 	}
 	else
 	{
-		root.DinoKnob = factory(root.jQuery);
+		root.dinoKnob = factory(root.jquery);
 	}
 }(this, function ()
 {
@@ -142,7 +142,7 @@
 			The "init" method is the starting point for all plugin logic.
 			Calling the init method here in the "Plugin" constructor function
 			allows us to store all methods (including the init method) in the
-			plugin's prototype. Storing methods required by the plugin in its
+			plugin prototype. Storing methods required by the plugin in its
 			prototype lowers the memory footprint, as each instance of the
 			plugin does not need to duplicate all of the same methods. Rather,
 			each instance can inherit the methods from the constructor
@@ -189,14 +189,14 @@
 
 				if (widget.options.debug)
 				{
-					console.info('--------------------------------------------');
-					console.info('--------------------------------------------');
-					console.info(widget.capitalizeFirstLetter(widget._name) + ' ' + $.fn.dinoKnob.version + ' successfully initialized and is ready.');
-					console.info('Language is set to: ' + widget.options.language);
-					console.info('Plugin Description: ' + widget.getI18n('plugin_desc', widget.options.language));
-					console.info('Uniq ID generated: ' + widget._uId);
-					console.info('--------------------------------------------');
-					console.info('--------------------------------------------');
+					window.console.info('--------------------------------------------');
+					window.console.info('--------------------------------------------');
+					window.console.info(widget.capitalizeFirstLetter(widget._name) + ' ' + $.fn.dinoKnob.version + ' successfully initialized and is ready.');
+					window.console.info('Language is set to: ' + widget.options.language);
+					window.console.info('Plugin Description: ' + widget.getI18n('plugin_desc', widget.options.language));
+					window.console.info('Uniq ID generated: ' + widget._uId);
+					window.console.info('--------------------------------------------');
+					window.console.info('--------------------------------------------');
 				}
 
 				widget.$element.append(this.createKnobWidget());
@@ -257,7 +257,7 @@
 
 				/*----------------------------------------------------------------------*/
 
-				if(navigator.userAgent.indexOf("Firefox") === -1)
+				if (window.navigator.userAgent.indexOf("Firefox") === -1)
 				{
 					widget.$element.find('#dinoKnob-' + widget._uId).css({
 						'-webkit-filter': 'url("#dinoBlurFilter-' + widget._uId + '")',
@@ -476,9 +476,9 @@
 
 					if (plugin.options.debug)
 					{
-						console.log(plugin._uId + ' ==> BUTTON STATE ==> ' + plugin._buttonState);
-						console.log(plugin._uId + ' ==> TIMER STATE ==> ' + plugin._timerState);
-						console.log(plugin._uId + ' ==> TIMER SET ==> ' + plugin._timerTime);
+						window.console.log(plugin._uId + ' ==> BUTTON STATE ==> ' + plugin._buttonState);
+						window.console.log(plugin._uId + ' ==> TIMER STATE ==> ' + plugin._timerState);
+						window.console.log(plugin._uId + ' ==> TIMER SET ==> ' + plugin._timerTime);
 					}
 
 					plugin.$element.find("#dinoKnobMenu1-" + plugin._uId).addClass('disabled');
@@ -531,10 +531,10 @@
 
 							if (plugin.options.debug)
 							{
-								console.log(plugin._uId + ' ==> TIME LEFT ==> ' + timeL);
+								window.console.log(plugin._uId + ' ==> TIME LEFT ==> ' + timeL);
 							}
 
-							setTimeout(drawCountDown, (plugin._timerTime / 360) * 1000);
+							window.setTimeout(drawCountDown, (plugin._timerTime / 360) * 1000);
 						}
 					}
 
@@ -803,11 +803,13 @@
 
 						if (plugin.options.debug)
 						{
-							console.log(plugin._uId + ' ==> VALUE ==> ' + inputValue.toFixed(0));
-							console.log(plugin._uId + ' ==> PERCENT ==> ' + (r * 100).toFixed(0));
-							console.log(plugin._uId + ' ==> ANGLE ==> ' + plugin._angle.toFixed(0));
-							console.log(plugin._uId + ' ==> RATIO ==> ' + r.toFixed(2));
+							window.console.log(plugin._uId + ' ==> VALUE ==> ' + inputValue.toFixed(0));
+							window.console.log(plugin._uId + ' ==> PERCENT ==> ' + (r * 100).toFixed(0));
+							window.console.log(plugin._uId + ' ==> ANGLE ==> ' + plugin._angle.toFixed(0));
+							window.console.log(plugin._uId + ' ==> RATIO ==> ' + r.toFixed(2));
 						}
+
+						return false;
 					});
 
 					plugin.$element.on('mouseup touchend' + '.' + plugin._name, function ()
@@ -934,10 +936,10 @@
 
 					if (plugin.options.debug)
 					{
-						console.log(plugin._uId + ' ==> VALUE ==> ' + inputValue.toFixed(0));
-						console.log(plugin._uId + ' ==> PERCENT ==> ' + (r * 100).toFixed(0));
-						console.log(plugin._uId + ' ==> ANGLE ==> ' + val);
-						console.log(plugin._uId + ' ==> RATIO ==> ' + r.toFixed(2));
+						window.console.log(plugin._uId + ' ==> VALUE ==> ' + inputValue.toFixed(0));
+						window.console.log(plugin._uId + ' ==> PERCENT ==> ' + (r * 100).toFixed(0));
+						window.console.log(plugin._uId + ' ==> ANGLE ==> ' + val);
+						window.console.log(plugin._uId + ' ==> RATIO ==> ' + r.toFixed(2));
 					}
 
 					return false;
@@ -957,9 +959,9 @@
 
 						if (plugin.options.debug)
 						{
-							console.log(plugin._uId + ' ==> BUTTON STATE ==> ' + plugin._buttonState);
-							console.log(plugin._uId + ' ==> TIMER STATE ==> ' + plugin._timerState);
-							console.log(plugin._uId + ' ==> TIMER SET ==> ' + plugin._timerTime);
+							window.console.log(plugin._uId + ' ==> BUTTON STATE ==> ' + plugin._buttonState);
+							window.console.log(plugin._uId + ' ==> TIMER STATE ==> ' + plugin._timerState);
+							window.console.log(plugin._uId + ' ==> TIMER SET ==> ' + plugin._timerTime);
 						}
 
 						plugin.$element.find('#dinoKnobTop-' + plugin._uId).css({
@@ -980,9 +982,9 @@
 
 						if (plugin.options.debug)
 						{
-							console.log(plugin._uId + ' ==> BUTTON STATE ==> ' + plugin._buttonState);
-							console.log(plugin._uId + ' ==> TIMER STATE ==> ' + plugin._timerState);
-							console.log(plugin._uId + ' ==> TIMER SET ==> ' + plugin._timerTime);
+							window.console.log(plugin._uId + ' ==> BUTTON STATE ==> ' + plugin._buttonState);
+							window.console.log(plugin._uId + ' ==> TIMER STATE ==> ' + plugin._timerState);
+							window.console.log(plugin._uId + ' ==> TIMER SET ==> ' + plugin._timerTime);
 						}
 
 						plugin.$element.find('#dinoKnobTop-' + plugin._uId).css({
@@ -1004,7 +1006,7 @@
 			unbindEvents: function()
 			{
 				/*
-					Unbind all events in our plugin's namespace that are attached
+					Unbind all events in our plugin namespace that are attached
 					to "this.$element".
 				*/
 				this.$element.off('.' + this._name);
@@ -1110,10 +1112,10 @@
 
 				if (widget.options.debug)
 				{
-					console.log(widget._uId + ' ==> VALUE ==> ' + inputValue.toFixed(0));
-					console.log(widget._uId + ' ==> PERCENT ==> ' + (r * 100).toFixed(0));
-					console.log(widget._uId + ' ==> ANGLE ==> ' + widget._angle.toFixed(0));
-					console.log(widget._uId + ' ==> RATIO ==> ' + r.toFixed(2));
+					window.console.log(widget._uId + ' ==> VALUE ==> ' + inputValue.toFixed(0));
+					window.console.log(widget._uId + ' ==> PERCENT ==> ' + (r * 100).toFixed(0));
+					window.console.log(widget._uId + ' ==> ANGLE ==> ' + widget._angle.toFixed(0));
+					window.console.log(widget._uId + ' ==> RATIO ==> ' + r.toFixed(2));
 				}
 
 				return false;
@@ -1123,24 +1125,10 @@
 
 			createTimerFace: function()
 			{
-				return '<article class="dinoTimer">' +
-					'<svg class="dinoTimerRotate" viewbox="0 0 250 250">' +
-					'<defs>' +
-					'<linearGradient spreadMethod="pad" id="gradientTimer-' + this._uId + '" x1="0%" y1="0%" x2="0%" y2="100%">' +
-					'<stop offset="0%" style="stop-color:rgba(163, 143, 5, 0.50);stop-opacity:0.78;" />' +
-					'<stop offset="48%" style="stop-color:rgba(87, 81, 47, 0.70);stop-opacity:0.89;" />' +
-					'<stop offset="100%" style="stop-color:rgb(136, 113, 0);stop-opacity:1;" />' +
-					'</linearGradient>' +
-					'</defs>'  +
-					'<path id="dinoTimerLoader-' + this._uId + '" transform="translate(125, 125)" class="dinoTimerLoader" fill="url(#gradientTimer-' + this._uId + ')" />' +
-					'</svg>' +
-					'<section class="dinoTimerDots">' +
-					'<span class="dinoTimerTime deg0"></span>' +
-					'<span class="dinoTimerTime deg45"></span>' +
-					'<span class="dinoTimerTime deg90"></span>' +
-					'<span class="dinoTimerTime deg135"></span>' +
-					'</section>' +
-					'</article>';
+				return `<article class="dinoTimer"><svg class="dinoTimerRotate" viewbox="0 0 250 250"><defs><linearGradient spreadMethod="pad" id="gradientTimer-${
+					this._uId}" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:rgba(163, 143, 5, 0.50);stop-opacity:0.78;" /><stop offset="48%" style="stop-color:rgba(87, 81, 47, 0.70);stop-opacity:0.89;" /><stop offset="100%" style="stop-color:rgb(136, 113, 0);stop-opacity:1;" /></linearGradient></defs><path id="dinoTimerLoader-${
+					this._uId}" transform="translate(125, 125)" class="dinoTimerLoader" fill="url(#gradientTimer-${this._uId
+					})" /></svg><section class="dinoTimerDots"><span class="dinoTimerTime deg0"></span><span class="dinoTimerTime deg45"></span><span class="dinoTimerTime deg90"></span><span class="dinoTimerTime deg135"></span></section></article>`;
 			},
 
 			/***************************************************************************/
@@ -1153,30 +1141,18 @@
 
 				if(this.options.theme === 'dark')
 				{
-                    for(i = 1; i <= 5; i++)
-                    {
-                        temp += '<li><button id="dinoTimer-' + i + '-' + this._uId +
-	                        '" type="button" data-timer="' + this.options.timerArray[(i - 1)] + '">' +
-	                        '<img class="dinoKnobTimerImage" src="'+ this.getImage((i - 1)) +'" alt="Timer-' + i + '" />' +
-	                        '<div class="dinoKnobTooltip">' +
-	                        this.options.timerArray[(i - 1)] + ' sec' +
-	                        '</div>' +
-	                        '</button>' +
-	                        '</li>';
-                    }
+					for(i = 1; i <= 5; i++)
+					{
+						temp += `<li><button id="dinoTimer-${i}-${this._uId}" type="button" data-timer="${this.options.timerArray[(i - 1)]}"><img class="dinoKnobTimerImage" src="${this.getImage((i - 1))
+							}" alt="Timer-${i}" /><div class="dinoKnobTooltip">${this.options.timerArray[(i - 1)]} sec</div></button></li>`;
+					}
 				}
 				else
 				{
 					for(i = 6; i <= 10; i++)
 					{
-						temp += '<li><button id="dinoTimer-' + (i - 5) + '-' + this._uId +
-							'" type="button" data-timer="' + this.options.timerArray[(i - 6)] + '">' +
-							'<img class="dinoKnobTimerImage" src="'+ this.getImage((i - 1)) +'" alt="Timer-' + (i - 5) + '" />' +
-							'<div class="dinoKnobTooltip">' +
-							this.options.timerArray[(i - 6)] + ' sec' +
-							'</div>' +
-							'</button>' +
-							'</li>';
+						temp += `<li><button id="dinoTimer-${i - 5}-${this._uId}" type="button" data-timer="${this.options.timerArray[(i - 6)]}"><img class="dinoKnobTimerImage" src="${this.getImage((i - 1))
+							}" alt="Timer-${i - 5}" /><div class="dinoKnobTooltip">${this.options.timerArray[(i - 6)]} sec</div></button></li>`;
 					}
 				}
 
@@ -1189,11 +1165,7 @@
 
 			createCreatedBy: function()
 			{
-				return '<address><b>' + this.capitalizeFirstLetter(this._name) + '</b><br />' +
-					'<span><b>' + $.fn.dinoKnob.version + '</b></span><hr />' +
-					'<span>' + atob('Q3JlYXRlZCBCeTog') + '<br /><b>' +
-					atob('PGEgaHJlZj0iaHR0cHM6Ly9tY3gtc3lzdGVtcy5uZXQiIHRhcmdldD0iYmxhbmsiPk1DWC1TeXN0ZW1zJnJlZzwvYT4=') + '</b></span>' +
-					'</address>';
+				return `<address><b>${this.capitalizeFirstLetter(this._name)}</b><br /><span><b>${$.fn.dinoKnob.version}</b></span><hr /><span>${window.atob('Q3JlYXRlZCBCeTog')}<br /><b>${window.atob('PGEgaHJlZj0iaHR0cHM6Ly9tY3gtc3lzdGVtcy5uZXQiIHRhcmdldD0iYmxhbmsiPk1DWC1TeXN0ZW1zJnJlZzwvYT4=')}</b></span></address>`;
 			},
 
 			/***************************************************************************/
@@ -1233,7 +1205,7 @@
 
 			errorUpdateCallback: function (id, error)
 			{
-				// Cache onTurn option
+				// Cache onError option
 				let onError = this.options.onError;
 
 				if (typeof onError === "function")
@@ -1307,7 +1279,7 @@
 				// 2. try to get browser or system language
 				if (!lang)
 				{
-					let lan = navigator.language || navigator;
+					let lan = window.navigator.language || window.navigator;
 					let part = lan.split('-');
 					lang = part[0];
 				}
@@ -1515,7 +1487,7 @@
 			600, // seconds
 			// Preset timer 5 to 15 minutes
 			900 // seconds
-	    ],
+		],
 		/*---------------------------------------------*/
 		// Plugin language automatic
 		// detection at runtime from browser
