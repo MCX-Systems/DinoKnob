@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="dc6ece83-e81f-4a2b-9286-6e58bada3ac7" name="Matrix-NS" url="http://mcx-systems.net/DinoKnob">
+        <fileTransfer accessType="LOCAL" port="0" />
+      </webServer>
+      <webServer id="02a65025-7c29-4206-82d0-372b2cf67948" name="NS1" url="https://mcx-systems.net/DinoKnob/">
+        <fileTransfer mountedRoot="Z:\dinoKnob.mcx-systems.net" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>
