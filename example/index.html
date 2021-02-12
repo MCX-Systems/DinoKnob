@@ -395,14 +395,15 @@
 		$('#KnobExample1').dinoKnob({
 			// Theme Light or Dark
 			theme: 'dark',
+			// Circle range Bar style:
+			// (Hot, Cold or Mono, yellow, blue, red, green)
+			barTheme: 'blue',
 			// Step Value of the Knob
 			snap: 5,
 			// Knob Display Max Value as 100%
 			maxValue: 100,
 			// Max angle value, for alarm icon
 			maxAlarm: 50,
-			// Circle Bar style Hot, Cold or Mono, yellow, blue, red, green
-			barStyle: 'blue',
 			// Enable Timer Button
 			showTimer: true,
 			// Enable Alerts Button
@@ -421,7 +422,7 @@
 
 				$("#range1").val($("#KnobExample1 input[type=hidden]").val());
 			},
-			onComplete: function(dinoId, state, timerState, timerTime)
+			onStatus: function(dinoId, state, timerState, timerTime)
 			{
 				$("#sta1").val(state);
 				$("#stu1").val(timerState);
@@ -447,14 +448,15 @@
 		$('#KnobExample2').dinoKnob({
 			// Theme Light or Dark
 			theme: 'dark',
+			// Circle range Bar style:
+			// (Hot, Cold or Mono, yellow, blue, red, green)
+			barTheme: 'green',
 			// Knob main Circle background color
-			knobBgColor: 'rgb(39, 131, 0)',
+			bgColor: 'rgb(39, 131, 0)',
 			// Step Value of the Knob
 			snap: 5,
 			// Knob Max Value
 			maxValue: 300,
-			// Circle Bar style Hot, Cold or Mono
-			barStyle: 'green',
 			// Enable Timer Button
 			showTimer: false,
 			// Enable Alerts Button
@@ -473,7 +475,7 @@
 
 				$("#range2").val($("#KnobExample2 input[type=hidden]").val());
 			},
-			onComplete: function(dinoId, state, timerState, timerTime)
+			onStatus: function(dinoId, state, timerState, timerTime)
 			{
 				$("#sta2").val(state);
 				$("#stu2").val(timerState);
@@ -499,14 +501,15 @@
 		$('#KnobExample3').dinoKnob({
 			// Theme Light or Dark
 			theme: 'dark',
+			// Circle range Bar style:
+			// (Hot, Cold or Mono, yellow, blue, red, green)
+			barTheme: 'hot',
 			// Knob main Circle background color
-			knobBgColor: 'rgb(121, 5, 146)',
+			bgColor: 'rgb(121, 5, 146)',
 			// Step Value of the Knob from wheel
 			snap: 5,
 			// Knob Max Value
 			maxValue: 100,
-			// Circle Bar style Hot, Cold or Mono
-			barStyle: 'hot',
 			// Enable Timer Button
 			showTimer: true,
 			// Enable Alerts Button
@@ -523,7 +526,7 @@
 
 				$("#range3").val($("#KnobExample3 input[type=hidden]").val());
 			},
-			onComplete: function(dinoId, state, timerState, timerTime)
+			onStatus: function(dinoId, state, timerState, timerTime)
 			{
 				$("#sta3").val(state);
 				$("#stu3").val(timerState);
@@ -548,14 +551,15 @@
 		$('#KnobExample4').dinoKnob({
 			// Theme Light or Dark
 			theme: 'light',
+			// Circle range Bar style:
+			// (Hot, Cold or Mono, yellow, blue, red, green)
+			barTheme: 'red',
 			// Knob main Circle background color
-			knobBgColor: 'rgb(219,58,4)',
+			bgColor: 'rgb(219,58,4)',
 			// Step Value of the Knob
 			snap: 5,
 			// Knob Max Value
 			maxValue: 100,
-			// Circle Bar style Hot, Cold or Mono
-			barStyle: 'red',
 			// Enable Timer Button
 			showTimer: false,
 			// Enable Alerts Button
@@ -572,7 +576,7 @@
 
 				$("#range4").val($("#KnobExample4 input[type=hidden]").val());
 			},
-			onComplete: function(dinoId, state, timerState, timerTime)
+			onStatus: function(dinoId, state, timerState, timerTime)
 			{
 				$("#sta4").val(state);
 				$("#stu4").val(timerState);
@@ -598,14 +602,15 @@
 		$('#KnobExample5').dinoKnob({
 			// Theme Light or Dark
 			theme: 'light',
+			// Circle range Bar style:
+			// (Hot, Cold or Mono, yellow, blue, red, green)
+			barTheme: 'cold',
 			// Knob main Circle background color
-			knobBgColor: 'rgb(194, 214, 24)',
+			bgColor: 'rgb(194, 214, 24)',
 			// Step Value of the Knob
 			snap: 5,
 			// Knob Max Value
 			maxValue: 100,
-			// Circle Bar style Hot, Cold or Mono
-			barStyle: 'cold',
 			// Enable Timer Button
 			showTimer: true,
 			// Enable Alerts Button
@@ -622,7 +627,7 @@
 
 				$("#range5").val($("#KnobExample5 input[type=hidden]").val());
 			},
-			onComplete: function(dinoId, state, timerState, timerTime)
+			onStatus: function(dinoId, state, timerState, timerTime)
 			{
 				$("#sta5").val(state);
 				$("#stu5").val(timerState);
@@ -648,14 +653,15 @@
 		$('#KnobExample6').dinoKnob({
 			// Theme Light or Dark
 			theme: 'light',
+			// Circle range Bar style:
+			// (Hot, Cold or Mono, yellow, blue, red, green)
+			barTheme: 'yellow',
 			// Knob main Circle background color
-			knobBgColor: 'rgb(108, 109, 106)',
+			bgColor: 'rgb(108, 109, 106)',
 			// Step Value of the Knob
 			snap: 5,
 			// Knob Max Value
 			maxValue: 100,
-			// Circle Bar style Hot, Cold or Mono
-			barStyle: 'yellow',
 			// Enable Timer Button
 			showTimer: false,
 			// Enable Alerts Button
@@ -674,7 +680,7 @@
 
 				$("#range6").val($("#KnobExample6 input[type=hidden]").val());
 			},
-			onComplete: function(dinoId, state, timerState, timerTime)
+			onStatus: function(dinoId, state, timerState, timerTime)
 			{
 				$("#sta6").val(state);
 				$("#stu6").val(timerState);
