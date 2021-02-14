@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>DinoKnob Widget Example</title>
-    <meta content="Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard support, jQuery plugin." name="description"/>
-    <meta content="knob, jquery, plugin, lights, dimmer, switch, range" name="keywords"/>
-    <meta content="Davorin Casar (MCX-Systems)" name="author"/>
-    <!-- FavIcon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png?v=xQ73jw73PA">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png?v=xQ73jw73PA">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png?v=xQ73jw73PA">
-    <link rel="shortcut icon" href="../assets/favicon/favicon.ico?v=xQ73jw73PA">
-    <meta name="apple-mobile-web-app-title" content="DinoKnob">
-    <meta name="application-name" content="DinoKnob">
-    <!-- CSS stylesheets -->
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css?v=xQ73jw73PA" />
-    <!-- DinoKnob stylesheets -->
-    <link rel="stylesheet" href="../dist/dinoKnob.min.css?v=xQ73jw73PA" />
-    <!-- JavaScript includes -->
-    <script src="../node_modules/jquery/dist/jquery.min.js?v=xQ73jw73PA"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js?v=xQ73jw73PA"></script>
-    <!-- DinoKnob Plugin -->
-    <script src="../dist/dinoKnob.min.js?v=xQ73jw73PA"></script>
-    <style>
+	<meta charset="UTF-8">
+	<title>DinoKnob Widget Example</title>
+	<meta content="Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard support, jQuery plugin." name="description"/>
+	<meta content="knob, jquery, plugin, lights, dimmer, switch, range" name="keywords"/>
+	<meta content="Davorin Casar (MCX-Systems)" name="author"/>
+	<!-- FavIcon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png?v=xQ73jw73PA">
+	<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png?v=xQ73jw73PA">
+	<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png?v=xQ73jw73PA">
+	<link rel="shortcut icon" href="../assets/favicon/favicon.ico?v=xQ73jw73PA">
+	<meta name="apple-mobile-web-app-title" content="DinoKnob">
+	<meta name="application-name" content="DinoKnob">
+	<!-- CSS stylesheets -->
+	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css?v=xQ73jw73PA" />
+	<!-- DinoKnob stylesheets -->
+	<link rel="stylesheet" href="../dist/dinoKnob.min.css?v=xQ73jw73PA" />
+	<!-- JavaScript includes -->
+	<script src="../node_modules/jquery/dist/jquery.min.js?v=xQ73jw73PA"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js?v=xQ73jw73PA"></script>
+	<!-- DinoKnob Plugin -->
+	<script src="../dist/dinoKnob.min.js?v=xQ73jw73PA"></script>
+	<style>
 		body
 		{
 			background-color: rgb(0, 0, 0);
@@ -32,13 +32,13 @@
 			padding: 80px 0;
 			overflow: auto;
 		}
-        header, footer
-        {
-            width: 100%;
-            height: 50px;
-            vertical-align: middle;
-            text-align: center;
-        }
+		header, footer
+		{
+			width: 100%;
+			height: 50px;
+			vertical-align: middle;
+			text-align: center;
+		}
 		.app-download
 		{
 			display: flex;
@@ -63,330 +63,330 @@
 		{
 			margin-top: -12px;
 		}
-    </style>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MP8H23FYPJ"></script>
-    <script>
+	</style>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-MP8H23FYPJ"></script>
+	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
 
 		gtag('config', 'G-MP8H23FYPJ');
-    </script>
+	</script>
 </head>
 <body>
 <div class="container-fluid text-center">
-    <header class="fixed-top btn-dark d-flex align-items-center justify-content-between">
-        <span class="app-download bg-danger text-center d-none d-md-flex">
-            <a href="https://mcx-systems.github.io/DinoKnob/" target="_blank">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAATlBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADEoqZZAAAAGXRSTlMAOJigQFC3xqZ7HgjKg3NtM/Xq45N/UxgF/u6CEAAAAGxJREFUKM/V0DkShDAMRNEezMgL66zQ978ouKAokE1Gwgv7lxJh03NWIlXG8LxHqPzPxGCdqXDguPrqE7vsdoQyfOL+Dkj0r5Nf4U96ZHmHnU6khdKKdChIA8WQxcVBHoqsIRVDkw8NQs2MOkwsHBBgJY/YWAAAAABJRU5ErkJggg==" alt="Download DinoKnob" />
-            </a>
-        </span>
-        <span>&nbsp;</span>
-        <h4 id="plugV" class="text-danger pt-1">JQuery-DinoKnob - v2.08.2021</h4>
-        <span>&nbsp;</span>
-        <script>
-		    document.getElementById('plugV').innerHTML = 'DinoKnob-' + $.fn.dinoKnob.version;
-        </script>
-    </header>
+	<header class="fixed-top btn-dark d-flex align-items-center justify-content-between">
+		<span class="app-download bg-danger text-center d-none d-md-flex">
+			<a href="https://mcx-systems.github.io/DinoKnob/" target="_blank">
+				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAATlBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADEoqZZAAAAGXRSTlMAOJigQFC3xqZ7HgjKg3NtM/Xq45N/UxgF/u6CEAAAAGxJREFUKM/V0DkShDAMRNEezMgL66zQ978ouKAokE1Gwgv7lxJh03NWIlXG8LxHqPzPxGCdqXDguPrqE7vsdoQyfOL+Dkj0r5Nf4U96ZHmHnU6khdKKdChIA8WQxcVBHoqsIRVDkw8NQs2MOkwsHBBgJY/YWAAAAABJRU5ErkJggg==" alt="Download DinoKnob" />
+			</a>
+		</span>
+		<span>&nbsp;</span>
+		<h4 id="plugV" class="text-danger pt-1">JQuery-DinoKnob - v2.08.2021</h4>
+		<span>&nbsp;</span>
+		<script>
+			document.getElementById('plugV').innerHTML = 'DinoKnob-' + $.fn.dinoKnob.version;
+		</script>
+	</header>
 
-    <section class="row align-items-center">
-        <div class="col-md-6 col-lg-4 bg-primary d-flex justify-content-center p-3">
-            <div id="KnobExample1"></div>
-        </div>
-        <div class="col-md-6 col-lg-4 bg-warning d-flex justify-content-center p-3">
-            <div id="KnobExample2"></div>
-        </div>
-        <div class="col-md-6 col-lg-4 bg-danger d-flex justify-content-center p-3">
-            <div id="KnobExample3"></div>
-        </div>
-    </section>
+	<section class="row align-items-center">
+		<div class="col-md-6 col-lg-4 bg-primary d-flex justify-content-center p-3">
+			<div id="KnobExample1"></div>
+		</div>
+		<div class="col-md-6 col-lg-4 bg-warning d-flex justify-content-center p-3">
+			<div id="KnobExample2"></div>
+		</div>
+		<div class="col-md-6 col-lg-4 bg-danger d-flex justify-content-center p-3">
+			<div id="KnobExample3"></div>
+		</div>
+	</section>
 
-    <article class="row mt-4 d-none d-lg-flex">
-        <section class="col-md-6 col-lg-4 bg-primary">
-            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
-                <button id="on1" onclick="function1(2)" class="btn btn-success rounded-0 mb-3">ON</button>
-                <button id="off1" onclick="function1(1)" class="btn btn-danger text-white rounded-0 mb-3">OFF</button>
-                <button id="timer1" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
-                <button id="timer2" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
-                <label for="range1"></label>
-                <input id="range1" type="range" min="0" max="260" value="0" class="form-range" />
-            </div>
+	<article class="row mt-4 d-none d-lg-flex">
+		<section class="col-md-6 col-lg-4 bg-primary">
+			<div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+				<button id="on1" onclick="function1(2)" class="btn btn-success rounded-0 mb-3">ON</button>
+				<button id="off1" onclick="function1(1)" class="btn btn-danger text-white rounded-0 mb-3">OFF</button>
+				<button id="timer1" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+				<button id="timer2" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+				<label for="range1"></label>
+				<input id="range1" type="range" min="0" max="260" value="0" class="form-range" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-dark text-white" for="sta1">ButtonState:</label>
-                <input id="sta1" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                <label class="input-group-text bg-dark text-white" for="err1">ErrorState:</label>
-                <input id="err1" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="sta1">ButtonState:</label>
+				<input id="sta1" type="text" class="form-control" placeholder="false" readonly="readonly" />
+				<label class="input-group-text bg-dark text-white" for="err1">ErrorState:</label>
+				<input id="err1" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-dark text-white" for="per1">Percent:</label>
-                <input id="per1" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-dark text-white" for="rat1">Ratio:</label>
-                <input id="rat1" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="per1">Percent:</label>
+				<input id="per1" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-dark text-white" for="rat1">Ratio:</label>
+				<input id="rat1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-dark text-white" for="val1">Value:</label>
-                <input id="val1" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-dark text-white" for="des1">Angle:</label>
-                <input id="des1" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="val1">Value:</label>
+				<input id="val1" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-dark text-white" for="des1">Angle:</label>
+				<input id="des1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-dark text-white" for="stu1">TimerState:</label>
-                <input id="stu1" type="text" class="form-control" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-dark text-white" for="stp1">TimerSet:</label>
-                <input id="stp1" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="stu1">TimerState:</label>
+				<input id="stu1" type="text" class="form-control" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-dark text-white" for="stp1">TimerSet:</label>
+				<input id="stp1" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-dark text-white" for="still1">TimerLeft:</label>
-                <input id="still1" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
-        </section>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="still1">TimerLeft:</label>
+				<input id="still1" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
+		</section>
 
-        <section class="col-md-6 col-lg-4 bg-warning">
-            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
-                <button id="on2" onclick="function2(2)" class="btn btn-success rounded-0 mb-3">ON</button>
-                <button id="off2" onclick="function2(1)" class="btn btn-danger text-white rounded-0 mb-3">OFF</button>
-                <button id="timer3" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
-                <button id="timer4" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
-                <label for="range2"></label>
-                <input id="range2" type="range" min="0" max="260" value="0" class="form-range" />
-            </div>
+		<section class="col-md-6 col-lg-4 bg-warning">
+			<div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+				<button id="on2" onclick="function2(2)" class="btn btn-success rounded-0 mb-3">ON</button>
+				<button id="off2" onclick="function2(1)" class="btn btn-danger text-white rounded-0 mb-3">OFF</button>
+				<button id="timer3" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+				<button id="timer4" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+				<label for="range2"></label>
+				<input id="range2" type="range" min="0" max="260" value="0" class="form-range" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-warning text-white" for="sta2">ButtonState:</label>
-                <input id="sta2" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                <label class="input-group-text bg-warning text-white" for="err2">ErrorState:</label>
-                <input id="err2" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="sta2">ButtonState:</label>
+				<input id="sta2" type="text" class="form-control" placeholder="false" readonly="readonly" />
+				<label class="input-group-text bg-warning text-white" for="err2">ErrorState:</label>
+				<input id="err2" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-warning text-white" for="per2">Percent:</label>
-                <input id="per2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-warning text-white" for="rat2">Ratio:</label>
-                <input id="rat2" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="per2">Percent:</label>
+				<input id="per2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-warning text-white" for="rat2">Ratio:</label>
+				<input id="rat2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-warning text-white" for="val2">Value:</label>
-                <input id="val2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-warning text-white" for="des2">Angle:</label>
-                <input id="des2" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="val2">Value:</label>
+				<input id="val2" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-warning text-white" for="des2">Angle:</label>
+				<input id="des2" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-warning text-white" for="stu2">TimerState:</label>
-                <input id="stu2" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                <label class="input-group-text bg-warning text-white" for="stp2">TimerSet:</label>
-                <input id="stp2" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="stu2">TimerState:</label>
+				<input id="stu2" type="text" class="form-control" placeholder="false" readonly="readonly" />
+				<label class="input-group-text bg-warning text-white" for="stp2">TimerSet:</label>
+				<input id="stp2" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-warning text-white" for="still2">TimerLeft:</label>
-                <input id="still2" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
-        </section>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-warning text-white" for="still2">TimerLeft:</label>
+				<input id="still2" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
+		</section>
 
-        <section class="col-md-6 col-lg-4 bg-danger">
-            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
-                <button id="on3" onclick="function3(2)" class="btn btn-success rounded-0 mb-3">ON</button>
-                <button id="off3" onclick="function3(1)" class="btn btn-warning text-white rounded-0 mb-3">OFF</button>
-                <button id="timer5" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
-                <button id="timer6" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
-                <label for="range3"></label>
-                <input id="range3" type="range" min="0" max="260" value="0" class="form-range" />
-            </div>
+		<section class="col-md-6 col-lg-4 bg-danger">
+			<div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+				<button id="on3" onclick="function3(2)" class="btn btn-success rounded-0 mb-3">ON</button>
+				<button id="off3" onclick="function3(1)" class="btn btn-warning text-white rounded-0 mb-3">OFF</button>
+				<button id="timer5" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+				<button id="timer6" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+				<label for="range3"></label>
+				<input id="range3" type="range" min="0" max="260" value="0" class="form-range" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-secondary text-white" for="sta3">ButtonState:</label>
-                <input id="sta3" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                <label class="input-group-text bg-secondary text-white" for="err3">ErrorState:</label>
-                <input id="err3" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-secondary text-white" for="sta3">ButtonState:</label>
+				<input id="sta3" type="text" class="form-control" placeholder="false" readonly="readonly" />
+				<label class="input-group-text bg-secondary text-white" for="err3">ErrorState:</label>
+				<input id="err3" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-secondary text-white" for="per3">Percent:</label>
-                <input id="per3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-secondary text-white" for="rat3">Ratio:</label>
-                <input id="rat3" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-secondary text-white" for="per3">Percent:</label>
+				<input id="per3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-secondary text-white" for="rat3">Ratio:</label>
+				<input id="rat3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-secondary text-white" for="val3">Value:</label>
-                <input id="val3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-secondary text-white" for="des3">Angle:</label>
-                <input id="des3" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-secondary text-white" for="val3">Value:</label>
+				<input id="val3" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-secondary text-white" for="des3">Angle:</label>
+				<input id="des3" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-secondary text-white" for="stu3">TimerState:</label>
-                <input id="stu3" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                <label class="input-group-text bg-secondary text-white" for="stp3">TimerSet:</label>
-                <input id="stp3" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-secondary text-white" for="stu3">TimerState:</label>
+				<input id="stu3" type="text" class="form-control" placeholder="false" readonly="readonly" />
+				<label class="input-group-text bg-secondary text-white" for="stp3">TimerSet:</label>
+				<input id="stp3" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-secondary text-white" for="still3">TimerLeft:</label>
-                <input id="still3" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
-        </section>
-    </article>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-secondary text-white" for="still3">TimerLeft:</label>
+				<input id="still3" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
+		</section>
+	</article>
 
-    <section class="row align-items-center mt-4">
-        <div class="col-md-6 col-lg-4 bg-secondary d-flex justify-content-center p-3">
-            <div id="KnobExample4"></div>
-        </div>
-        <div class="col-md-6 col-lg-4 bg-dark d-flex justify-content-center p-3">
-            <div id="KnobExample5"></div>
-        </div>
-        <div class="col-md-6 col-lg-4 bg-success d-flex justify-content-center p-3">
-            <div id="KnobExample6"></div>
-        </div>
-    </section>
+	<section class="row align-items-center mt-4">
+		<div class="col-md-6 col-lg-4 bg-secondary d-flex justify-content-center p-3">
+			<div id="KnobExample4"></div>
+		</div>
+		<div class="col-md-6 col-lg-4 bg-dark d-flex justify-content-center p-3">
+			<div id="KnobExample5"></div>
+		</div>
+		<div class="col-md-6 col-lg-4 bg-success d-flex justify-content-center p-3">
+			<div id="KnobExample6"></div>
+		</div>
+	</section>
 
-    <article class="row mt-4 d-none d-lg-flex">
-        <section class="col-md-6 col-lg-4 bg-secondary">
-            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
-                <button id="on4" onclick="function4(2)" class="btn btn-success rounded-0 mb-3">ON</button>
-                <button id="off4" onclick="function4(1)" class="btn btn-danger rounded-0 mb-3">OFF</button>
-                <button id="timer7" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
-                <button id="timer8" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
-                <label for="range4"></label>
-                <input id="range4" type="range" min="0" max="260" value="0" class="form-range" />
-            </div>
+	<article class="row mt-4 d-none d-lg-flex">
+		<section class="col-md-6 col-lg-4 bg-secondary">
+			<div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+				<button id="on4" onclick="function4(2)" class="btn btn-success rounded-0 mb-3">ON</button>
+				<button id="off4" onclick="function4(1)" class="btn btn-danger rounded-0 mb-3">OFF</button>
+				<button id="timer7" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+				<button id="timer8" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+				<label for="range4"></label>
+				<input id="range4" type="range" min="0" max="260" value="0" class="form-range" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-primary text-white" for="sta4">ButtonState:</label>
-                <input id="sta4" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                <label class="input-group-text bg-primary text-white" for="err4">ErrorState:</label>
-                <input id="err4" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="sta4">ButtonState:</label>
+				<input id="sta4" type="text" class="form-control" placeholder="false" readonly="readonly" />
+				<label class="input-group-text bg-primary text-white" for="err4">ErrorState:</label>
+				<input id="err4" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-primary text-white" for="per4">Percent:</label>
-                <input id="per4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-primary text-white" for="rat4">Ratio:</label>
-                <input id="rat4" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="per4">Percent:</label>
+				<input id="per4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-primary text-white" for="rat4">Ratio:</label>
+				<input id="rat4" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-primary text-white" for="val4">Value:</label>
-                <input id="val4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-primary text-white" for="des4">Angle:</label>
-                <input id="des4" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="val4">Value:</label>
+				<input id="val4" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-primary text-white" for="des4">Angle:</label>
+				<input id="des4" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-primary text-white" for="stu4">TimerState:</label>
-                <input id="stu4" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                <label class="input-group-text bg-primary text-white" for="stp4">TimerSet:</label>
-                <input id="stp4" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="stu4">TimerState:</label>
+				<input id="stu4" type="text" class="form-control" placeholder="false" readonly="readonly" />
+				<label class="input-group-text bg-primary text-white" for="stp4">TimerSet:</label>
+				<input id="stp4" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-primary text-white" for="still4">TimerLeft:</label>
-                <input id="still4" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
-        </section>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-primary text-white" for="still4">TimerLeft:</label>
+				<input id="still4" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
+		</section>
 
-        <section class="col-md-6 col-lg-4 bg-dark">
-            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
-                <button id="on5" onclick="function5(2)" class="btn btn-success rounded-0 mb-3">ON</button>
-                <button id="off5" onclick="function5(1)" class="btn btn-danger rounded-0 mb-3">OFF</button>
-                <button id="timer9" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
-                <button id="timer10" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
-                <label for="range5"></label>
-                <input id="range5" type="range" min="0" max="260" value="0" class="form-range" />
-            </div>
+		<section class="col-md-6 col-lg-4 bg-dark">
+			<div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+				<button id="on5" onclick="function5(2)" class="btn btn-success rounded-0 mb-3">ON</button>
+				<button id="off5" onclick="function5(1)" class="btn btn-danger rounded-0 mb-3">OFF</button>
+				<button id="timer9" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+				<button id="timer10" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+				<label for="range5"></label>
+				<input id="range5" type="range" min="0" max="260" value="0" class="form-range" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-dark text-white" for="sta5">ButtonState:</label>
-                <input id="sta5" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                <label class="input-group-text bg-dark text-white" for="err5">ErrorState:</label>
-                <input id="err5" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="sta5">ButtonState:</label>
+				<input id="sta5" type="text" class="form-control" placeholder="false" readonly="readonly" />
+				<label class="input-group-text bg-dark text-white" for="err5">ErrorState:</label>
+				<input id="err5" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-dark text-white" for="per5">Percent:</label>
-                <input id="per5" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-dark text-white" for="rat5">Ratio:</label>
-                <input id="rat5" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="per5">Percent:</label>
+				<input id="per5" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-dark text-white" for="rat5">Ratio:</label>
+				<input id="rat5" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-dark text-white" for="val5">Value:</label>
-                <input id="val5" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-dark text-white" for="des5">Angle:</label>
-                <input id="des5" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="val5">Value:</label>
+				<input id="val5" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-dark text-white" for="des5">Angle:</label>
+				<input id="des5" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-dark text-white" for="stu5">TimerState:</label>
-                <input id="stu5" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                <label class="input-group-text bg-dark text-white" for="stp5">TimerSet:</label>
-                <input id="stp5" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="stu5">TimerState:</label>
+				<input id="stu5" type="text" class="form-control" placeholder="false" readonly="readonly" />
+				<label class="input-group-text bg-dark text-white" for="stp5">TimerSet:</label>
+				<input id="stp5" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-dark text-white" for="still5">TimerLeft:</label>
-                <input id="still5" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
-        </section>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-dark text-white" for="still5">TimerLeft:</label>
+				<input id="still5" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
+		</section>
 
-        <section class="col-md-6 col-lg-4 bg-success">
-            <div class="input-group mb-2 p-3 d-flex justify-content-evenly">
-                <button id="on6" onclick="function6(2)" class="btn btn-warning rounded-0 mb-3">ON</button>
-                <button id="off6" onclick="function6(1)" class="btn btn-danger rounded-0 mb-3">OFF</button>
-                <button id="timer11" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
-                <button id="timer12" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
-                <label for="range6"></label>
-                <input id="range6" type="range" min="0" max="260" value="0" class="form-range" />
-            </div>
+		<section class="col-md-6 col-lg-4 bg-success">
+			<div class="input-group mb-2 p-3 d-flex justify-content-evenly">
+				<button id="on6" onclick="function6(2)" class="btn btn-warning rounded-0 mb-3">ON</button>
+				<button id="off6" onclick="function6(1)" class="btn btn-danger rounded-0 mb-3">OFF</button>
+				<button id="timer11" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-1</button>
+				<button id="timer12" onclick="" class="btn btn-info text-white rounded-0 mb-3">Timer-2</button>
+				<label for="range6"></label>
+				<input id="range6" type="range" min="0" max="260" value="0" class="form-range" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-success text-white" for="sta6">ButtonState:</label>
-                <input id="sta6" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                <label class="input-group-text bg-success text-white" for="err6">ErrorState:</label>
-                <input id="err6" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-success text-white" for="sta6">ButtonState:</label>
+				<input id="sta6" type="text" class="form-control" placeholder="false" readonly="readonly" />
+				<label class="input-group-text bg-success text-white" for="err6">ErrorState:</label>
+				<input id="err6" type="text" class="form-control" placeholder="No Error" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-success text-white" for="per6">Percent:</label>
-                <input id="per6" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-success text-white" for="rat6">Ratio:</label>
-                <input id="rat6" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-success text-white" for="per6">Percent:</label>
+				<input id="per6" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-success text-white" for="rat6">Ratio:</label>
+				<input id="rat6" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-success text-white" for="val6">Value:</label>
-                <input id="val6" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
-                <label class="input-group-text bg-success text-white" for="des6">Angle:</label>
-                <input id="des6" type="text" class="form-control" placeholder="0" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-success text-white" for="val6">Value:</label>
+				<input id="val6" type="text" class="form-control col-6" placeholder="0" readonly="readonly" />
+				<label class="input-group-text bg-success text-white" for="des6">Angle:</label>
+				<input id="des6" type="text" class="form-control" placeholder="0" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-success text-white" for="stu6">TimerState:</label>
-                <input id="stu6" type="text" class="form-control" placeholder="false" readonly="readonly" />
-                <label class="input-group-text bg-success text-white" for="stp6">TimerSet:</label>
-                <input id="stp6" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-success text-white" for="stu6">TimerState:</label>
+				<input id="stu6" type="text" class="form-control" placeholder="false" readonly="readonly" />
+				<label class="input-group-text bg-success text-white" for="stp6">TimerSet:</label>
+				<input id="stp6" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
 
-            <div class="input-group mb-2">
-                <label class="input-group-text bg-success text-white" for="still6">TimerLeft:</label>
-                <input id="still6" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
-            </div>
-        </section>
-    </article>
+			<div class="input-group mb-2">
+				<label class="input-group-text bg-success text-white" for="still6">TimerLeft:</label>
+				<input id="still6" type="text" class="form-control" placeholder="0 seconds" readonly="readonly" />
+			</div>
+		</section>
+	</article>
 
-    <footer class="fixed-bottom btn-dark d-flex align-items-center justify-content-between">
-        <span>&nbsp;</span>
-        <h5 class="text-warning pt-1">Created by: <b class="text-danger">MCX-Systems&reg;</b></h5>
-        <span>&nbsp;</span>
-    </footer>
+	<footer class="fixed-bottom btn-dark d-flex align-items-center justify-content-between">
+		<span>&nbsp;</span>
+		<h5 class="text-warning pt-1">Created by: <b class="text-danger">MCX-Systems&reg;</b></h5>
+		<span>&nbsp;</span>
+	</footer>
 </div>
 
 <script>

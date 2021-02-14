@@ -1,5 +1,8 @@
 # DinoKnob
-Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (← ↑ → ↓ ) support.
+Knob/Dial Control and Power Button with mouse, wheel, touch and keyboard (← ↑ → ↓ ) support. \
+It also includes 5 default countdown timers preset to: 15sec, 1min, 5min, 10min, 15min. 
+
+
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/MCX-Systems/DinoKnob/graphs/commit-activity)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fmcx-systems.net%2FDinoKnob)
@@ -33,6 +36,10 @@ Tested in latest Edge, Chrome, Firefox, Opera, Safari and Mobile Safari \
 You can install through [npm](https://npmjs.com) and use [browserify](https://browserify.org) to make it run on the browser.
 ```bash
 npm install --save dino-knob
+
+or
+
+$ yarn add dino-knob
 ```
 
 Or just download the minified version
@@ -42,6 +49,7 @@ Events / Actions
 ----------------
 - Normal left click / drag / touch changes value, releasing button commits value.
 - Pulling mouse / touch outside the element before release restores back to old value.
+- 
 
 ## Functions
 - 5 x Timer Output Switch - 15 seconds, 1 minute, 5 minutes, 10 minutes, 15 minutes / all preset \
@@ -55,60 +63,51 @@ Example for dinoKnob control
 $(document).ready(function()
 {
 	$('#KnobTest1').dinoKnob({
-		// Theme Light or Dark
-		theme: 'dark',
-		// Step Value of the Knob
-		snap: 5,
-		// Knob Display Max Value as 100%
-		maxValue: 100,
-		// Max angle value, for alarm icon
-		maxAlarm: 50,
-		// Circle Bar style Hot, Cold or Mono, yellow, blue, red, green
-		barStyle: 'blue',
-		// Enable Timer Button
-		showTimer: true,
-		// Enable Alerts Button
-		showAlert: true,
-		// Enable Labels Button
-		showLabel: true,
-		// Enable Debug
-		debug: true,
-		// Event on knob turn - change
-		onTurn: function(dinoId, value, percent, degree, ratio)
-		{
-			console.log(dinoId + ' ==> VALUE ==> ' + value);
-			console.log(dinoId + ' ==> PERCENT ==> ' + percent);
-			console.log(dinoId + ' ==> ANGLE ==> ' + degree);
-			console.log(dinoId + ' ==> RATIO ==> ' + ratio);
+			// Theme Light or Dark
+			theme: 'dark',
+			// Circle range Bar style:
+			// (Hot, Cold or Mono, yellow, blue, red, green)
+			barTheme: 'blue',
+			// Step Value of the Knob
+			snap: 5,
+			// Knob Display Max Value as 100%
+			maxValue: 100,
+			// Max angle value, for alarm icon
+			maxAlarm: 50,
+			// Enable Timer Button
+			showTimer: true,
+			// Enable Alerts Button
+			showAlert: true,
+			// Enable Labels Button
+			showLabel: true,
+			// Enable Debug
+			debug: true,
+			// Event on knob turn - change
+			onTurn: function(dinoId, value, percent, degree, ratio)
+			{
+				$("#per1").val(percent);
+				$("#des1").val(degree);
+				$("#rat1").val(ratio);
+				$("#val1").val(value);
 
-			$("#per1").val(percent);
-			$("#des1").val(degree);
-			$("#rat1").val(ratio);
-			$("#val1").val(value);
-		},
-		onComplete: function(dinoId, state, timerState, timerTime)
-		{
-			// Return Button State true or false
-			console.log(dinoId + ' ==> BUTTON STATE ==> ' + state);
-			console.log(dinoId + ' ==> TIMER STATE ==> ' + timerState);
-			console.log(dinoId + ' ==> TIMER SET ==> ' + timerTime);
-
-			$("#sta1").val(state);
-			$("#stu1").val(timerState);
-			$("#stp1").val(timerTime + ' seconds');
-		},
-		onTimer: function(dinoId, timeLeft)
-		{
-			$("#still1").val(timeLeft + ' seconds');
-		},
-		onError: function(dinoId, error)
-		{
-			// Return knob errors
-			console.log(dinoId + ' ==> ERROR ==> ' + error);
-
-			$("#err1").val(error);
-		}
-	});
+				$("#range1").val($("#KnobExample1 input[type=hidden]").val());
+			},
+			onStatus: function(dinoId, state, timerState, timerTime)
+			{
+				$("#sta1").val(state);
+				$("#stu1").val(timerState);
+				$("#stp1").val(timerTime + ' seconds');
+			},
+			onTimer: function(dinoId, timeLeft)
+			{
+				$("#still1").val(timeLeft + ' seconds');
+			},
+			onError: function(dinoId, error)
+			{
+				// Return knob errors
+				$("#err1").val(error);
+			}
+		});
 
 	// Depends on maxAngle, set to max of 255 default
 	$("#KnobExample1 input[type=checkbox]").prop('checked', true).trigger('change');
@@ -119,10 +118,13 @@ $(document).ready(function()
 ```
 
 You may update both the maxAngle value \
-(`$("#KnobTest1 input[type=hidden]").val(255).trigger('change');`) \
-and the button state value \
+(`$("#KnobTest1 input[type=hidden]").val(255).trigger('change');`)
+
+and the button state value
+
 (`$("#KnobTest1 input[type=checkbox]").prop('checked', true).trigger('change')`) \
 programmatically in your script to display new values.
+
 
 Return values from example
 ----------
@@ -139,6 +141,7 @@ timerState | bool
 timerTime  | int
 timeLeft   | int
 error      | String
+
 
 ## Credits
 - Based on [https://github.com/tutorialzine/KnobKnob](https://github.com/tutorialzine/KnobKnob)

@@ -102,57 +102,57 @@
 	vertical-align: middle;
 }
 
-.dinoKnob .knob-icon-stopwatch:before
+.dinoKnob .knob-icon-stopwatch::before
 {
 	content: "\e800";
 }
 
-.dinoKnob .knob-icon-off:before
+.dinoKnob .knob-icon-off::before
 {
 	content: "\e802";
 }
 
-.dinoKnob .knob-icon-alert:before
+.dinoKnob .knob-icon-alert::before
 {
 	content: "\e803";
 }
 
-.dinoKnob .knob-icon-th:before
+.dinoKnob .knob-icon-th::before
 {
 	content: "\e804";
 }
 
-.dinoKnob .knob-icon-lightbulb:before
+.dinoKnob .knob-icon-lightbulb::before
 {
 	content: "\e805";
 }
 
-.dinoKnob .knob-icon-contrast:before
+.dinoKnob .knob-icon-contrast::before
 {
 	content: "\e806";
 }
 
-.dinoKnob .knob-icon-bell:before
+.dinoKnob .knob-icon-bell::before
 {
 	content: "\e807";
 }
 
-.dinoKnob .knob-icon-adjust:before
+.dinoKnob .knob-icon-adjust::before
 {
 	content: "\e80a";
 }
 
-.dinoKnob .knob-icon-th-large:before
+.dinoKnob .knob-icon-th-large::before
 {
 	content: "\e80b";
 }
 
-.dinoKnob .knob-icon-spin4:before
+.dinoKnob .knob-icon-spin4::before
 {
 	content: "\e834";
 }
 
-.dinoKnob .knob-icon-plug-1:before
+.dinoKnob .knob-icon-plug-1::before
 {
 	content: "\f1e6";
 }
@@ -227,7 +227,7 @@
 	z-index: 5;
 }
 
-.dinoKnob .dinoKnobTop:after
+.dinoKnob .dinoKnobTop::after
 {
 	background-color: rgb(255, 197, 0);
 	border-radius: 50%;
@@ -409,7 +409,7 @@
 	transition: all .5s ease-in-out;
 }
 
-.dinoKnob .dinoKnobMenu:before
+.dinoKnob .dinoKnobMenu::before
 {
 	border-radius: 50%;
 	content: "";
@@ -462,7 +462,7 @@
 	justify-content: center;
 }
 
-.dinoKnob .dinoKnobMenu.active:before
+.dinoKnob .dinoKnobMenu.active::before
 {
 	align-items: center;
 	-webkit-animation: sonar-effect .8s ease-in-out 0.1s infinite;
@@ -745,7 +745,7 @@
 -----------------------------*/
 
 .dinoKnob .blob,
-.dinoKnob .blob:before
+.dinoKnob .blob::before
 {
 	-webkit-animation: blob 1.2s linear;
 	animation: blob 1.2s linear;
