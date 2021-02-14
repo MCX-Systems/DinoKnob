@@ -7,7 +7,7 @@
  *
  * Created by 2007 - 2021 MCX-Systems
  */
-(function(root, factory)
+(function (root, factory)
 {
 	if (typeof window.define === 'function' && window.define.amd)
 	{
@@ -22,7 +22,7 @@
 		root.dinoKnob = factory(root.jquery);
 	}
 }(this,
-	function()
+	function ()
 	{
 		'use strict';
 
@@ -41,6 +41,7 @@
 			"$('h1').pluginName();" creates a new instance of pluginName for
 			all h1's.
 		*/
+
 		// Create the plugin constructor
 		function Plugin(element, options)
 		{
@@ -171,7 +172,7 @@
 		$.extend(Plugin.prototype,
 			{
 				// Initialization logic
-				init: function()
+				init: function ()
 				{
 					const widget = this;
 					/*
@@ -211,7 +212,7 @@
 
 				/***************************************************************************/
 
-				initKnob: function()
+				initKnob: function ()
 				{
 					let widget = this;
 					let knobBarTheme = widget.options.barTheme;
@@ -296,12 +297,12 @@
 							'-webkit-filter':
 								`url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='dinoBlurFilter-${
 									widget._uId
-									}'><feGaussianBlur in='SourceGraphic' result='blur' stdDeviation='10' /><feColorMatrix in='blur' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6' result='flt' /><feBlend in2='flt' in='SourceGraphic' result='mix' /></filter></svg>#dinoBlurFilter-${
+								}'><feGaussianBlur in='SourceGraphic' result='blur' stdDeviation='10' /><feColorMatrix in='blur' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6' result='flt' /><feBlend in2='flt' in='SourceGraphic' result='mix' /></filter></svg>#dinoBlurFilter-${
 									widget._uId}")`,
 							'filter':
 								`url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='dinoBlurFilter-${
 									widget._uId
-									}'><feGaussianBlur in='SourceGraphic' result='blur' stdDeviation='10' /><feColorMatrix in='blur' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6' result='flt' /><feBlend in2='flt' in='SourceGraphic' result='mix' /></filter></svg>#dinoBlurFilter-${
+								}'><feGaussianBlur in='SourceGraphic' result='blur' stdDeviation='10' /><feColorMatrix in='blur' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6' result='flt' /><feBlend in2='flt' in='SourceGraphic' result='mix' /></filter></svg>#dinoBlurFilter-${
 									widget._uId}")`
 						});
 					}
@@ -324,48 +325,48 @@
 
 				/***************************************************************************/
 
-				createKnobWidget: function()
+				createKnobWidget: function ()
 				{
 					return `<article id="dinoKnob-${this._uId}" class="dinoKnob"><section id="dinoKnobBars-${this._uId
-						}" class="dinoKnobBars"></section><section id="dinoKnobTop-${this._uId
-						}" class="dinoKnobTop"></section><section id="dinoKnobHolder-${this._uId
-						}" class="dinoKnobHolder"><div id="dinoKnobSwitch-${
+					}" class="dinoKnobBars"></section><section id="dinoKnobTop-${this._uId
+					}" class="dinoKnobTop"></section><section id="dinoKnobHolder-${this._uId
+					}" class="dinoKnobHolder"><div id="dinoKnobSwitch-${
 						this._uId
-						}" class="dinoKnobSwitch"><label for="dinoKnobSwitchInput-"></label><input id="dinoKnobSwitchInput-${
+					}" class="dinoKnobSwitch"><label for="dinoKnobSwitchInput-"></label><input id="dinoKnobSwitchInput-${
 						this._uId
-						}" type="checkbox" /><div id="dinoButton-${this._uId
-						}" class="dinoButton"><svg id="dinoPower-off-${this._uId
-						}" class="dinoPower-off"><use xlink:href="#dinoLine-${this._uId
-						}" class="dinoLine"/><use xlink:href="#dinoCircle-${this._uId
-						}" class="dinoCircle"/></svg><svg id="dinoPower-on-${this._uId
-						}" class="dinoPower-on"><use xlink:href="#dinoLine-${this._uId
-						}" class="dinoLine"/><use xlink:href="#dinoCircle-${this._uId
-						}" class="dinoCircle"/></svg></div></div><div id="dinoKnobInfo-${this._uId
-						}" class="dinoKnobInfo dinoAnimated"></div><div id="dinoKnobValue-${this._uId
-						}" class="dinoKnobValue dinoAnimated"></div><nav id="dinoKnobTimers-${this._uId
-						}" class="dinoKnobTimers dinoAnimated"></nav></section><nav id="dinoKnobNavigation-${this._uId
-						}" class="dinoNavWrap"><section id="dinoKnobMenu2-${this._uId
-						}" class="dinoKnobMenu knobMenu2"><i id="dinoKnobMenuIcon2-${this._uId
-						}" class="dinoKnobIcon knob-icon-adjust"></i></section><section id="dinoKnobMenu1-${this._uId
-						}" class="dinoKnobMenu knobMenu1"><i id="dinoKnobMenuIcon1-${this._uId
-						}" class="dinoKnobIcon knob-icon-stopwatch"></i></section><section id="dinoKnobMenu3-${this._uId
-						}" class="dinoKnobMenu knobMenu3"><i id="dinoKnobMenuIcon3-${this._uId
-						}" class="dinoKnobIcon knob-icon-alert"></i></section></nav><svg id="dinoPowerSwitch-${this._uId
-						}" xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="dinoLine-${
+					}" type="checkbox" /><div id="dinoButton-${this._uId
+					}" class="dinoButton"><svg id="dinoPower-off-${this._uId
+					}" class="dinoPower-off"><use xlink:href="#dinoLine-${this._uId
+					}" class="dinoLine"/><use xlink:href="#dinoCircle-${this._uId
+					}" class="dinoCircle"/></svg><svg id="dinoPower-on-${this._uId
+					}" class="dinoPower-on"><use xlink:href="#dinoLine-${this._uId
+					}" class="dinoLine"/><use xlink:href="#dinoCircle-${this._uId
+					}" class="dinoCircle"/></svg></div></div><div id="dinoKnobInfo-${this._uId
+					}" class="dinoKnobInfo dinoAnimated"></div><div id="dinoKnobValue-${this._uId
+					}" class="dinoKnobValue dinoAnimated"></div><nav id="dinoKnobTimers-${this._uId
+					}" class="dinoKnobTimers dinoAnimated"></nav></section><nav id="dinoKnobNavigation-${this._uId
+					}" class="dinoNavWrap"><section id="dinoKnobMenu2-${this._uId
+					}" class="dinoKnobMenu knobMenu2"><i id="dinoKnobMenuIcon2-${this._uId
+					}" class="dinoKnobIcon knob-icon-adjust"></i></section><section id="dinoKnobMenu1-${this._uId
+					}" class="dinoKnobMenu knobMenu1"><i id="dinoKnobMenuIcon1-${this._uId
+					}" class="dinoKnobIcon knob-icon-stopwatch"></i></section><section id="dinoKnobMenu3-${this._uId
+					}" class="dinoKnobMenu knobMenu3"><i id="dinoKnobMenuIcon3-${this._uId
+					}" class="dinoKnobIcon knob-icon-alert"></i></section></nav><svg id="dinoPowerSwitch-${this._uId
+					}" xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="dinoLine-${
 						this._uId
-						}"><line x1="75" y1="34" x2="75" y2="58"/></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="dinoCircle-${
+					}"><line x1="75" y1="34" x2="75" y2="58"/></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="dinoCircle-${
 						this._uId}"><circle cx="75" cy="80" r="35"/></symbol></defs></svg><svg id="dinoBlurFilterSvg-${
 						this._uId
-						}" xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs><filter id="dinoBlurFilter-${
+					}" xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs><filter id="dinoBlurFilter-${
 						this._uId
-						}"><feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" /><feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6" result="flt" /><feBlend in2="flt" in="SourceGraphic" result="mix" /></filter></defs></svg><input id="dinoKnobAngleValue-${
+					}"><feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" /><feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -6" result="flt" /><feBlend in2="flt" in="SourceGraphic" result="mix" /></filter></defs></svg><input id="dinoKnobAngleValue-${
 						this._uId}" type="hidden" /></article>`;
 				},
 
 				/***************************************************************************/
 
 				// Remove plugin instance completely
-				destroy: function()
+				destroy: function ()
 				{
 					/*
 						The destroy method unbinds all events for the specific instance
@@ -386,7 +387,7 @@
 				},
 
 				// Cache DOM nodes for performance
-				buildCache: function()
+				buildCache: function ()
 				{
 					/*
 						Create variable(s) that can be accessed by other plugin
@@ -398,7 +399,7 @@
 				},
 
 				// Bind events that trigger methods
-				bindEvents: function()
+				bindEvents: function ()
 				{
 					const plugin = this;
 
@@ -408,6 +409,7 @@
 
 					let oldestIndex = 0;
 					let nextIndex = 0;
+					let hoverTimeout = false;
 
 					/*
 						Bind event(s) to handlers that trigger other functions, ie:
@@ -423,12 +425,27 @@
 					/*------------------------------------------------------------------------------------------------*/
 
 					plugin.$element.on(`click touchstart.${plugin._name}`,
-						`#dinoTimer-1-${plugin._uId}, #dinoTimer-2-${plugin._uId}, #dinoTimer-3-${plugin._uId
-						}, #dinoTimer-4-${plugin._uId}, #dinoTimer-5-${plugin._uId}`,
-						function(e)
+						`#dinoCloseOverlay-${plugin._uId}`,
+						function (e)
 						{
 							e.preventDefault();
 
+							plugin.$element.find(`#dinoKnobTimers-${plugin._uId}`).css({
+								'opacity': '0',
+								'visibility': 'collapse'
+							}).removeClass('zoomIn').addClass('zoomOut');
+						});
+
+					/*------------------------------------------------------------------------------------------------*/
+
+					plugin.$element.on(`click touchstart.${plugin._name}`,
+						`#dinoTimer-1-${plugin._uId}, #dinoTimer-2-${plugin._uId}, #dinoTimer-3-${plugin._uId
+						}, #dinoTimer-4-${plugin._uId}, #dinoTimer-5-${plugin._uId}`,
+						function (e)
+						{
+							e.preventDefault();
+
+							let countTimeout = false;
 							plugin._timerState = true;
 							plugin._timerCounter = 0;
 							plugin._timerTime = $(this).data('timer');
@@ -449,6 +466,8 @@
 								window.console.log(plugin._uId + ' ==> TIMER SET ==> ' + plugin._timerTime);
 							}
 
+							plugin.$element.find(`#dinoKnobSwitchInput-${plugin._uId}`).prop('checked', true)
+								.trigger('change');
 							plugin.$element.find(`#dinoKnobMenu1-${plugin._uId}`).addClass('disabled');
 							plugin.$element.find(`#dinoKnobMenu2-${plugin._uId}`).addClass('disabled');
 
@@ -490,10 +509,14 @@
 											plugin._buttonState,
 											plugin._timerState,
 											plugin._timerTime);
-										plugin.$element.find(`#dinoKnobTimers-${plugin._uId}`).empty();
 
+										plugin.$element.find(`#dinoKnobTimers-${plugin._uId}`).empty();
+										plugin.$element.find(`#dinoKnobSwitchInput-${plugin._uId}`)
+											.prop('checked', false).trigger('change');
 										plugin.$element.find(`#dinoKnobMenu1-${plugin._uId}`).removeClass('disabled');
 										plugin.$element.find(`#dinoKnobMenu2-${plugin._uId}`).removeClass('disabled');
+
+										window.clearTimeout(countTimeout);
 									}
 
 									plugin._timerCounterLeft += Math.round((plugin._timerTime / 360) * 1000);
@@ -505,7 +528,7 @@
 										window.console.log(plugin._uId + ' ==> TIME LEFT ==> ' + timeL);
 									}
 
-									window.setTimeout(drawCountDown, (plugin._timerTime / 360) * 1000);
+									countTimeout = window.setTimeout(drawCountDown, (plugin._timerTime / 360) * 1000);
 								}
 							}
 
@@ -514,7 +537,7 @@
 
 					plugin.$element.on(`click touchstart.${plugin._name}`,
 						`#dinoKnobMenu1-${plugin._uId}`,
-						function(e)
+						function (e)
 						{
 							e.preventDefault();
 
@@ -541,7 +564,7 @@
 
 					plugin.$element.on(`mouseleave.${plugin._name}`,
 						`#dinoKnobMenu2-${plugin._uId}`,
-						function(e)
+						function (e)
 						{
 							e.preventDefault();
 
@@ -552,28 +575,34 @@
 									'visibility': 'collapse'
 								}).removeClass('zoomIn').addClass('zoomOut');
 							}
+
+							window.clearTimeout(hoverTimeout);
 						});
 
 					plugin.$element.on(`mouseenter.${plugin._name}`,
 						`#dinoKnobMenu2-${plugin._uId}`,
-						function(e)
+						function (e)
 						{
 							e.preventDefault();
 
-							if (plugin.options.showLabel)
-							{
-								plugin.$element.find(`#dinoKnobValue-${plugin._uId}`).css({
-									'opacity': '1',
-									'visibility': 'visible'
-								}).removeClass('zoomOut').addClass('zoomIn');
-							}
+							hoverTimeout = window.setTimeout(function ()
+								{
+									if (plugin.options.showLabel)
+									{
+										plugin.$element.find(`#dinoKnobValue-${plugin._uId}`).css({
+											'opacity': '1',
+											'visibility': 'visible'
+										}).removeClass('zoomOut').addClass('zoomIn');
+									}
+								},
+								500);
 						});
 
 					/*------------------------------------------------------------------------------------------------*/
 
 					plugin.$element.on(`click touchstart.${plugin._name}`,
 						`#dinoKnobInfo-${plugin._uId}`,
-						function(e)
+						function (e)
 						{
 							e.preventDefault();
 
@@ -585,7 +614,7 @@
 
 					plugin.$element.on(`click touchstart.${plugin._name}`,
 						`#dinoKnobMenu3-${plugin._uId}`,
-						function(e)
+						function (e)
 						{
 							e.preventDefault();
 
@@ -627,7 +656,7 @@
 					/*------------------------------------------------------------------------------------------------*/
 
 					plugin.$element.on(`mouseleave.${plugin._name}`,
-						function(e)
+						function (e)
 						{
 							e.preventDefault();
 
@@ -635,7 +664,7 @@
 						});
 
 					plugin.$element.on(`mouseenter.${plugin._name}`,
-						function(e)
+						function (e)
 						{
 							e.preventDefault();
 
@@ -645,7 +674,7 @@
 					/*------------------------------------------------------------------------------------------------*/
 
 					plugin.$element.on(`mousedown touchstart.${plugin._name}`,
-						function()
+						function ()
 						{
 							let a, b, deg, tmp;
 							const offset = plugin.$element.offset();
@@ -659,7 +688,7 @@
 							};
 
 							plugin.$element.on(`mousemove.rem touchmove.rem.${plugin._name}`,
-								function(e)
+								function (e)
 								{
 									e.preventDefault();
 
@@ -808,8 +837,8 @@
 									return false;
 								});
 
-							plugin.$element.on(`mouseup touchend.${plugin._name}`,
-								function()
+							plugin.$element.on(`mouseup touchend touchcancel.${plugin._name}`,
+								function ()
 								{
 									plugin.$element.off('.rem');
 									// Saving the current rotation
@@ -823,7 +852,7 @@
 					/*------------------------------------------------------------------------------------------------*/
 
 					plugin.$element.on(`keydown keypress.${plugin._name}`,
-						function(e)
+						function (e)
 						{
 							e.preventDefault();
 
@@ -863,7 +892,7 @@
 
 					plugin.$element.on(`mousewheel DOMMouseScroll.${plugin._name}`,
 						`#dinoKnobHolder-${plugin._uId}`,
-						function(e)
+						function (e)
 						{
 							e.preventDefault();
 
@@ -881,7 +910,7 @@
 
 					plugin.$element.on(`input change.${plugin._name}`,
 						`#dinoKnobAngleValue-${plugin._uId}`,
-						function(e)
+						function (e)
 						{
 							e.preventDefault();
 
@@ -959,7 +988,7 @@
 
 					plugin.$element.on(`change.${plugin._name}`,
 						`#dinoKnobSwitchInput-${plugin._uId}`,
-						function(e)
+						function (e)
 						{
 							e.preventDefault();
 
@@ -1016,13 +1045,22 @@
 
 								plugin.$element.find(`#dinoKnobHolder-${plugin._uId}`).toggleClass('blob');
 							}
+
+							if (plugin._buttonState && plugin.options.showTimer)
+							{
+								plugin.$element.find(`#dinoKnobMenu1-${plugin._uId}`).addClass('disabled');
+							}
+							else if (!plugin._buttonState && plugin.options.showTimer)
+							{
+								plugin.$element.find(`#dinoKnobMenu1-${plugin._uId}`).removeClass('disabled');
+							}
 						});
 
 					/*------------------------------------------------------------------------------------------------*/
 				},
 
 				// Unbind events that trigger methods
-				unbindEvents: function()
+				unbindEvents: function ()
 				{
 					/*
 						Unbind all events in our plugin namespace that are attached
@@ -1043,7 +1081,7 @@
 
 				/***************************************************************************/
 
-				rotateKnob: function(direction)
+				rotateKnob: function (direction)
 				{
 					let widget = this;
 					let bars = widget.$element.find(`#dinoKnobBars-${widget._uId}`);
@@ -1153,19 +1191,19 @@
 
 				/***************************************************************************/
 
-				createTimerFace: function()
+				createTimerFace: function ()
 				{
 					return `<article class="dinoTimer"><svg class="dinoTimerRotate" viewbox="0 0 250 250"><defs><linearGradient spreadMethod="pad" id="gradientTimer-${
 						this._uId
-						}" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:rgba(163, 143, 5, 0.50);stop-opacity:0.78;" /><stop offset="48%" style="stop-color:rgba(87, 81, 47, 0.70);stop-opacity:0.89;" /><stop offset="100%" style="stop-color:rgb(136, 113, 0);stop-opacity:1;" /></linearGradient></defs><path id="dinoTimerLoader-${
+					}" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:rgba(163, 143, 5, 0.50);stop-opacity:0.78;" /><stop offset="48%" style="stop-color:rgba(87, 81, 47, 0.70);stop-opacity:0.89;" /><stop offset="100%" style="stop-color:rgb(136, 113, 0);stop-opacity:1;" /></linearGradient></defs><path id="dinoTimerLoader-${
 						this._uId}" transform="translate(125, 125)" class="dinoTimerLoader" fill="url(#gradientTimer-${
 						this._uId
-						})" /></svg><section class="dinoTimerDots"><span class="dinoTimerTime deg0"></span><span class="dinoTimerTime deg45"></span><span class="dinoTimerTime deg90"></span><span class="dinoTimerTime deg135"></span></section></article>`;
+					})" /></svg><section class="dinoTimerDots"><span class="dinoTimerTime deg0"></span><span class="dinoTimerTime deg45"></span><span class="dinoTimerTime deg90"></span><span class="dinoTimerTime deg135"></span></section></article>`;
 				},
 
 				/***************************************************************************/
 
-				createTimerMenu: function()
+				createTimerMenu: function ()
 				{
 					let i;
 					let temp;
@@ -1177,9 +1215,9 @@
 						{
 							temp += `<li><button id="dinoTimer-${i}-${this._uId}" type="button" data-timer="${
 								this.options.timerArray[(i - 1)]}"><img class="dinoKnobTimerImage" src="${this.getImage(
-									(i - 1))
-								}" alt="Timer-${i}" /><div class="dinoKnobTooltip">${this.options.timerArray[(i - 1)]
-								} sec</div></button></li>`;
+								(i - 1))
+							}" alt="Timer-${i}" /><div class="dinoKnobTooltip">${this.options.timerArray[(i - 1)]
+							} sec</div></button></li>`;
 						}
 					}
 					else
@@ -1188,31 +1226,32 @@
 						{
 							temp += `<li><button id="dinoTimer-${i - 5}-${this._uId}" type="button" data-timer="${
 								this.options.timerArray[(i - 6)]}"><img class="dinoKnobTimerImage" src="${this.getImage(
-									(i - 1))
-								}" alt="Timer-${i - 5}" /><div class="dinoKnobTooltip">${this.options.timerArray[(i - 6)
+								(i - 1))
+							}" alt="Timer-${i - 5}" /><div class="dinoKnobTooltip">${this.options.timerArray[(i - 6)
 								]} sec</div></button></li>`;
 						}
 					}
 
-					temp += '</ul>';
+					temp += `</ul><div class="menuCloseHandle"><a id="dinoCloseOverlay-${this._uId
+					}" href="#" class="dinoClose"><span class="left"></span><span class="right"></span></a></div>`;
 
 					return temp;
 				},
 
 				/***************************************************************************/
 
-				createCreatedBy: function()
+				createCreatedBy: function ()
 				{
 					return `<address><b>${this.capitalizeFirstLetter(this._name)}</b><br /><span><b>${
 						$.fn.dinoKnob.version}</b></span><hr /><span>${window.atob('Q3JlYXRlZCBCeTog')}<br /><b>${
 						window.atob(
 							'PGEgaHJlZj0iaHR0cHM6Ly9tY3gtc3lzdGVtcy5uZXQiIHRhcmdldD0iYmxhbmsiPk1DWC1TeXN0ZW1zJnJlZzwvYT4=')
-						}</b></span></address>`;
+					}</b></span></address>`;
 				},
 
 				/***************************************************************************/
 
-				buttonStateCallback: function(id, state, timerState, timerTime)
+				buttonStateCallback: function (id, state, timerState, timerTime)
 				{
 					// Cache onStatus option
 					const onStatus = this.options.onStatus;
@@ -1223,7 +1262,7 @@
 					}
 				},
 
-				turnKnobCallback: function(id, value, percent, degree, ratio)
+				turnKnobCallback: function (id, value, percent, degree, ratio)
 				{
 					// Cache onTurn option
 					const onTurn = this.options.onTurn;
@@ -1234,7 +1273,7 @@
 					}
 				},
 
-				timerUpdateCallback: function(id, timeLeft)
+				timerUpdateCallback: function (id, timeLeft)
 				{
 					// Cache onTimer option
 					const onTimer = this.options.onTimer;
@@ -1245,7 +1284,7 @@
 					}
 				},
 
-				errorUpdateCallback: function(id, error)
+				errorUpdateCallback: function (id, error)
 				{
 					// Cache onError option
 					const onError = this.options.onError;
@@ -1258,22 +1297,22 @@
 
 				/***************************************************************************/
 
-				rotateMenu: function(li, d)
+				rotateMenu: function (li, d)
 				{
 					const angleStart = -360;
-					$({ d: angleStart }).animate({ d: d },
+					$({d: angleStart}).animate({d: d},
 						{
-							step: function(now)
+							step: function (now)
 							{
-								$(li).css({ transform: `rotate(${now}deg)` }).find('button')
-									.css({ transform: `rotate(${-now}deg)` });
+								$(li).css({transform: `rotate(${now}deg)`}).find('button')
+									.css({transform: `rotate(${-now}deg)`});
 							}
 						});
 				},
 
 				/***************************************************************************/
 
-				createUniqId: function(idLength)
+				createUniqId: function (idLength)
 				{
 					const charsToFormId = '_0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
 					if (!idLength)
@@ -1294,7 +1333,7 @@
 
 				// Try to find a language we should use. Look for URL parameter or system settings.
 				// Restricts to supported languages ('en', 'sl' and some others).
-				getUserLanguage: function()
+				getUserLanguage: function ()
 				{
 					let lang = '';
 
@@ -1338,40 +1377,40 @@
 
 				/***************************************************************************/
 
-				randomNumberFromRange: function(min, max)
+				randomNumberFromRange: function (min, max)
 				{
 					return Math.floor(Math.random() * (max - min + 1) + min);
 				},
 
 				/***************************************************************************/
 
-				isBlank: function(str)
+				isBlank: function (str)
 				{
 					return (!str || /^\s*$/.test(str));
 				},
 
 				/***************************************************************************/
 
-				capitalizeFirstLetter: function(string)
+				capitalizeFirstLetter: function (string)
 				{
 					return string.replace(/^(.)/g, string[0].toUpperCase());
 				},
 
 				/***************************************************************************/
 
-				deCapitalizeFirstLetter: function(string)
+				deCapitalizeFirstLetter: function (string)
 				{
 					return string.replace(/^(.)/g, string[0].toLowerCase());
 				},
 
 				/***************************************************************************/
 
-				degreesToRadians: function(degrees)
+				degreesToRadians: function (degrees)
 				{
 					return degrees * Math.PI / 180;
 				},
 
-				radiansToDegrees: function(radians)
+				radiansToDegrees: function (radians)
 				{
 					return radians * 180 / Math.PI;
 				},
@@ -1384,7 +1423,7 @@
 				 * @param key
 				 * @param lang
 				 */
-				getI18n: function(key, lang)
+				getI18n: function (key, lang)
 				{
 					const i18N = {
 						en: {
@@ -1420,7 +1459,7 @@
 				*  First 5 in array theme dark,
 				*  second 5 in array theme light
 				*/
-				getImage: function(key = 0)
+				getImage: function (key = 0)
 				{
 					const dinoKnobImages = [
 						'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAABVCAMAAADDsmKDAAAAV1BMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMwY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fUY+fXMzMwY+fVIJUOhAAAAG3RSTlMA8EAwEMDQgKDgIHBgkFCwIOvA0KVAEJCAcGAfAF7kAAADVUlEQVRYw82X2ZarIBBFZR7FnqfK/3/nZUhEBDGh++GeB1cCZktVHSo49UUNAy8+6+kXEsgjGAuomY5CKAckdPxkFSgyTOF0/SIBja1nBrn9KoGNUDCo8vEM7ABGgisHNPABDKj9yAJkIKbZL4BggtPFEyzYAYzxvmHA4HoJQ2IA4/4GI/4CQ0DuMQLc9LAQoiHFRlgjjAsp5kBHTGxi3aNwCHPIxhohvcVQ5a8DMsBpxtDFG2lIEhS+YTQP0FPpdnpgSRjmP7UouzGCZNM8Cq5SzX1gESkpII9cGGXasxYQKSiLpCO92kROprQySJ2QTMWQ2CKsbtSAJ06mwI6jBYed+Ex2FEicTAlym6A5NKUM3fgTMkevFKNXiIJDIUHXmDccyuWSKPwaJeabp7NZBLHtmEsUjmzkMMtpCitSIK6Ozuvts9tmy83rGhkNFIDAKUoVKF5qIhySpGv0IHmLDE8LQOJsjeM8KYAJukK21b1cXl8+f55iWm8gm+50ZPc0Fyj2Gk7ZES5Jr98fAcQgygSObRj7RqkawmXVW1iSgShBkO3sH1Ql5ZL1vJakuZQ86xPfwXylWme7VqK8olSY5/Je3exRidLDvK/PVNHAR4lxUw/zUmSg2YZUqlEX81R0LID6AGbSIruYz2I02li2FoO7mOePsiQxLF16L6G7mO9WALJejO5iXiuHoH12SAY3lItdSkQv7z1Dupi3hmHBa9nFpKYjFcWuirVpztEzXcxXa8KVjrW52i3lYreimsvUTD3MT3uGA2zOTix/a6nYTNUfHioyvPQw71NboggDvEQHk4vdyjG5E/PydDSDi9qk1jGgGuP+BiP+K8w8dnT2oqX9BlT6ZokbfEDh+byE6gFM2e3wkHHq3+U2dq5O01xGoqqbph1yjquMgkZqxaoYJHjZgQSXdtPVH/u5WKODy3s3RP/woKFi96VR8wfiwbD4gdfSMexejjw6/BEIkg/4t11acz9H9G6V6+vJaUQpAd1pRfoQyvqUiS4Ap7vLoUzpLxc4PrQLg0zpJS+JNUFYQtLpWztG6zsi2S3EcEhCdjoVlXATWoTD2g9hLKRah5m+rwMw6Ci9+P4SpB5rSmRWNQNJPD0sYha1QTCBp2FhjK3xl5MC/wOxI3nU8RC8DQAAAABJRU5ErkJggg==',
@@ -1447,9 +1486,9 @@
 	
 			More: http://learn.jquery.com/plugins/basic-plugin-creation/
 		*/
-		$.fn.dinoKnob = function(options)
+		$.fn.dinoKnob = function (options)
 		{
-			this.each(function()
+			this.each(function ()
 			{
 				if (!$.data(this, `plugin_${pluginName}`))
 				{
@@ -1474,7 +1513,7 @@
 		};
 
 		/* Return current version */
-		$.fn.dinoKnob.version = 'v3.27.2021';
+		$.fn.dinoKnob.version = 'v3.28.2021';
 
 		/*
 			Attach the default plugin options directly to the plugin object. This

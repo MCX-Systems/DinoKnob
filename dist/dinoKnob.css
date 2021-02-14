@@ -497,6 +497,58 @@
 }
 
 /*----------------------------
+	Close a Overlay value, info, timers
+	X - Button
+-----------------------------*/
+
+.dinoKnob .menuCloseHandle
+{
+	z-index: 50;
+}
+
+.dinoKnob .menuCloseHandle .dinoClose
+{
+	opacity: 1;
+	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.dinoKnob .menuCloseHandle .dinoClose > span
+{
+	background-color: rgb(255, 255, 0);
+	display: block;
+	height: 3px;
+	border-radius: 50%;
+	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+	position: absolute;
+	top: 50%;
+	left: 66px;
+	width: 24px;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+.dinoKnob .menuCloseHandle .dinoClose:hover > span
+{
+	background-color: rgb(47, 174, 224);
+	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.dinoKnob .menuCloseHandle .dinoClose > span.left
+{
+	transform: rotate(45deg);
+	transform-origin: center;
+}
+
+.dinoKnob .menuCloseHandle .dinoClose > span.right
+{
+	transform: rotate(-45deg);
+	transform-origin: center;
+}
+
+/*----------------------------
 	Overlays all
 -----------------------------*/
 
