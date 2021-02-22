@@ -33,7 +33,7 @@
 	
 			More: http://api.jquery.com/jquery.data/
 		*/
-		const pluginName = 'DinoKnob';
+		const pluginName = 'dinoKnob';
 
 		/*
 			The "Plugin" constructor, builds a new instance of the plugin for the
@@ -777,12 +777,7 @@
 										inputValue = plugin.options.maxValue;
 									}
 
-									if ((inputValue >= plugin.options.maxAlarm) && plugin.options.showAlert)
-									{
-										plugin.$element.find(`#dinoKnobMenu3-${plugin._uId}`).removeClass('active')
-											.addClass('active');
-									}
-									else if ((inputValue >= plugin.options.maxValue) && plugin.options.showAlert)
+									if (((inputValue >= plugin.options.maxAlarm) || (inputValue >= plugin.options.maxValue)) && plugin.options.showAlert)
 									{
 										plugin.$element.find(`#dinoKnobMenu3-${plugin._uId}`).removeClass('active')
 											.addClass('active');
@@ -851,7 +846,7 @@
 										window.console.log(plugin._uId + ' ==> RATIO ==> ' + r.toFixed(2));
 									}
 
-									return false;
+									return true;
 								});
 
 							plugin.$element.on(`mouseup touchend touchcancel.${plugin._name}`,
@@ -941,15 +936,9 @@
 								inputValue = plugin.options.maxValue;
 							}
 
-							if ((inputValue >= plugin.options.maxAlarm) && plugin.options.showAlert)
+							if (((inputValue >= plugin.options.maxAlarm) || (inputValue >= plugin.options.maxValue)) && plugin.options.showAlert)
 							{
-								plugin.$element.find(`#dinoKnobMenu3-${plugin._uId}`).removeClass('active')
-									.addClass('active');
-							}
-							else if ((inputValue >= plugin.options.maxValue) && plugin.options.showAlert)
-							{
-								plugin.$element.find(`#dinoKnobMenu3-${plugin._uId}`).removeClass('active')
-									.addClass('active');
+								plugin.$element.find(`#dinoKnobMenu3-${plugin._uId}`).removeClass('active').addClass('active');
 							}
 							else
 							{
@@ -1530,7 +1519,7 @@
 		};
 
 		/* Return current version */
-		$.fn.dinoKnob.version = 'v3.28.2021';
+		$.fn.dinoKnob.version = 'v3.29.2021';
 
 		/*
 			Attach the default plugin options directly to the plugin object. This
@@ -1559,7 +1548,7 @@
 			showLabel: false,
 			// Step Value of the knob range when using
 			// mouse wheel or keyboard control
-			snap: 0,
+			snap: 5,
 			// Knob current value we start with 0
 			// It can be set at runtime
 			value: 0,
@@ -1592,11 +1581,11 @@
 				900 // seconds
 			],
 			/*---------------------------------------------*/
+			// Enable plugin debug
+			debug: false,
 			// Plugin language automatic
 			// detection at runtime from browser
 			language: null,
-			// Enable plugin debug
-			debug: false,
 			/*---------------------------------------------*/
 			// Event on turn knob
 			onTurn: null,
