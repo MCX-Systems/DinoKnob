@@ -54,6 +54,10 @@
 	vertical-align: middle;
 	width: 100%;
 	z-index: 10;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .dinoKnob
