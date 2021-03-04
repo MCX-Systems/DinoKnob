@@ -74,6 +74,7 @@
 	height: 240px;
 	justify-content: center;
 	width: 240px;
+	margin-top: -15px;
 }
 
 .dinoKnob:focus
@@ -249,7 +250,7 @@
 .dinoKnob .dinoKnobSwitch
 {
 	border-radius: 50%;
-	box-shadow: inset 0 0 42px 16px rgba(0, 0, 0, 0.60), 0 0 42px 16px rgba(0, 0, 0, 0.60);
+	box-shadow: inset 0 0 42px 16px rgba(0, 0, 0, 0.70), 0 0 42px 16px rgba(0, 0, 0, 0.70);
 	height: 140px;
 	left: 0;
 	text-align: center;
@@ -500,8 +501,7 @@
 }
 
 /*----------------------------
-	Close a Overlay value, info, timers
-	X - Button
+	Close a Overlay value, info, timers X - Button
 -----------------------------*/
 
 .dinoKnob .menuCloseHandle

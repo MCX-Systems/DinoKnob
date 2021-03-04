@@ -1561,7 +1561,7 @@
 		};
 
 		/* Return current version */
-		$.fn.dinoKnob.version = 'v3.29.2021';
+		$.fn.dinoKnob.version = 'v3.31.2021';
 
 		/*
 			Attach the default plugin options directly to the plugin object. This
