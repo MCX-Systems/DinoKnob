@@ -122,11 +122,11 @@
 			this._colorBarTheme = [];
 			/***************************************************************************/
 			this._buttonState = false;
+			this._doCountDown = false;
 			this._timerState = false;
 			this._timerTime = 0;
 			this._timerCounter = 0;
 			this._timerCounterLeft = 0;
-			this._doCountDown = false;
 			/***************************************************************************/
 			this._defaults = $.fn.dinoKnob.defaults;
 
@@ -139,6 +139,46 @@
 				More: http://api.jquery.com/jquery.extend/
 			*/
 			this.options = $.extend({}, this._defaults, options);
+
+			/*
+		     * Process and add data-attrs to options as well for ease of use. Also, if
+		     * data-dinoKnob is an object then use it as extra options and if it's not
+		     * then use it as a title.
+		     */
+			if (typeof($(this.element).data("dinoKnob")) === "object")
+			{
+				$.extend(this.options, $(this.element).data("dinoKnob"));
+			}
+
+			const dataKeys = Object.keys($(this.element).data());
+			const dataAttrs = {};
+
+			for (let i = 0; i < dataKeys.length; i++)
+			{
+				let key = dataKeys[i].replace(pluginName, '');
+				if (key === "")
+				{
+					continue;
+				}
+
+				// Lowercase first letter
+				key = key.charAt(0).toLowerCase() + key.slice(1);
+				dataAttrs[key] = $(this.element).data(dataKeys[i]);
+
+				// We cannot use extend for data_attrs because they are automatically
+				// lower cased. We need to do this manually and extend this.options with
+				// data_attrs
+				for (let settingsKey in this.options)
+				{
+					if (this.options.hasOwnProperty(settingsKey))
+					{
+						if (settingsKey.toLowerCase() === key)
+						{
+							this.options[settingsKey] = dataAttrs[key];
+						}
+					}
+				}
+			}
 
 			/*
 				The "init" method is the starting point for all plugin logic.
@@ -260,6 +300,8 @@
 							'left': Math.round(Math.cos((180 - deg) / rad2deg) * 100 + 110)
 						}).appendTo(widget.$element.find(`#dinoKnobBars-${widget._uId}`));
 					}
+
+					widget.$element.attr("data-knob-id", widget._uId);
 
 					// Set default widget colors
 					widget.$element.find(`#dinoKnobHolder-${widget._uId}`).css({
